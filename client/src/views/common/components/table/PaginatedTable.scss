@@ -1,0 +1,51 @@
+@import '../../styles/colors.scss';
+
+$table-hover-speed: .25s;
+
+.paginated-table {
+
+  .button-page {
+    margin-right: 5px;
+  }
+
+  .current-page {
+    background: $page-table-bg;
+    box-shadow: inset 0px 0px 16px 0px $page-table-shadow, inset 0px 0px 0px 1px $page-table-shadow;
+  }
+
+  .table-striped > thead {
+    background-color: $page-table-header-bg;
+    box-shadow: inset 0px 0px 16px 0px $page-table-header-shadow, inset 0px 0px 0px 1px $page-table-header-shadow;
+    box-sizing: border-box;
+  }
+
+  td, th {
+    padding: 15px !important;
+  }
+
+  .table-striped > tbody > tr:nth-child(1n), .table-striped > tbody > tr:nth-child(1n) {
+    background-color: $page-table-row-one-bg;
+  }
+
+  .table-striped > tbody > tr:nth-child(2n), .table-striped > tbody > tr:nth-child(2n) {
+    background-color: $page-table-row-two-bg;
+  }
+
+  .table-striped > tbody > tr:hover {
+    background-color: $page-table-hover-bg;
+    -o-transition: $table-hover-speed;
+    -ms-transition: $table-hover-speed;
+    -moz-transition: $table-hover-speed;
+    -webkit-transition: $table-hover-speed;
+    transition: $table-hover-speed;
+  }
+
+  table {
+    table-layout: fixed;
+    word-wrap: break-word;
+  }
+
+  .table td, .table th, .panel {
+    border-color: $page-table-hr-color !important;
+  }
+}

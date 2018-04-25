@@ -1,0 +1,59 @@
+# testing
+/coverage
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+Thumbs.db
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+/client/build
+
+# dependencies
+/node_modules
+client/node_modules
+yarn.lock
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+/.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+!/client/src/index.css
+
+# gen
+gen/actions/
+gen/sensors/
+gen/motions/
+
+# secret
+/server/config/secret.ts
+*secret.ts
+
+# css
+client/src/**/*.css

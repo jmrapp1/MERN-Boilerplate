@@ -1,0 +1,17 @@
+@import '../../styles/colors.scss';
+
+.Container {
+  background: white;
+  border: $color-gray-border solid 1px;
+}
+
+.container-shadow {
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+}
+
+.container-round {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; /* future proofing */
+  -khtml-border-radius: 10px; /* for old Konqueror browsers */
+}

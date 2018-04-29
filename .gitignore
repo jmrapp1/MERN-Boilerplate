@@ -57,3 +57,4 @@ gen/motions/
 
 # css
 client/src/**/*.css
+!client/src/index.css

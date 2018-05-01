@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import { render } from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import './index.css';
@@ -10,11 +10,11 @@ import Provider from 'react-redux/es/components/Provider';
 
 const store = configureStore();
 
-ReactDOM.render((
+render((
         <Provider store={ store }>
             <HashRouter>
                 <Switch>
-                    <Route path="/*" component={ App } />
+                    <Route path='/*' component={ App }/>
                 </Switch>
             </HashRouter>
         </Provider>

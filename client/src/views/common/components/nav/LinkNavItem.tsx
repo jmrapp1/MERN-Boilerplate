@@ -1,7 +1,6 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import { NavItem } from "react-bootstrap";
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import { Route } from 'react-router-dom';
+import { NavItem } from 'react-bootstrap';
 
 const LinkNavItem = props => (
 
@@ -10,7 +9,7 @@ const LinkNavItem = props => (
         exact
         children={ ({ match, history }) =>
             <NavItem
-                onClick={ e => history.push(e.currentTarget.getAttribute("href")) }
+                onClick={ e => history.push(e.currentTarget.getAttribute('href')) }
                 { ...props }
                 active={ !!match }
             >
@@ -19,10 +18,5 @@ const LinkNavItem = props => (
         }
     />
 );
-
-LinkNavItem.propTypes = {
-    children: PropTypes.node,
-    href: PropTypes.string
-};
 
 export default LinkNavItem;

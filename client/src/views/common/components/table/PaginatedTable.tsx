@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import './PaginatedTable.css';
-import PropTypes from 'prop-types';
 import PageButton from './PageButton';
 
 const maxButtons = 2;
 
-export class PaginatedTable extends Component {
+export class PaginatedTable extends Component<{ columns: any, data: any, currentPage: number, total: number, pageSize: number, mapData: Function, onPageClick: Function, onRowClick: Function }> {
+
+    currentPage;
 
     constructor(props) {
         super(props);
-        this.state = {
-            currentPage: this.props.currentPage
-        };
+        this.currentPage = this.props.currentPage;
         this.onChangePage = this.onChangePage.bind(this);
     }
 
     renderPageButtons() {
         const buttons = [];
-        let totalButtons = Math.ceil(this.props.total / this.props.pageSize);
+        const totalButtons = Math.ceil(this.props.total / this.props.pageSize);
 
-        let start = this.state.currentPage - maxButtons;
+        let start = this.currentPage - maxButtons;
         let end = 0;
         if (start <= 0) { // Move all extra buttons from left to right
             end += (-1 * start) + 1;
             start = 1;
         }
-        end += this.state.currentPage + maxButtons;
+        end += this.currentPage + maxButtons;
 
         for (let i = start; i <= totalButtons && i <= end; i++) {
             buttons.push(
-                <PageButton className={ this.state.currentPage === i ? 'current-page' : '' } key={i} value={ i } text={ i } onClick={ this.onChangePage }/>
+                <PageButton className={ this.currentPage === i ? 'current-page' : '' } key={i} text={ i } onClick={ this.onChangePage }/>
             );
         }
         return buttons;
@@ -55,7 +55,7 @@ export class PaginatedTable extends Component {
 
     onChangePage(e) {
         const page = parseInt(e.target.textContent);
-        this.state.currentPage = page;
+        this.currentPage = page;
         this.props.onPageClick(page);
     }
 
@@ -79,14 +79,3 @@ export class PaginatedTable extends Component {
         );
     }
 }
-
-PaginatedTable.propTypes = {
-    columns: PropTypes.array,
-    data: PropTypes.array,
-    currentPage: PropTypes.number,
-    total: PropTypes.number,
-    pageSize: PropTypes.number,
-    mapData: PropTypes.func,
-    onPageClick: PropTypes.func,
-    onRowClick: PropTypes.func
-};

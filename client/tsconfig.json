@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true,
+    "module": "commonjs",
+    "importHelpers": true,
+    "outDir": "../dist/client",
+    "lib": ["es2015", "dom"],
+    "jsx": "react"
+  },
+  "include": [
+    "./src/**/*.tsx",
+    "./src/**/*.ts"
+  ]
+}

@@ -1,4 +1,4 @@
-# Boilerplate For Node & Express Server With React & Redux
+# Boilerplate For Node & Express Server With React & Redux Using Typescript on Client & Server
 
 ## Setup
 - Add MongoDB Production and Test connection URLs to /.env
@@ -6,6 +6,7 @@
 - `npm run dev`
 
 ## Features
+- Typescript on client and server side
 - NodeJS & Express
 - PassportJS
 - React & Redux

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import './PaginatedTable.css';
+import './PaginatedTable.scss';
 import PageButton from './PageButton';
 
 const maxButtons = 2;

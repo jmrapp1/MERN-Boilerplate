@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const IS_PRODUCTION = false;
 
 module.exports = {
-    mode: IS_PRODUCTION ? "production" : "development",
     entry: "./src/index.tsx",
     output: {
         filename: "[name].bundle.js",
@@ -27,10 +26,32 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/
             },
             {
+                test: /\.scss$/,
+                use: [
+                    { loader: 'style-loader' },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            camelCase: true,
+                            sourceMap: !IS_PRODUCTION,
+                            minimize: IS_PRODUCTION
+                        }
+                    },
+                    {
+                        loader: 'sass-loader?sourceMap',
+                        options: {
+                            includePaths: ['./src/**/*'],
+                            sourceMap: true
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.css$/,
                 use: [
                     {
-                        loader: 'style-loader'
+                        loader: 'style-loader',
                     },
                     {
                         loader: 'css-loader',
@@ -69,6 +90,8 @@ module.exports = {
     devServer: {
         port: 8000,
         contentBase: './public',
+        hot: true,
+        noInfo: false,
         proxy: {
             '/api/*': {
                 target: 'http://localhost:3000',

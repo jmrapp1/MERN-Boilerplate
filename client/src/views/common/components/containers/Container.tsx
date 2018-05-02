@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './Container.css';
+import './Container.scss';
 
 const Container = ({ children, padding = 30, className = '', shadow = true, round = true }) => (
     <div className={ 'Container ' + className + (shadow ? ' container-shadow' : '') + (round ? ' container-round' : '') } style={ { padding } }>

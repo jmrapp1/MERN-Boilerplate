@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './SecondaryButton.css';
+import './SecondaryButton.scss';
 
 const SecondaryButton = ({ text, onClick, className }) => (
     <button className={ 'button button-secondary ' + className } onClick={ onClick }>{ text }</button>

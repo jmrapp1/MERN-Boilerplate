@@ -6,17 +6,17 @@
   "license": "ISC",
   "scripts": {
     "clean": "rimraf dist",
-    "dev:server": "concurrently \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
-    "test:server": "mocha $NODE_DEBUG_OPTION --opts test/mocha.opts -r ts-node/register server/**/*.test.ts",
+    "dev:server": "concurrently \"tsc -w -p ./src/server\" \"nodemon dist/server/app.js\"",
+    "test:server": "mocha $NODE_DEBUG_OPTION --opts test/mocha.opts -r ts-node/register ./src/server/**/*.test.ts",
     "lint": "ng lint",
-    "predev": "tsc -p server",
-    "dev": "npm run clean && concurrently \"npm run dev-client\" \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
+    "predev": "tsc -p ./src/server",
+    "dev": "concurrently \"npm run dev-client\" \"tsc -w -p ./src/server\" \"nodemon dist/server/app.js  --verbose\"",
     "dev:debug": "concurrently \"npm run dev-client\" \"tsc -w -p server\" \"nodemon --inspect dist/server/app.js\"",
     "start": "nodemon dist/server/app.js",
-    "postinstall": "tsc -p server",
+    "postinstall": "tsc -p ./src/server",
     "install": "npm run build-client",
-    "build-client": "cd ./client && webpack -p",
-    "dev-client": "cd ./client && webpack-dev-server"
+    "build-client": "cd ./src/client && webpack -p",
+    "dev-client": "cd ./src/client && webpack-dev-server"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

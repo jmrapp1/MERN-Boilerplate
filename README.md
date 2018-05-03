@@ -1,4 +1,6 @@
-# Boilerplate For Node & Express Server With React & Redux
+# Boilerplate For Node & Express Server With React & Redux Using Typescript on Client & Server
+
+- [Looking for Javascript & JSX on the client-side?](https://github.com/jmrapp1/Node-React-Redux-Boilerplate)
 
 - [Looking for Typescript & TSX on the client-side?](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/tree/react-ts)
 
@@ -8,6 +10,7 @@
 - `npm run dev`
 
 ## Features
+- Typescript on client and server side
 - NodeJS & Express
 - PassportJS
 - React & Redux

@@ -20,8 +20,8 @@ yarn-error.log*
 /client/build
 
 # dependencies
-/node_modules
-client/node_modules
+*/node_modules
+src/client/node_modules
 yarn.lock
 
 # IDEs and editors
@@ -44,7 +44,7 @@ yarn.lock
 # misc
 /.sass-cache
 /connect.lock
-!/client/src/index.css
+!src/client/src/index.css
 
 # gen
 gen/actions/
@@ -52,9 +52,9 @@ gen/sensors/
 gen/motions/
 
 # secret
-/server/config/secret.ts
+src/server/config/secret.ts
 *secret.ts
 
 # css
-client/src/**/*.css
-!client/src/index.css
+src/client/src/**/*.css
+!src/client/src/index.css

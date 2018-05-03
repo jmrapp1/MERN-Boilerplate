@@ -6,6 +6,7 @@
 - `npm run dev`
 
 ## Features
+- Working User Register & Login System
 - Typescript On Client and Server
 - Dynamic Controllers via [Routing-Controllers](https://github.com/typestack/routing-controllers)
 - Service Injection via [Typedi](https://github.com/typestack/typedi)

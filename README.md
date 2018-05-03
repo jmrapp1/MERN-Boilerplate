@@ -76,6 +76,8 @@ If you create your own errors, you will need to add an if statement [here](https
 so that the client-side can detect and build the error.
 
 ## Screenshots
+Login Page:
 ![](https://i.imgur.com/5sMDhen.png)
 
+Register Page:
 ![](https://i.imgur.com/8ESSRXQ.png)

@@ -5,6 +5,10 @@
 - `npm i`
 - `npm run dev`
 
+### Server Tests
+- Will test any `*.test.ts` files
+- `npm run test:server`
+
 ## Features
 - Working User Register & Login System
 - Typescript On Client and Server
@@ -15,6 +19,7 @@
 - NodeJS & Express
 - PassportJS
 - React & Redux
+- Mocha & Chai
 
 ## Shared Resource System
 

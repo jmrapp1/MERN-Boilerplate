@@ -1,0 +1,25 @@
+@import '../../common/styles/colors.scss';
+
+#login-page {
+  width: 100%;
+  height: 100vh;
+
+  .login-container {
+    text-align: center;
+    width: 100%;
+  }
+
+  input {
+    margin-bottom: 10px;
+  }
+
+  form {
+    text-align: center;
+    padding: 15% 10% 15% 10%;
+  }
+
+  #login-form {
+    margin: 20px 0 20px 0;
+  }
+
+}

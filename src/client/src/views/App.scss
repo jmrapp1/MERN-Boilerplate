@@ -1,0 +1,12 @@
+@import 'common/styles/colors.scss';
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+
+  display: flex;
+  align-items: center;
+}
+
+.container-fluid {
+  padding: 0;
+}

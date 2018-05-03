@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
+import Test from '../models/Test';
 
 
 export default class DatabaseSetup {
@@ -19,7 +20,7 @@ export default class DatabaseSetup {
     }
 
     removeTestData(callback) {
-        // Add code to drop test database
+        Test.remove({}).exec(() => callback());
     }
 
     connectToDb(callback, uri) {

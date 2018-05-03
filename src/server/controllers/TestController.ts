@@ -4,8 +4,11 @@ import { Inject } from 'typedi';
 import { encode } from 'jwt-simple';
 import Config from '../config/config';
 import AuthMiddleware from '../middlewares/AuthMiddleware';
+import { BuildResource } from '../modules/resource-mapping/decorators/BuildResource';
+import TestMapper from '../../shared/mappers/test/TestMapper';
+import TestResource from '../../shared/resources/test/TestResource';
 
-@JsonController()
+@JsonController('/test')
 export default class TestController {
 
     @Inject()
@@ -31,8 +34,21 @@ export default class TestController {
     }
 
     @Post('/test')
-    postTest(@BodyParam('message') message: String, @Res() res: any) {
-        return res.json({ message: 'You posted "' + message + '"' });
+    postTest(@Res() res: any, @BuildResource(TestMapper) testResource: TestResource) {
+        if (!testResource) return res;
+        return res.json({ message: 'You posted "' + testResource.message + '"' });
+    }
+
+    @Get('/gettest')
+    getTestStrict(@Res() res: any, @BuildResource(TestMapper, true) testResource: TestResource) {
+        if (!testResource) return res;
+        return res.json({ message: 'You get "' + testResource.message + '"' });
+    }
+
+    @Post('/teststrict')
+    postTestStrict(@Res() res: any, @BuildResource(TestMapper, true) testResource: TestResource) {
+        if (!testResource) return res;
+        return res.json({ message: 'You posted "' + testResource.message + '"' });
     }
 
     @Post('/create')

@@ -21,7 +21,7 @@ yarn-error.log*
 
 # dependencies
 */node_modules
-/src/client/node_modules
+src/client/node_modules
 yarn.lock
 
 # IDEs and editors
@@ -52,9 +52,9 @@ gen/sensors/
 gen/motions/
 
 # secret
-/src/server/config/secret.ts
+src/server/config/secret.ts
 *secret.ts
 
 # css
-/src/client/src/**/*.css
+src/client/src/**/*.css
 !src/client/src/index.css

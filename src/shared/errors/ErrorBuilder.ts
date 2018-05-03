@@ -4,9 +4,7 @@ import { BadRequestError } from './BadRequestError';
 export function buildErrorFromJson(json: string) {
     const errorType = json['type'];
     const error = json['error'];
-    if (errorType === 'BadRequest') {
-        return new BadRequestError(error);
-    }
+    if (errorType === 'BadRequest') return new BadRequestError(error);
 }
 
 export function isJsonError(json: string) {

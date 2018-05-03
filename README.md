@@ -10,6 +10,7 @@
 - Dynamic Controllers via [Routing-Controllers](https://github.com/typestack/routing-controllers)
 - Service Injection via [Typedi](https://github.com/typestack/typedi)
 - Shared Resource System
+- Error Handling
 - NodeJS & Express
 - PassportJS
 - React & Redux
@@ -53,6 +54,20 @@ to be used when making any requests to the server.
 
 In order for your own mapper to be detected you must [add it to the array](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/shared/mappers/MapperUtils.ts#L6) 
 within the `MapperUtils`. 
+
+## Error Handling
+
+Similar to how the resource system works, HttpErrors are also shared between client and server. When an error occurs within controller
+or service code on the server-side, a defined `HttpError` should be created and sent to the client. The `HttpError.getJson()` function will 
+form the JSON object to be sent to the client, and the client automatically detects it and rebuilds the error. The client-side is configured to *only* 
+pass errors out of the dispatched request that are defined. Any other errors are considered critical and will not be passed into the calling function
+(you can change this if needed). This is done to ensure that whatever component made the request is going to receive an error that it knows how to handle.
+
+When a resource is being built through the `@BuildResource` decorator, if any of the constraints fail it will create a `BadRequestError` and send it back
+to the client. You can see the implementation [here](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/server/modules/resource-mapping/decorators/BuildResource.ts#L34).
+
+If you create your own errors, you will need to add an if statement [here](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/shared/errors/ErrorBuilder.ts#L4) 
+so that the client-side can detect and build the error.
 
 ## Screenshots
 [](https://i.imgur.com/5sMDhen.png)

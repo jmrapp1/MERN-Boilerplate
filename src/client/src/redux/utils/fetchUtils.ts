@@ -22,10 +22,9 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
         .catch(e => {
             if (e['response'] && e['response'].json) {
                 e['response'].json().then(json => {
-                    json = JSON.parse(json);
                     if (ErrorBuilder.isJsonError(json)) {
                         const error = ErrorBuilder.buildErrorFromJson(json);
-                        if (errorCallback) errorCallback(json); // Only send if supported error
+                        if (errorCallback) errorCallback(error); // Only send if supported error
                     } else {
                         console.error('CRITICAL: ' + json);
                     }

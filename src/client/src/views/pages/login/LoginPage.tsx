@@ -37,7 +37,7 @@ class LoginPage extends React.Component<{ login, history }, { username, password
     }
 
     onError(err: HttpError) {
-        toast.error(err.error, {
+        toast.error(err.getError(), {
             position: toast.POSITION.TOP_CENTER
         });
     }

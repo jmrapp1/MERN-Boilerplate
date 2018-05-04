@@ -76,7 +76,7 @@ to the client. You can see the implementation [here](https://github.com/jmrapp1/
 If you create your own errors, you will need to add an if statement [here](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/shared/errors/ErrorBuilder.ts#L4) 
 so that the client-side can detect and build the error.
 
-### Connect Logging To AWS S3
+## Connect Logging To AWS S3
 The logging system offers the ability to connect to an AWS S3 bucket and output log files to it using the `s3-streamlogger` package. By default it is disabled.
 In order to enable it you need to add the follow variables to your environment/.env file:
 - `LOG_S3`: True/False - Enables logging to S3

@@ -8,7 +8,7 @@ export default abstract class HttpError {
 
     abstract getError(): string;
 
-    getJson(): string {
+    getJson() {
         return {
             type: this.getType(),
             error: this.getError()

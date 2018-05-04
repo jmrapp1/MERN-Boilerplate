@@ -38,7 +38,7 @@ class RegisterPage extends React.Component<{ register }, { username, email, firs
     }
 
     onError(error) {
-        toast.error(error.error, {
+        toast.error(error.getError(), {
             position: toast.POSITION.TOP_CENTER
         });
     }

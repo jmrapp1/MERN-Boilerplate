@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "clean": "rimraf dist",
-    "dev:server": "concurrently \"tsc -w -p ./src/server\" \"nodemon dist/server/app.js\"",
+    "dev:server": "concurrently \"tsc -w -p ./src/server\" \"nodemon dist/server/server/app.js\"",
     "test:server": "mocha $NODE_DEBUG_OPTION --opts test/mocha.opts -r ts-node/register ./src/server/**/*.test.ts",
     "lint": "ng lint",
     "predev": "tsc -p ./src/server",

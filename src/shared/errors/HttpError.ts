@@ -9,10 +9,10 @@ export default abstract class HttpError {
     abstract getError(): string;
 
     getJson(): string {
-        return JSON.stringify({
+        return {
             type: this.getType(),
             error: this.getError()
-        });
+        };
     }
 
 }

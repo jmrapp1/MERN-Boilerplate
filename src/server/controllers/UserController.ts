@@ -9,6 +9,7 @@ import UserLoginResource from '../../shared/resources/user/UserLoginResource';
 import { Inject } from 'typedi';
 import UserService from '../services/UserService';
 import JwtMapper from '../../shared/mappers/user/JwtMapper';
+import AuthMiddleware from '../middlewares/AuthMiddleware';
 
 @JsonController('/user')
 export default class UserController {
@@ -32,6 +33,12 @@ export default class UserController {
             if (res.isSuccess()) return response.status(200).json(HttpUtils.mappedResourceToJson(res.data, JwtMapper.id));
             return response.status(400).json(res.buildBadRequestError().getJson());
         });
+    }
+
+    @UseBefore(AuthMiddleware)
+    @Get('/auth')
+    auth(@Res() response: any) {
+        return response.status(400).json({ message: 'You are authorized.' });
     }
 
 }

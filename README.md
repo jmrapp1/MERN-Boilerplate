@@ -16,6 +16,7 @@
 - Service Injection via [Typedi](https://github.com/typestack/typedi)
 - Shared Resource System
 - Error Handling
+- Logging System to output to AWS S3
 - NodeJS & Express
 - PassportJS
 - React & Redux
@@ -34,7 +35,7 @@ I implemented a "mapping" system which takes some type of JSON data, creates a d
 from that data, and then validates that the data is "good" by checking defined constraints. A resource is nothing
 more than a basic class containing data that is meant to be passed between the client and server. For example,
 the [UserRegisterMapper](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/shared/mappers/user/UserRegisterMapper.ts)
-contains methods to take in JSON data, verify different constraints (i.e. the email is valid, passwords match, etc.), return an error
+contains functions to take in JSON data, verify different constraints (i.e. the email is valid, passwords match, etc.), return an error
 if the constraints don't pass, and build the [UserRegisterResource](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/shared/resources/user/UserRegisterResource.ts). 
 The functions are used differently depending on whether the mapper is being used on the client or server side.
 
@@ -74,6 +75,16 @@ to the client. You can see the implementation [here](https://github.com/jmrapp1/
 
 If you create your own errors, you will need to add an if statement [here](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/shared/errors/ErrorBuilder.ts#L4) 
 so that the client-side can detect and build the error.
+
+### Connect Logging To AWS S3
+The logging system offers the ability to connect to an AWS S3 bucket and output log files to it using the `s3-streamlogger` package. By default it is disabled.
+In order to enable it you need to add the follow variables to your environment/.env file:
+- `LOG_S3`: True/False - Enables logging to S3
+- `S3_LOG_BUCKET_NAME`: Your S3 bucket name
+- `AWS_ACCESS_KEY_ID`: AWS Access Key
+- `AWS_SECRET_ACCESS_KEY`: AWS Secret Key
+
+Whenever using the [`Logger`](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/server/util/Logger.ts) functions it will automatically write them out to S3.
 
 ## Screenshots
 Login Page:

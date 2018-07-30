@@ -9,10 +9,10 @@ import UserLoginResource from '../../shared/resources/user/UserLoginResource';
 import { Inject } from 'typedi';
 import UserService from '../services/UserService';
 import JwtMapper from '../../shared/mappers/user/JwtMapper';
-import AuthMiddleware from '../middlewares/AuthMiddleware';
+import BaseController from './BaseController';
 
 @JsonController('/user')
-export default class UserController {
+export default class UserController extends BaseController {
 
     @Inject()
     userService: UserService;
@@ -20,25 +20,19 @@ export default class UserController {
     @Post('/register')
     register(@Res() response: any, @BuildResource(UserRegisterMapper, true) registerResource: UserRegisterResource) {
         if (!registerResource) return response;
-        return this.userService.register(registerResource).then(res => {
-            if (res.isSuccess()) return response.status(200).json({});
-            return response.status(400).json(res.buildBadRequestError().getJson());
-        });
+        return this.userService.register(registerResource).then(
+            res => response.status(200).json({}),
+            err => this.handleServiceError(response, err)
+        );
     }
 
     @Post('/login')
     login(@Res() response: any, @BuildResource(UserLoginMapper, true) loginResource: UserLoginResource) {
         if (!loginResource) return response;
-        return this.userService.login(loginResource).then(res => {
-            if (res.isSuccess()) return response.status(200).json(HttpUtils.mappedResourceToJson(res.data, JwtMapper.id));
-            return response.status(400).json(res.buildBadRequestError().getJson());
-        });
-    }
-
-    @UseBefore(AuthMiddleware)
-    @Get('/auth')
-    auth(@Res() response: any) {
-        return response.status(400).json({ message: 'You are authorized.' });
+        return this.userService.login(loginResource).then(
+            res => response.status(200).json(HttpUtils.mappedResourceToJson(res.data, JwtMapper.id)),
+            err => this.handleServiceError(response, err)
+        );
     }
 
 }

@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import * as ErrorBuilder from '../../../../shared/errors/ErrorBuilder';
 import MapperUtils from '../../../../shared/mappers/MapperUtils';
 
@@ -16,8 +15,10 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
         .then(verifyStatus)
         .then(res => res.json())
         .then(data => {
-            if (data['mapperId']) data = MapperUtils.buildFromMapper(data['mapperId'], data);
-            successCallback(data)
+            if (data['mapperData'] && data['mapperData']['mapperId']) {
+                data = MapperUtils.buildFromMapper(data['mapperData']['mapperId'], data['mapperData']['isArray'], data['data']);
+            }
+            successCallback(data);
         })
         .catch(e => {
             if (e['response'] && e['response'].json) {
@@ -26,13 +27,13 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
                         const error = ErrorBuilder.buildErrorFromJson(json);
                         if (errorCallback) errorCallback(error); // Only send if supported error
                     } else {
-                        console.error('CRITICAL: ' + json);
+                        console.error('CRITICAL: ' + JSON.stringify(json));
                     }
                 }).catch(err => {
-                    console.error('CRITICAL: ' + err);
+                    console.error('CRITICAL: ' + JSON.stringify(err));
                 });
             } else {
-                console.error('CRITICAL: ' + e);
+                console.error('CRITICAL: ' + JSON.stringify(e));
             }
         });
 }
@@ -44,7 +45,7 @@ const headers = {
 };
 
 function getBodyByMethod(method, body) {
-    if (_.lowerCase(method) === 'get') {
+    if (method.toLowerCase() === 'get') {
         return { method };
     }
     return { method, body: JSON.stringify(body) };

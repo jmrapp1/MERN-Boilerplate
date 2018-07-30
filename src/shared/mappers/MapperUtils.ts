@@ -5,11 +5,19 @@ import JwtMapper from './user/JwtMapper';
 
 const mappers = [ UserRegisterMapper, UserLoginMapper, JwtMapper, TestMapper ];
 
-export function buildFromMapper(mapperId: string, json) {
+export function buildFromMapper(mapperId: string, isArray: boolean, json) {
     for (let i = 0; i < mappers.length; i++) {
-        if (mappers[i].id === mapperId) return mappers[i].build(json);
+        if (mappers[ i ].id === mapperId) {
+            if (!isArray) return mappers[ i ].build(cleanData(json));
+            return json.map(data => mappers[ i ].build(cleanData(data)));
+        }
     }
     return json;
+}
+
+function cleanData(data) {
+    delete data['validated'];
+    return data;
 }
 
 export default {

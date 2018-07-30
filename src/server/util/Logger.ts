@@ -53,6 +53,13 @@ class Logger {
         console.error(`[ERROR ${DateUtils.now()}] ${msg}`);
     }
 
+    critical(msg) {
+        if (this.logS3Enabled()) {
+            this.logger.error(msg);
+        }
+        console.error(`[CRITICAL ${DateUtils.now()}] ${msg}`);
+    }
+
     private logS3Enabled() {
         return process.env.LOG_S3 === true || process.env.LOG_S3 === 'true';
     }

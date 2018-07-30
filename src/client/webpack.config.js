@@ -1,28 +1,23 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const IS_PRODUCTION = false;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
+    mode: 'development',
     entry: ["./src/index.tsx", "./src/index.css"],
     output: {
         filename: "[name].bundle.js",
         path: path.resolve(__dirname, '../../dist/client'),
     },
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     resolve: {
         extensions: [".ts", ".tsx", ".js"]
     },
     module: {
         rules: [
             {
-                test: /\.tsx$/,
-                loader: "ts-loader",
-                exclude: /(node_modules|bower_components)/
-            },
-            {
-                test: /\.ts$/,
+                test: /\.(ts|tsx)$/,
                 loader: "ts-loader",
                 exclude: /(node_modules|bower_components)/
             },
@@ -70,7 +65,13 @@ module.exports = {
             template: './public/index.html',
             inject: 'body',
             filename: 'index.html'
-        })
+        }),
+        new webpack.ProvidePlugin({
+            React: 'React',
+            react: 'React',
+            'window.react': 'React',
+            'window.React': 'React',
+        }),
     ],
     devServer: {
         port: 8000,
@@ -83,5 +84,11 @@ module.exports = {
             },
         },
         historyApiFallback: true
+    },
+    "externals": {
+        react: 'React',
+        jquery: 'jQuery',
+        'react-dom': 'ReactDOM',
+        'react-bootstrap': 'ReactBootstrap'
     }
 };

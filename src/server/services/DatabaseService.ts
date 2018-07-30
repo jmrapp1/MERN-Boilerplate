@@ -1,5 +1,6 @@
 import ServiceResponse from './ServiceResponse';
 import * as _ from 'lodash';
+import Logger from '../util/Logger';
 
 export default abstract class DatabaseService {
 
@@ -15,9 +16,9 @@ export default abstract class DatabaseService {
      * @param body The entry data
      * @returns {Promise<ServiceResponse>} If it was entered successfully
      */
-    insert(body): Promise<ServiceResponse> {
-        return this.promise(resolve => {
-            this.model.create(body, (err, model) => resolve(this.handleStandardResponse(err, model)));
+    insert(body): Promise<ServiceResponse<any>> {
+        return this.promise((resolve, reject) => {
+            this.model.create(body, (err, model) => this.handleStandardResponse(resolve, reject, err, model));
         });
     };
 
@@ -26,14 +27,9 @@ export default abstract class DatabaseService {
      * @param body The delete key-value constraints
      * @returns {Promise<ServiceResponse>}
      */
-    delete(body): Promise<ServiceResponse> {
-        return this.promise(resolve => {
-            this.model.remove(body, err => {
-                if (err && !_.isEmpty(err)) {
-                    return resolve(new ServiceResponse(err, true));
-                }
-                return resolve(new ServiceResponse());
-            });
+    delete(body): Promise<ServiceResponse<any>> {
+        return this.promise((resolve, reject) => {
+            this.model.remove(body, err => this.handleStandardResponse(resolve, reject, err));
         });
     }
 
@@ -43,14 +39,23 @@ export default abstract class DatabaseService {
      * @param {any[]} populate Whether to perform any joins
      * @returns {Promise<ServiceResponse>} The found entry
      */
-    findById(id, populate = this.populate): Promise<ServiceResponse> {
-        return this.promise(resolve => {
+    findById(id, populate = this.populate): Promise<ServiceResponse<any>> {
+        return this.promise((resolve, reject) => {
             this.populateQuery(this.model.find({ _id: id }).limit(1), populate).exec((err, model) => {
                 if (err && !_.isEmpty(err)) {
-                    return resolve(new ServiceResponse(err, true));
+                    return reject(new ServiceResponse(err));
                 }
-                if (model instanceof Array && model.length === 1) {
-                    return resolve(new ServiceResponse(model[0]));
+                if (model instanceof Array) {
+                    if (model.length === 1) {
+                        return resolve(new ServiceResponse(model[ 0 ]));
+                    } else if (model.length > 1) {
+                        Logger.critical(`Multiple rows found for ID: ${ id }. Returned Data: ${ JSON.stringify(model) }`);
+                        return resolve(new ServiceResponse(model[ 0 ]));
+                    }
+                    return reject(new ServiceResponse(`No entry found with ID: ${id}`, 400));
+                }
+                if (_.isEmpty(model)) {
+                    return reject(new ServiceResponse(`No entry found with ID: ${id}`, 400));
                 }
                 return resolve(new ServiceResponse(model));
             });
@@ -66,7 +71,7 @@ export default abstract class DatabaseService {
     private populateQuery(query, populate) {
         if (populate instanceof Array) {
             for (let i = 0; i < populate.length; i++) {
-                query.populate(populate[i]);
+                query.populate(populate[ i ]);
             }
         } else if (populate && populate != null) {
             query.populate(populate);
@@ -79,9 +84,9 @@ export default abstract class DatabaseService {
      * @param {any[]} populate The populating configurations used to join other tables
      * @returns {Promise<ServiceResponse>} All found rows
      */
-    findAll(populate = this.populate): Promise<ServiceResponse> {
-        return this.promise(resolve =>
-            this.populateQuery(this.model.find({}), populate).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
+    findAll(populate = this.populate): Promise<ServiceResponse<any>> {
+        return this.promise((resolve, reject) =>
+            this.populateQuery(this.model.find({}), populate).exec((err, models) => this.handleStandardResponse(resolve, reject, err, models))
         );
     }
 
@@ -90,9 +95,9 @@ export default abstract class DatabaseService {
      * @param {{}} query Select parameters
      * @returns {Promise<ServiceResponse>} The number of rows
      */
-    count(query = {}): Promise<ServiceResponse> {
-        return this.promise(resolve =>
-            this.model.count(query).exec((err, count) => resolve(this.handleStandardResponse(err, count)))
+    count(query = {}): Promise<ServiceResponse<any>> {
+        return this.promise((resolve, reject) =>
+            this.model.count(query).exec((err, count) => this.handleStandardResponse(resolve, reject, err, count))
         );
     };
 
@@ -104,9 +109,10 @@ export default abstract class DatabaseService {
      * @param {any[]} populate The population configurations used to join other tables
      * @returns {Promise<ServiceResponse>} All found rows
      */
-    findWithLimit(findParams, limit, offset = 0, populate = this.populate): Promise<ServiceResponse> {
-        return this.promise(resolve =>
-            this.populateQuery(this.model.find(findParams).skip(offset).limit(limit), populate).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
+    findWithLimit(findParams, limit, offset = 0, populate = this.populate): Promise<ServiceResponse<any>> {
+        return this.promise((resolve, reject) =>
+            this.populateQuery(this.model.find(findParams).skip(offset).limit(limit), populate)
+                .exec((err, models) => this.handleStandardResponse(resolve, reject, err, models))
         );
     }
 
@@ -116,9 +122,9 @@ export default abstract class DatabaseService {
      * @param {any[]} populate The population configurations used to join other tables
      * @returns {Promise<ServiceResponse>} All found rows
      */
-    find(findParams, populate = this.populate): Promise<ServiceResponse> {
-        return this.promise(resolve =>
-            this.populateQuery(this.model.find(findParams), populate).exec((err, models) => resolve(this.handleStandardResponse(err, models)))
+    find(findParams, populate = this.populate): Promise<ServiceResponse<any>> {
+        return this.promise((resolve, reject) =>
+            this.populateQuery(this.model.find(findParams), populate).exec((err, models) => this.handleStandardResponse(resolve, reject, err, models))
         );
     }
 
@@ -128,15 +134,11 @@ export default abstract class DatabaseService {
      * @param body The data to update in the entry
      * @returns {Promise<ServiceResponse>} The updated entry
      */
-    updateById(id, body): Promise<ServiceResponse> {
-        return this.promise(resolve => {
-            this.findById(id).then(modelRes => {
-                if (modelRes.isSuccess() && !modelRes.isEmpty()) {
-                    modelRes.data.update(body, err => resolve(this.handleStandardResponse(err)));
-                } else {
-                    return resolve(modelRes);
-                }
-            });
+    updateById(id, body): Promise<ServiceResponse<any>> {
+        return this.promise((resolve, reject) => {
+            this.findById(id).then(
+                modelRes => modelRes.data.update(body, err => this.handleStandardResponse(resolve, reject, err)),
+                reject);
         });
     }
 
@@ -145,23 +147,25 @@ export default abstract class DatabaseService {
      * @param id The entry ID
      * @returns {Promise<ServiceResponse>} If it was deleted or not
      */
-    deleteById(id): Promise<ServiceResponse> {
-        return this.promise(resolve =>
-            this.model.findOneAndRemove({ _id: id }, (err, model) => resolve(this.handleStandardResponse(err, model)))
+    deleteById(id): Promise<ServiceResponse<any>> {
+        return this.promise((resolve, reject) =>
+            this.model.findOneAndRemove({ _id: id }, (err, model) => this.handleStandardResponse(resolve, reject, err, model))
         );
     }
 
     /**
      * Handles the error response sent back from a mongoose query
+     * @param resolve promise resolve
+     * @param reject promise reject
      * @param err The error
      * @param {any} model The model
      * @returns {ServiceResponse} A service response based on if there was an error or not
      */
-    handleStandardResponse(err, model = null): ServiceResponse {
+    handleStandardResponse(resolve, reject, err, model = null): ServiceResponse<any> {
         if (err && !_.isEmpty(err)) {
-            return new ServiceResponse(err, true);
+            return reject(new ServiceResponse(err));
         }
-        return new ServiceResponse(model);
+        return resolve(new ServiceResponse(model));
     }
 
     /**
@@ -171,7 +175,7 @@ export default abstract class DatabaseService {
      * @returns {Promise<ServiceResponse>} The promise
      */
     promise(func) {
-        return new Promise<ServiceResponse>(resolve => func(resolve));
+        return new Promise<ServiceResponse<any>>((resolve, reject) => func(resolve, reject));
     }
 
 }

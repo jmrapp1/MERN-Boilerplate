@@ -4,48 +4,47 @@
  * were any. Otherwise we know we can use the data safely
  */
 import { BadRequestError } from '../../shared/errors/BadRequestError';
+import HttpError from '../../shared/errors/HttpError';
+import Logger from '../util/Logger';
+import { InternalServerError } from '../../shared/errors/InternalServerError';
 
-export default class ServiceResponse {
-
-    /** Whether or not the service method failed */
-    failed;
+export default class ServiceResponse<T> {
 
     /** The data returned, either actual data or errors depending on if it failed or not */
     data;
+
+    /** Used when responding with an error. Specifies the HTTP status code */
+    errorCode;
 
     /**
      * Handles a service response and sets the data or error data depending on if it passed or failed
      *
      * @param data The data to pass with it (null by default)
-     * @param failed If the service method failed
+     * @param errorCode Used when responding with an error
      */
-    constructor(data = null, failed = false) {
+    constructor(data: T = null, errorCode = null) {
         this.data = data;
-        this.failed = failed;
-    }
-
-    /**
-     * @returns {boolean} If the service call succeeded
-     */
-    isSuccess() {
-        return !this.failed;
-    }
-
-    /**
-     * @returns {boolean} If the service call failed
-     */
-    isFailed() {
-        return this.failed;
+        this.errorCode = errorCode;
     }
 
     /**
      * @returns {boolean} If the service data is empty
      */
     isEmpty() {
-        return !this.data || (Array.isArray(this.data) && this.data.length === 0);
+        return !this.data || ( Array.isArray(this.data) && this.data.length === 0 );
     }
 
-    buildBadRequestError(): BadRequestError {
+    buildError(): HttpError {
+        if (this.errorCode === 400) return this.buildBadRequestError();
+        return this.buildInternalServerError();
+    }
+
+    buildInternalServerError(): InternalServerError {
+        Logger.error(`An internal server error has occurred. Data: ${ JSON.stringify(this.data) }`);
+        return new InternalServerError();
+    }
+
+    private buildBadRequestError(): BadRequestError {
         return new BadRequestError(this.data);
     }
 

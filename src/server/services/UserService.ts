@@ -20,35 +20,35 @@ export default class UserService extends DatabaseService {
      * @param loginResource The login resource
      * @returns {Promise<ServiceResponse>} The JWT token if successful, error if unsuccessful
      */
-    login(loginResource: UserLoginResource): Promise<ServiceResponse> {
-        return this.promise(resolve => {
+    login(loginResource: UserLoginResource): Promise<ServiceResponse<JwtResource>> {
+        return this.promise((resolve, reject) => {
             if (!loginResource.validated) {
                 const error = UserLoginMapper.verifyAllConstraints(loginResource);
-                if (error) return resolve(new ServiceResponse(error, true));
+                if (error) return reject(new ServiceResponse(error));
             }
 
             this.findWithLimit({ username: loginResource.username }, 1).then(userSearch => {
-                if (userSearch.isSuccess() && !userSearch.isEmpty()) {
+                if (!userSearch.isEmpty()) {
                     const user = userSearch.data[ 0 ];
                     user.comparePassword(loginResource.password).then(passValidated => {
                         if (passValidated) {
                             const token = encode(user, Config.secret);
                             return resolve(new ServiceResponse(new JwtResource('JWT ' + token)));
                         }
-                        return resolve(new ServiceResponse('The username or password is incorrect.', true));
+                        return reject(new ServiceResponse('The username or password is incorrect.', 400));
                     });
                 } else {
-                    return resolve(new ServiceResponse('The username or password is incorrect.', true));
+                    return reject(new ServiceResponse('The username or password is incorrect.', 400));
                 }
-            });
+            }, reject);
         });
     }
 
-    validateRegisterData(registerResource: UserRegisterResource) {
-        return this.promise(resolve => {
+    validateRegisterData(registerResource: UserRegisterResource): Promise<ServiceResponse<any>> {
+        return this.promise((resolve, reject) => {
             if (!registerResource.validated) {
                 const error = UserRegisterMapper.verifyAllConstraints(registerResource);
-                if (error) return resolve(new ServiceResponse(error, true));
+                if (error) return reject(new ServiceResponse(error));
             }
 
             this.find({
@@ -57,20 +57,21 @@ export default class UserService extends DatabaseService {
                     { username: registerResource.username }
                 ]
             }).then(res => {
-                if (res.isSuccess() && res.isEmpty()) {
+                if (res.isEmpty()) {
                     return resolve(new ServiceResponse());
                 } else {
-                    if (res.data[0].username === registerResource.username) return resolve(new ServiceResponse('That username has already been used.', true));
-                    return resolve(new ServiceResponse('That email has already been used.', true));
+                    if (res.data[ 0 ].username === registerResource.username) {
+                        return reject(new ServiceResponse('That username has already been used.', 400));
+                    }
+                    return reject(new ServiceResponse('That email has already been used.', 400));
                 }
-            });
+            }, reject);
         });
     }
 
-    register(registerResource: UserRegisterResource): Promise<ServiceResponse> {
-        return new Promise<ServiceResponse>(resolve => {
+    register(registerResource: UserRegisterResource): Promise<ServiceResponse<any>> {
+        return new Promise<ServiceResponse<any>>((resolve, reject) => {
             this.validateRegisterData(registerResource).then(valRes => {
-                if (valRes.isSuccess()) {
                     this.insert({
                         username: registerResource.username,
                         email: registerResource.email,
@@ -78,15 +79,9 @@ export default class UserService extends DatabaseService {
                         lastName: registerResource.lastName,
                         phone: registerResource.phone,
                         password: registerResource.password,
-                    }).then(insertRes => {
-                        return resolve(insertRes);
-                    });
-                } else {
-                    return resolve(valRes);
-                }
-            })
+                    }).then(resolve, reject);
+                },
+                reject);
         });
     }
-
-
 }

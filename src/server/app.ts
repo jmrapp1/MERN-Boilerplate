@@ -39,6 +39,8 @@ app.use(function (err, req, res, next) {
     next(err);
 });
 
+Logger.setup();
+
 new DatabaseSetup().setupDb(() => {
 
     registerPassport(passport);

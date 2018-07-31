@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './PrimaryButton.css';
 import './PrimaryButton.scss';
 
 const PrimaryButton = ({ text, onClick, className = '' }) => (

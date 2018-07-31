@@ -1,8 +1,8 @@
 import * as _ from 'underscore';
 import { getMetadataArgsStorage } from 'routing-controllers';
-import ResourceMapper from '../../../../shared/mappers/ResourceMapper';
-import Logger from '../../../util/Logger';
-import { BadRequestError } from '../../../../shared/errors/BadRequestError';
+import ResourceMapper from '../../shared/mappers/ResourceMapper';
+import Logger from '../util/Logger';
+import { BadRequestError } from '../../shared/errors/BadRequestError';
 
 /**
  * Hacked the routing-controllers a bit to make this custom decorator work

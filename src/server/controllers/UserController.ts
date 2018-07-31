@@ -1,6 +1,6 @@
 import { BodyParam, Get, JsonController, Post, Req, Res, UseBefore } from 'routing-controllers';
 import { encode } from 'jwt-simple';
-import { BuildResource } from '../modules/resource-mapping/decorators/BuildResource';
+import { BuildResource } from '../decorators/BuildResource';
 import UserRegisterMapper from '../../shared/mappers/user/UserRegisterMapper';
 import UserRegisterResource from '../../shared/resources/user/UserRegisterResource';
 import HttpUtils from '../util/HttpUtils';

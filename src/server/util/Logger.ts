@@ -61,7 +61,7 @@ class Logger {
     }
 
     private logS3Enabled() {
-        return process.env.LOG_S3 === true || process.env.LOG_S3 === 'true';
+        return (process.env.LOG_S3 as any) === true || process.env.LOG_S3 === 'true';
     }
 
 }

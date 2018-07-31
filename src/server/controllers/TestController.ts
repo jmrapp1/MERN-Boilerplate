@@ -4,7 +4,7 @@ import { Inject } from 'typedi';
 import { encode } from 'jwt-simple';
 import Config from '../config/config';
 import AuthMiddleware from '../middlewares/AuthMiddleware';
-import { BuildResource } from '../modules/resource-mapping/decorators/BuildResource';
+import { BuildResource } from '../decorators/BuildResource';
 import TestMapper from '../../shared/mappers/test/TestMapper';
 import TestResource from '../../shared/resources/test/TestResource';
 

@@ -71,9 +71,9 @@ and `password`, and we are expecting the properties `username` and `password` to
 are the same, and the mapper would simply map the incoming data to the resource. I'd say this is the case about 75% of the time.
 In order to prevent such simple mappers from piling up, I created the `GenericNameMapper`. This mapper allows you to handle 
 these situations easily by instantiating an instance of it, giving it a unique ID, and passing in the resource type. You can
-also optionally pass in a function to output a string when a variable is undefined. Here is an example of an implementation of 
-the mapper. **NOTE:** When using the `GenericNameMapper` you _MUST_ set a value to the variables inside of the resource. It 
-can be an empty string or `null`. It just has to be something. Refer to [this resource]() to see an example.
+also optionally pass in a function to output a string when a variable is undefined. Here is [an example](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/shared/mappers/MapperUtils.ts#L10)
+of an implementation of the mapper. **NOTE:** When using the `GenericNameMapper` you _MUST_ set a value to the variables inside of the resource. It 
+can be an empty string or `null`. It just has to be something. Refer to [this resource](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/shared/resources/test/GenericResource.ts) to see an example.
 
 ## Error Handling
 

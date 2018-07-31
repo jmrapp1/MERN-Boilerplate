@@ -8,7 +8,7 @@ import { BadRequestError } from '../../shared/errors/BadRequestError';
  * Hacked the routing-controllers a bit to make this custom decorator work
  * Their custom decorator implementation does not complete the incoming request so the body is never there
  */
-export function BuildResource(mapper: ResourceMapper, strict?: boolean): Function {
+export function BuildResource(mapper: ResourceMapper, strict: boolean = true): Function {
     return function (object: Object, method: string, index: number) {
         getMetadataArgsStorage().params.push(( {
             type: 'body-param',

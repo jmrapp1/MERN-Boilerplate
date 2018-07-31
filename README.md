@@ -62,6 +62,19 @@ to be used when making any requests to the server.
 In order for your own mapper to be detected you must [add it to the array](https://github.com/jmrapp1/Node-React-Redux-Boilerplate/blob/master/src/shared/mappers/MapperUtils.ts#L6) 
 within the `MapperUtils`. 
 
+## Generic Name Mapper
+
+It's great to have resources to standardize communication between server and client, but the need to have a separate
+mapper for each resource can become a bit excessive. In most cases you just want to map properties from an incoming request to
+the resource using the same properties names. For example, say we have a `LoginResource` that contains the variables `username`
+and `password`, and we are expecting the properties `username` and `password` to come through a POST request. The property names 
+are the same, and the mapper would simply map the incoming data to the resource. I'd say this is the case about 75% of the time.
+In order to prevent such simple mappers from piling up, I created the `GenericNameMapper`. This mapper allows you to handle 
+these situations easily by instantiating an instance of it, giving it a unique ID, and passing in the resource type. You can
+also optionally pass in a function to output a string when a variable is undefined. Here is an example of an implementation of 
+the mapper. **NOTE:** When using the `GenericNameMapper` you _MUST_ set a value to the variables inside of the resource. It 
+can be an empty string or `null`. It just has to be something. Refer to [this resource]() to see an example.
+
 ## Error Handling
 
 Similar to how the resource system works, HttpErrors are also shared between client and server. When an error occurs within controller

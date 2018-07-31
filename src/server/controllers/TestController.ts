@@ -7,6 +7,9 @@ import AuthMiddleware from '../middlewares/AuthMiddleware';
 import { BuildResource } from '../decorators/BuildResource';
 import TestMapper from '../../shared/mappers/test/TestMapper';
 import TestResource from '../../shared/resources/test/TestResource';
+import MapperUtils from '../../shared/mappers/MapperUtils';
+import GenericResource from '../../shared/resources/test/GenericResource';
+import MyResource from '../../shared/resources/test/MyResource';
 
 @JsonController('/test')
 export default class TestController {
@@ -34,19 +37,31 @@ export default class TestController {
     }
 
     @Post('/test')
-    postTest(@Res() res: any, @BuildResource(TestMapper) testResource: TestResource) {
+    postTest(@Res() res: any, @BuildResource(TestMapper, false) testResource: TestResource) {
         if (!testResource) return res;
         return res.json({ message: 'You posted "' + testResource.message + '"' });
     }
 
     @Get('/gettest')
-    getTestStrict(@Res() res: any, @BuildResource(TestMapper, true) testResource: TestResource) {
+    getTestStrict(@Res() res: any, @BuildResource(TestMapper) testResource: TestResource) {
         if (!testResource) return res;
         return res.json({ message: 'You get "' + testResource.message + '"' });
     }
 
+    @Post('/generic')
+    testGeneric(@Res() res: any, @BuildResource(MapperUtils.GenericMappers.GenericResourceMapper) genericResource: GenericResource) {
+        if (!genericResource) return res;
+        return res.json({ message: 'You posted "' + JSON.stringify(genericResource) + '"' });
+    }
+
+    @Post('/my')
+    testMyResource(@Res() res: any, @BuildResource(MapperUtils.GenericMappers.MyResourceMapper) myResource: MyResource) {
+        if (!myResource) return res;
+        return res.json({ message: 'You posted "' + JSON.stringify(myResource) + '"' });
+    }
+
     @Post('/teststrict')
-    postTestStrict(@Res() res: any, @BuildResource(TestMapper, true) testResource: TestResource) {
+    postTestStrict(@Res() res: any, @BuildResource(TestMapper) testResource: TestResource) {
         if (!testResource) return res;
         return res.json({ message: 'You posted "' + testResource.message + '"' });
     }

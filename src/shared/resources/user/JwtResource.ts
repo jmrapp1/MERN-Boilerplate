@@ -4,9 +4,9 @@ export default class JwtResource extends Resource {
 
     jwtToken;
 
-    constructor(jwtToken) {
-        super();
+    init(jwtToken) {
         this.jwtToken = jwtToken;
+        return this;
     }
 
 }

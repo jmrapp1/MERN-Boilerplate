@@ -10,8 +10,7 @@ export default class UserRegisterResource extends Resource {
     password: string;
     confirmPassword: string;
 
-    constructor(username: string, email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string) {
-        super();
+    init(username: string, email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string) {
         this.username = username;
         this.email = email;
         this.firstName = firstName;
@@ -19,6 +18,7 @@ export default class UserRegisterResource extends Resource {
         this.phone = phone;
         this.password = password;
         this.confirmPassword = confirmPassword;
+        return this;
     }
 
 }

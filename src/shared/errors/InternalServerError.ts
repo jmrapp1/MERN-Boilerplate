@@ -5,9 +5,9 @@ export class InternalServerError extends HttpError {
     error: string;
     type = 'InternalServer';
 
-    constructor() {
+    constructor(message?) {
         super();
-        this.error = 'An internal server error has occurred. Please contact the server administrator.';
+        this.error = 'An internal server error has occurred. Please contact the server administrator.' + (message ? ' Message: ' + message : '');
     }
 
     getType(): string {

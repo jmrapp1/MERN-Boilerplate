@@ -4,9 +4,10 @@ import UserLoginResource from '../../resources/user/UserLoginResource';
 class UserLoginMapper extends ResourceMapper {
 
     id = 'UserLoginMapper';
+    resourceType = UserLoginResource;
 
     build(data): UserLoginResource {
-        return new UserLoginResource(data.username, data.password);
+        return new UserLoginResource().init(data.username, data.password);
     }
 
     getUndefinedKeyResponse(key: string) {

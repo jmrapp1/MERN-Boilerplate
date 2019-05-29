@@ -4,9 +4,9 @@ export default class TestResource extends Resource {
 
     message;
 
-    constructor(message: string) {
-        super();
+    init(message: string) {
         this.message = message;
+        return this;
     }
 
 }

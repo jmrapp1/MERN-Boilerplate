@@ -1,9 +1,9 @@
 import { Service } from 'typedi';
 import DatabaseService from './DatabaseService';
-import Test from '../models/Test';
+import Test, { TestDocument } from '../models/Test';
 
 @Service()
-export default class TestService extends DatabaseService {
+export default class TestService extends DatabaseService<TestDocument> {
 
     model = Test;
 

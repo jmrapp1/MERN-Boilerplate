@@ -33,7 +33,7 @@ class LoginPage extends React.Component<{ login, history }, { username, password
 
     onSubmit( e ) {
         e.preventDefault();
-        this.props.login(new UserLoginResource(this.state.username, this.state.password), this.onSuccess, this.onError);
+        this.props.login(new UserLoginResource().init(this.state.username, this.state.password), this.onSuccess, this.onError);
     }
 
     onError(err: HttpError) {

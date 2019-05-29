@@ -1,6 +1,6 @@
 import * as winston from 'winston';
 import * as StreamLoggerModule from 's3-streamlogger';
-import * as DateUtils from './DateUtils';
+import * as DateUtils from '../../shared/utils/DateUtils';
 
 class Logger {
 

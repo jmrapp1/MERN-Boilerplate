@@ -1,17 +1,17 @@
 import { Service } from 'typedi';
-import ServiceResponse from './ServiceResponse';
+import ServiceResponse from './response/ServiceResponse';
 import UserLoginResource from '../../shared/resources/user/UserLoginResource';
 import DatabaseService from './DatabaseService';
 import { encode } from 'jwt-simple';
 import Config from '../config/config';
 import JwtResource from '../../shared/resources/user/JwtResource';
-import User from '../models/User';
+import User, { UserDocument } from '../models/User';
 import UserRegisterResource from '../../shared/resources/user/UserRegisterResource';
 import UserRegisterMapper from '../../shared/mappers/user/UserRegisterMapper';
 import UserLoginMapper from '../../shared/mappers/user/UserLoginMapper';
 
 @Service()
-export default class UserService extends DatabaseService {
+export default class UserService extends DatabaseService<UserDocument> {
 
     model = User;
 
@@ -30,10 +30,10 @@ export default class UserService extends DatabaseService {
             this.findWithLimit({ username: loginResource.username }, 1).then(userSearch => {
                 if (!userSearch.isEmpty()) {
                     const user = userSearch.data[ 0 ];
-                    user.comparePassword(loginResource.password).then(passValidated => {
+                    (user as any).comparePassword(loginResource.password).then(passValidated => {
                         if (passValidated) {
                             const token = encode(user, Config.secret);
-                            return resolve(new ServiceResponse(new JwtResource('JWT ' + token)));
+                            return resolve(new ServiceResponse(new JwtResource().init('JWT ' + token)));
                         }
                         return reject(new ServiceResponse('The username or password is incorrect.', 400));
                     });

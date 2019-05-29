@@ -10,6 +10,16 @@ export const userSchema = new mongoose.Schema({
     password: String,
 });
 
+export interface UserDocument extends mongoose.Document {
+    _id: string;
+    username: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    password: string;
+}
+
 userSchema.pre('save', function (next) {
     const user = this;
     if (!user.isModified('password')) {
@@ -50,6 +60,6 @@ userSchema.set('toJSON', {
         return ret;
     }
 });
-const User = mongoose.model('User', userSchema, 'User');
+const User = mongoose.model<UserDocument>('User', userSchema, 'User');
 
 export default User;

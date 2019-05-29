@@ -1,17 +1,12 @@
 import * as _ from 'underscore';
+import Resource from '../resources/Resource';
 
-function findUndefinedResourceKey(resource) {
-    const keys = Object.keys(resource);
-    for (const k of keys) {
-        if ((_.isUndefined(resource[k]) || _.isEmpty(resource[k])) && k !== 'validated') {
-            return k;
-        }
-    }
-}
+const keyIgnores = ['validated'];
 
 export default abstract class ResourceMapper {
 
     abstract id;
+    abstract resourceType: { new(): Resource };
 
     abstract build(data);
 
@@ -23,7 +18,7 @@ export default abstract class ResourceMapper {
     }
 
     verifyPopulatedResource(resource) {
-        const undefinedKey = findUndefinedResourceKey(resource);
+        const undefinedKey = this.findUndefinedResourceKey(resource);
         if (!_.isUndefined(undefinedKey)) {
             return this.getUndefinedKeyResponse(undefinedKey);
         }
@@ -31,8 +26,23 @@ export default abstract class ResourceMapper {
 
     verifyAllConstraints(resource) {
         const valid = this.verifyPopulatedResource(resource) || this.verifyStrictConstraints(resource);
-        if (valid) resource.validated = true;
+        if (!valid) resource.validated = true;
         return valid;
+    }
+
+    findUndefinedResourceKey(resource) {
+        const resourceType = new this.resourceType();
+        const keys = Object.getOwnPropertyNames(resourceType);
+        for (const k of keys) {
+            const value = resource[k];
+            if ((
+                (typeof value !== typeof resourceType[k]) || // ensure same type
+                (typeof value === 'undefined' || value === null) || // ensure not undefined
+                (typeof value === 'string' && _.isEmpty(value)) // ensure not empty if string
+            ) && keyIgnores.indexOf(k) < 0) { // ensure not a skipped key
+                return k;
+            }
+        }
     }
 
 }

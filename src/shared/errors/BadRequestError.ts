@@ -2,10 +2,10 @@ import HttpError from './HttpError';
 
 export class BadRequestError extends HttpError {
 
-    error: string;
+    error: any;
     type = 'BadRequest';
 
-    constructor(error: string) {
+    constructor(error: any) {
         super();
         this.error = error;
     }
@@ -14,7 +14,7 @@ export class BadRequestError extends HttpError {
         return this.type;
     }
 
-    getError(): string {
+    getError(): any {
         return this.error;
     }
 

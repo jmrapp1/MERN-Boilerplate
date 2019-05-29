@@ -9,6 +9,11 @@ export const testSchema = new mongoose.Schema({
     test: { type: String, unique: true }
 });
 
-const Test = mongoose.model('Test', testSchema, 'Test');
+export interface TestDocument extends mongoose.Document {
+    _id: string;
+    test: string;
+}
+
+const Test = mongoose.model<TestDocument>('Test', testSchema, 'Test');
 
 export default Test;

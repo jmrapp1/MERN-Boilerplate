@@ -4,9 +4,10 @@ import TestResource from '../../resources/test/TestResource';
 class TestMapper extends ResourceMapper {
 
     id = 'TestMapper';
+    resourceType = TestResource;
 
     build(data): TestResource {
-        return new TestResource(data.message);
+        return new TestResource().init(data.message);
     }
 
     verifyStrictConstraints(resource) {

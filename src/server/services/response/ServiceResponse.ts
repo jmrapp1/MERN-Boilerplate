@@ -3,15 +3,15 @@
  * Allows us to test if the service failed and present any errors if there
  * were any. Otherwise we know we can use the data safely
  */
-import { BadRequestError } from '../../shared/errors/BadRequestError';
-import HttpError from '../../shared/errors/HttpError';
-import Logger from '../util/Logger';
-import { InternalServerError } from '../../shared/errors/InternalServerError';
+import { BadRequestError } from '../../../shared/errors/BadRequestError';
+import HttpError from '../../../shared/errors/HttpError';
+import Logger from '../../util/Logger';
+import { InternalServerError } from '../../../shared/errors/InternalServerError';
 
 export default class ServiceResponse<T> {
 
     /** The data returned, either actual data or errors depending on if it failed or not */
-    data;
+    data: T;
 
     /** Used when responding with an error. Specifies the HTTP status code */
     errorCode;

@@ -1,7 +1,6 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
@@ -11,7 +10,7 @@
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "webpack": "webpack"
+    "webpack": "webpack -d --env=dev"
   },
-  "proxy": "http://localhost:3000"
+  "proxy": "http://0.0.0.0:3000"
 }

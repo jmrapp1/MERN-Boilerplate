@@ -48,7 +48,7 @@ class RegisterPage extends React.Component<{ register }, { username, email, firs
     }
 
     onSubmit() {
-        this.props.register(new UserRegisterResource(
+        this.props.register(new UserRegisterResource().init(
             this.state.username, this.state.email, this.state.firstName,
             this.state.lastName, this.state.phone, this.state.password, this.state.confirmPassword
         ), this.onSuccess, this.onError);

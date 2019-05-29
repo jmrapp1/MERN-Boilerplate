@@ -24,11 +24,13 @@ const app = createExpressServer({
     controllers: [ TestController, UserController ]
 });
 
+dotenv.load({ path: '.env' });
+
 if (process.env.NODE_ENV === 'production') {
+    console.log('Using production build');
     app.use(express.static('dist/client'));
 }
 
-dotenv.load({ path: '.env' });
 app.set('port', (process.env.PORT || 3000));
 
 app.use(bodyParser.json());

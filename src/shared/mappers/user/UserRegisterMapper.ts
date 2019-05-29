@@ -5,9 +5,10 @@ import UserRegisterResource from '../../resources/user/UserRegisterResource';
 class UserRegisterMapper extends ResourceMapper {
 
     id = 'UserRegisterMapper';
+    resourceType = UserRegisterResource;
 
     build(data): UserRegisterResource {
-        return new UserRegisterResource(data.username, data.email, data.firstName, data.lastName,
+        return new UserRegisterResource().init(data.username, data.email, data.firstName, data.lastName,
             data.phone, data.password, data.confirmPassword);
     }
 

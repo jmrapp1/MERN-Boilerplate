@@ -1,25 +1,25 @@
 import ResourceMapper from '../ResourceMapper';
 import Resource from '../../resources/Resource';
 
-class GenericNameMapper extends ResourceMapper {
+class GenericNameMapper<T> extends ResourceMapper {
 
     id;
-    resourceType: { new(): Resource ; };
+    resourceType: { new(): Resource };
     undefinedKeyResponse?: (key: string) => string;
 
-    constructor(id: string, resourceType: { new(): Resource ; }, undefinedKeyResponse?: (key: string) => string) {
+    constructor(id: string, resourceType: { new(): Resource }, undefinedKeyResponse?: (key: string) => string) {
         super();
         this.id = id;
         this.resourceType = resourceType;
         this.undefinedKeyResponse = undefinedKeyResponse;
     }
 
-    build(data) {
+    build(data): T {
         const resource = new this.resourceType();
         Object.keys(resource).forEach(key => {
             resource[key] = data[key];
         });
-        return resource;
+        return (resource as any);
     }
 
     getUndefinedKeyResponse(key: string) {

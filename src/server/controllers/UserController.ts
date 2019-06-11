@@ -30,7 +30,7 @@ export default class UserController extends BaseController {
     login(@Res() response: any, @BuildResource(UserLoginMapper, true) loginResource: UserLoginResource) {
         if (!loginResource) return response;
         return this.userService.login(loginResource).then(
-            res => response.status(200).json(HttpUtils.mappedResourceToJson(res.data, JwtMapper.id)),
+            res => response.status(200).json(HttpUtils.mappedResourceToJson(res.data, JwtMapper)),
             err => this.handleServiceError(response, err)
         );
     }

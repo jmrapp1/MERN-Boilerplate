@@ -1,11 +1,17 @@
 import * as _ from 'underscore';
+import ResourceMapper from '../../shared/mappers/ResourceMapper';
 
-export function mappedResourceToJson(resource, mapperId: string) {
+export function mappedResourceToJson(resource, mapper: ResourceMapper) {
+    const isArray = _.isArray(resource);
+    let data;
+    if (isArray) data = resource.map(r => mapper.build(r));
+    else data = mapper.build(resource);
+
     return {
-        data: resource,
+        data,
         mapperData: {
-            mapperId,
-            isArray: _.isArray(resource)
+            mapperId: mapper.id,
+            isArray
         }
     };
 }

@@ -1,5 +1,6 @@
 import * as ErrorBuilder from '../../../../shared/errors/ErrorBuilder';
 import MapperUtils from '../../../../shared/mappers/MapperUtils';
+import { InternalServerError } from '../../../../shared/errors/InternalServerError';
 
 export function verifyStatus(response) {
     if (response.ok) {
@@ -10,8 +11,39 @@ export function verifyStatus(response) {
     throw error;
 }
 
-export function dispatchRequest(route, method, body, successCallback, errorCallback) {
-    return fetch(route, { ...getBodyByMethod(method, body), ...headerOptions() })
+export function dispatchDeleteRequest(route, successCallback, errorCallback) {
+    return dispatchRequest(route, 'DELETE', {}, successCallback, errorCallback);
+}
+
+export function dispatchGetRequest(route, successCallback, errorCallback) {
+    return dispatchRequest(route, 'GET', {}, successCallback, errorCallback);
+}
+
+export function dispatchPostRequest(route, body, successCallback, errorCallback) {
+    return dispatchRequest(route, 'POST', body, successCallback, errorCallback);
+}
+
+export function dispatchPutRequest(route, body, successCallback, errorCallback) {
+    return dispatchRequest(route, 'PUT', body, successCallback, errorCallback);
+}
+
+function dispatchRequest(route, method, body, successCallback, errorCallback) {
+    return handleFetch(fetch(route, { ...getBodyByMethod(method, body), ...(headerOptions() as any) }), successCallback, errorCallback);
+}
+
+export function dispatchFilePostRequest(route, fileData, successCallback, errorCallback) {
+    return handleFetch(fetch(route, {
+        method: 'POST',
+        body: fileData,
+        ...(headerOptions({
+            'charset': 'UTF-8',
+            'Accept': 'application/json'
+        }) as any)
+    }), successCallback, errorCallback);
+}
+
+function handleFetch(fetch, successCallback, errorCallback) {
+    return fetch
         .then(verifyStatus)
         .then(res => res.json())
         .then(data => {
@@ -21,19 +53,23 @@ export function dispatchRequest(route, method, body, successCallback, errorCallb
             successCallback(data);
         })
         .catch(e => {
-            if (e['response'] && e['response'].json) {
+            const response = e['response'];
+            if (response && response.json) {
                 e['response'].json().then(json => {
                     if (ErrorBuilder.isJsonError(json)) {
                         const error = ErrorBuilder.buildErrorFromJson(json);
                         if (errorCallback) errorCallback(error); // Only send if supported error
                     } else {
                         console.error('CRITICAL: ' + JSON.stringify(json));
+                        errorCallback(new InternalServerError());
                     }
                 }).catch(err => {
-                    console.error('CRITICAL: ' + JSON.stringify(err));
+                    console.error('CRITICAL: ' + JSON.stringify({ message: err.message, stack: err.stack }));
+                    errorCallback(new InternalServerError());
                 });
             } else {
-                console.error('CRITICAL: ' + JSON.stringify(e));
+                console.error('CRITICAL: ' + JSON.stringify({ message: e.message, stack: e.stack }));
+                errorCallback(new InternalServerError());
             }
         });
 }
@@ -51,20 +87,21 @@ function getBodyByMethod(method, body) {
     return { method, body: JSON.stringify(body) };
 }
 
-function headerOptions() {
+function headerOptions(otherHeaders: any = headers) {
     const auth = localStorage.getItem('id_token');
     if (auth) {
         return {
             headers: {
                 Authorization: auth,
-                ...headers
+                ...otherHeaders
             }
         };
     }
-    return { headers };
+    return { headers: otherHeaders };
 }
 
 export default {
     verifyStatus,
-    dispatchRequest
+    dispatchGetRequest,
+    dispatchPostRequest
 };

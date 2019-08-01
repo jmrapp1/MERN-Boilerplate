@@ -30,7 +30,6 @@
     "cors": "^2.8.4",
     "dotenv": "4.0.0",
     "email-validator": "^2.0.3",
-    "eslint": "3.19.0",
     "express": "4.15.3",
     "font-awesome": "^4.7.0",
     "handlebars": "^4.0.11",
@@ -97,7 +96,7 @@
     "typescript": "~2.8.3",
     "url-loader": "^1.0.1",
     "webpack": "^4.20.2",
-    "webpack-bundle-analyzer": "^2.11.1",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.3"
   },

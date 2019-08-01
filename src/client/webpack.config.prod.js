@@ -7,13 +7,13 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     mode: 'production',
-    entry: ["./src/index.tsx", "./src/index.css"],
+    entry: ['@babel/polyfill', './src/index.tsx', './src/index.css'],
     output: {
-        filename: "[name].bundle.js",
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, '../../dist/client')
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js"]
+        extensions: ['.ts', '.tsx', '.js']
     },
     optimization: {
         minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})]
@@ -22,7 +22,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(ts|tsx)$/,
-                loader: "ts-loader",
+                loader: 'ts-loader',
                 exclude: /(node_modules|bower_components)/
             },
             {

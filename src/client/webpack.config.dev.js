@@ -5,24 +5,24 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
     mode: 'development',
-    entry: ["./src/index.tsx", "./src/index.css"],
+    entry: ['@babel/polyfill', './src/index.tsx', './src/index.css'],
     output: {
-        filename: "[name].bundle.js",
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, '../../dist/client'),
         publicPath: '/'
     },
     devtool: 'eval-source-map',
     resolve: {
-        extensions: [".ts", ".tsx", ".js"]
+        extensions: ['.ts', '.tsx', '.js']
     },
     node: {
-        fs: "empty"
+        fs: 'empty'
     },
     module: {
         rules: [
             {
                 test: /\.(ts|tsx)$/,
-                loader: "ts-loader",
+                loader: 'ts-loader',
                 exclude: /(node_modules|bower_components)/
             },
             {
@@ -89,6 +89,6 @@ module.exports = {
         },
         historyApiFallback: true
     },
-    "externals": {
+    'externals': {
     }
 };

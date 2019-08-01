@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import * as React from 'react';
 import './App.scss';
 import { connect } from 'react-redux';

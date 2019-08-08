@@ -9,6 +9,8 @@
 .env.production.local
 Thumbs.db
 
+.env
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

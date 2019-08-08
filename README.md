@@ -1,7 +1,11 @@
 # Boilerplate For Node & Express Server With React & Redux
 
 ## Setup
-- Add MongoDB Production and Test connection URLs to /.env
+- Add MongoDB Production and Test connection URLs in a new file `/.env` with the following contents:
+```
+MONGODB_URI=<prod-db-uri>
+MONGODB_TEST_URI=<test-db-uri>
+```
 - `npm i`
 - `npm run dev`
 

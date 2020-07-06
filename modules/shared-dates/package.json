@@ -1,0 +1,33 @@
+{
+  "name": "@jrapp/shared-dates",
+  "version": "1.0.0",
+  "description": "Shared module to handle dates and times",
+  "author": "Jon Rapp",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "test:server": "mocha --opts test/mocha.opts -r ts-node/register ./src/**/*.test.ts",
+    "build": "rimraf ./dist && tsc -p ./",
+    "dev": "rimraf ./dist && tsc -v && tsc -w -p ./",
+    "start": "node ./dist/index.js",
+    "prod": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "moment-timezone": "^0.5.31"
+  },
+  "devDependencies": {
+    "@types/chai": "4.0.3",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^6.0.101",
+    "chai": "^4.1.1",
+    "eslint": "^4.4.1",
+    "mocha": "^6.2.0",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.6"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  }
+}

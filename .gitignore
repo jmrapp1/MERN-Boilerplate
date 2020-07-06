@@ -16,7 +16,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # compiled output
-/dist
+*.tsbuildinfo
+**/*/dist
 /tmp
 /out-tsc
 /client/build

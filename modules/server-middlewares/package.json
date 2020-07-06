@@ -1,0 +1,41 @@
+{
+  "name": "@jrapp/server-middlewares",
+  "version": "1.0.0",
+  "description": "Server-side middlewares",
+  "author": "Jon Rapp",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "test:server": "mocha --opts test/mocha.opts -r ts-node/register ./src/**/*.test.ts",
+    "build": "rimraf ./dist && tsc -p ./",
+    "dev": "rimraf ./dist && tsc -w -p ./",
+    "start": "node ./dist/index.js",
+    "prod": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "@jrapp/shared-resources": "file:../shared-resources",
+    "jwt-decode": "^2.2.0",
+    "jwt-simple": "^0.5.1",
+    "passport": "0.3.2",
+    "passport-anonymous": "^1.0.1",
+    "passport-jwt": "2.2.1",
+    "reflect-metadata": "^0.1.12",
+    "routing-controllers": "^0.7.6",
+    "underscore": "^1.10.2"
+  },
+  "devDependencies": {
+    "@types/chai": "4.0.3",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^6.0.101",
+    "chai": "^4.1.1",
+    "eslint": "^4.4.1",
+    "mocha": "^6.2.0",
+    "ts-node": "^3.3.0",
+    "typescript": "^3.9.6",
+    "rimraf": "^3.0.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  }
+}

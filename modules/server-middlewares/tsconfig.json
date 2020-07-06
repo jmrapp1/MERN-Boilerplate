@@ -6,8 +6,13 @@
         "declarationDir": "./dist"
     },
     "exclude": [
-        "node_modules"
-
+        "node_modules",
+        "dist",
+        "../shared-resources",
+        "../server-logging"
     ],
-    "references": []
+    "references": [
+        {"path": "../server-logging"},
+        {"path": "../shared-resources"}
+    ]
 }

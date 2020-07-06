@@ -7,12 +7,13 @@
   "main": "dist/index.js",
   "scripts": {
     "test:server": "mocha --opts test/mocha.opts -r ts-node/register ./src/**/*.test.ts",
-    "build": "rimraf ./dist && tsc -p ./",
-    "dev": "rimraf ./dist && tsc -w -p ./",
+    "build": "tsc -p ./",
+    "dev": "tsc -w -p ./",
     "start": "node ./dist/index.js",
     "prod": "npm run build && npm run start"
   },
   "dependencies": {
+    "@jrapp/server-logging": "file:../server-logging",
     "@jrapp/shared-resources": "file:../shared-resources",
     "jwt-decode": "^2.2.0",
     "jwt-simple": "^0.5.1",
@@ -20,8 +21,7 @@
     "passport-anonymous": "^1.0.1",
     "passport-jwt": "2.2.1",
     "reflect-metadata": "^0.1.12",
-    "routing-controllers": "^0.7.6",
-    "underscore": "^1.10.2"
+    "routing-controllers": "^0.7.6"
   },
   "devDependencies": {
     "@types/chai": "4.0.3",

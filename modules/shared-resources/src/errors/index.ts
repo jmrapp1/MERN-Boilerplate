@@ -3,7 +3,7 @@ import ErrorBuilder from './ErrorBuilder';
 import HttpError from './HttpError';
 import InternalServerError from './InternalServerError';
 
-export default {
+export {
     BadRequestError,
     ErrorBuilder,
     HttpError,

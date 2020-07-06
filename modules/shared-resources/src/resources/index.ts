@@ -1,5 +1,5 @@
 import Resource from './Resource';
 
-export default {
+export {
     Resource
 }

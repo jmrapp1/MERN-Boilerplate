@@ -1,7 +1,7 @@
 import {ExpressMiddlewareInterface, Middleware} from 'routing-controllers';
 
-@Middleware({ type: 'before' })
-class HeaderMiddleware implements ExpressMiddlewareInterface {
+// @Middleware({ type: 'before' })
+export class HeaderMiddleware implements ExpressMiddlewareInterface {
 
     use(request: any, res: any, next: (err?: any) => any): any {
         res.setHeader('Content-Type', 'application/json');

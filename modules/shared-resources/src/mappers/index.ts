@@ -1,7 +1,7 @@
 import ResourceMapper from './ResourceMapper';
 import GenericNameMapper from './generic/GenericNameMapper';
 
-export default {
+export {
     ResourceMapper,
     GenericNameMapper
 }

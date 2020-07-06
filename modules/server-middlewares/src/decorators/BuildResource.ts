@@ -1,7 +1,7 @@
 import * as _ from 'underscore';
 import { getMetadataArgsStorage } from 'routing-controllers';
-import Logger from '../util/Logger';
-import { BadRequestError, ResourceMapper } from '@jrapp/shared-resources';
+import { ResourceMapper, BadRequestError } from '@jrapp/shared-resources';
+import { Logger } from '@jrapp/server-logging';
 
 /**
  * Hacked the routing-controllers a bit to make this custom decorator work

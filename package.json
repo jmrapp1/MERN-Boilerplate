@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "clean": "rimraf dist",
-    "dev:server": "concurrently \"tsc $NODE_DEBUG_OPTION -w -p ./src/server\" \"nodemon $NODE_DEBUG_OPTION --config ./src/server/nodemon.json dist/server/app.js\"",
+    "dev:server": "npm run predev && concurrently \"tsc $NODE_DEBUG_OPTION -w -p ./src/server\" \"nodemon $NODE_DEBUG_OPTION --config ./src/server/nodemon.json dist/server/app.js\"",
     "test:server": "mocha $NODE_DEBUG_OPTION --opts test/mocha.opts -r ts-node/register ./src/**/*.test.ts",
     "lint": "ng lint",
     "predev": "tsc -p ./src/server",

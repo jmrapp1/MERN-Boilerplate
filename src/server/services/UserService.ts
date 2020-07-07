@@ -63,7 +63,7 @@ export default class UserService extends MongoDal<UserDocument> {
     }
 
     async register(registerResource: UserRegisterResource): Promise<ServiceResponse<UserDocument>> {
-        const valRes = await this.validateRegisterData(registerResource);
+        await this.validateRegisterData(registerResource);
         return this.insert({
             username: registerResource.username,
             email: registerResource.email,

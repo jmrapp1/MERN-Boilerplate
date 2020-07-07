@@ -1,9 +1,20 @@
 import * as mongoose from 'mongoose';
+import { Container } from 'typedi';
 import { Logger } from '@jrapp/server-logging';
+import { Context } from '@jrapp/server-context';
+import { Events } from '@jrapp/server-events';
+import { MONGODB_CONNECTED, MONGODB_DISCONNECTED } from '../events/Constants';
 
 class MongoConfig {
 
-    db;
+    connection;
+    context;
+    events;
+
+    constructor() {
+        this.context = Container.get(Context);
+        this.events = Container.get(Events);
+    }
 
     connect(uri: string) {
         return new Promise((resolve, reject) => {
@@ -16,7 +27,9 @@ class MongoConfig {
                 reject(e);
             });
             db.once('open', () => {
-                this.db = db;
+                this.connection = db;
+                this.context.setDatabase(db);
+                this.events.emit(MONGODB_CONNECTED, db);
                 Logger.info('Connected to MongoDB');
                 return resolve(db);
             });
@@ -25,7 +38,11 @@ class MongoConfig {
 
     close() {
         return new Promise((resolve, reject) => {
-            mongoose.connection.close(resolve);
+            mongoose.connection.close(() => {
+                this.context.unsetDatabase();
+                this.events.emit(MONGODB_DISCONNECTED);
+                resolve();
+            });
         });
     }
 }

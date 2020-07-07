@@ -25,7 +25,9 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "@jrapp/server-abstract-framework": "file:./modules/server-abstract-framework",
+    "@jrapp/server-context": "file:modules/server-context",
     "@jrapp/server-dal-mongodb": "file:modules/server-dal-mongodb",
+    "@jrapp/server-events": "file:modules/server-events",
     "@jrapp/server-example-module": "file:./modules/server-example-module",
     "@jrapp/server-logging": "file:./modules/server-logging",
     "@jrapp/server-middlewares": "file:./modules/server-middlewares",
@@ -61,7 +63,7 @@
     "redux-thunk": "^2.2.0",
     "reflect-metadata": "^0.1.12",
     "routing-controllers": "^0.7.6",
-    "typedi": "^0.6.1",
+    "typedi": "^0.8.0",
     "underscore": "^1.9.0"
   },
   "devDependencies": {

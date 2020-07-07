@@ -5,7 +5,10 @@ import { Container } from 'typedi';
 import { AuthMiddleware, BuildResource } from '@jrapp/server-middlewares';
 import { TestMapper, TestResource } from '@jrapp/shared-example-module';
 import { AbstractController } from '@jrapp/server-abstract-framework';
+import { Logger } from '@jrapp/server-logging';
+import { HeaderMiddleware } from '@jrapp/server-middlewares';
 
+@UseBefore(HeaderMiddleware)
 @JsonController('/test')
 export default class TestController extends AbstractController {
 
@@ -20,16 +23,16 @@ export default class TestController extends AbstractController {
     getTestStrict(@Res() res: any, @Param('id') id: string) {
         return this.testService.getTest(id).then(
             response => res.status(200).json(response.data),
-            err => res.status(404).json(err)
+            err => this.handleServiceError(res, err)
         );
     }
 
     @Post('/create')
     createTest(@BuildResource(TestMapper) testResource: TestResource, @Res() res: any) {
         if (!testResource) return res;
-        return this.testService.createTest(testResource.message).then(
+        return this.testService.createTest(testResource).then(
             response => res.status(200).json(response.data),
-            err => res.status(404).json(err)
+            err => this.handleServiceError(res, err)
         );
     }
 

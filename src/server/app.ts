@@ -19,6 +19,8 @@ import UserRegisterMapper from '../shared/mappers/user/UserRegisterMapper';
 import UserLoginMapper from '../shared/mappers/user/UserLoginMapper';
 import JwtMapper from '../shared/mappers/user/JwtMapper';
 import { MongoConfig } from '@jrapp/server-dal-mongodb';
+import { Events } from '@jrapp/server-events';
+import { INITIALIZED } from '@jrapp/server-events/dist';
 
 dotenv.load({ path: '.env' });
 
@@ -26,6 +28,8 @@ ResourceMappingManager.addMapper(UserRegisterMapper);
 ResourceMappingManager.addMapper(UserLoginMapper);
 ResourceMappingManager.addMapper(JwtMapper);
 ResourceMappingManager.addMapper(TestMapper);
+
+Container.get(Events).emit(INITIALIZED, {});
 
 const express = require('express');
 

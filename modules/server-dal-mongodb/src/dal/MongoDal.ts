@@ -2,15 +2,21 @@ import * as mongoose from 'mongoose';
 import { IDataAccessLayer } from '@jrapp/server-dal-interface';
 import { ServiceResponse } from '@jrapp/server-abstract-framework';
 import { Logger } from '@jrapp/server-logging';
+import MongoDataModel from './MongoDataModel';
 
 export default class MongoDal<T extends mongoose.Document> implements IDataAccessLayer {
 
-    model: any;
-    populate = [];
+    dataModel: MongoDataModel<T>;
+    populate: string[];
+
+    constructor(dataModel: MongoDataModel<T>, populate = []) {
+        this.dataModel = dataModel;
+        this.populate = [];
+    }
 
     insert(body: any): Promise<ServiceResponse<T>> {
         return this.promise((resolve, reject) => {
-            this.model.create(body, (err, model) => this.handleStandardResponse(resolve, reject, err, model));
+            this.dataModel.model.create(body, (err, model) => this.handleStandardResponse(resolve, reject, err, model));
         });
     };
 
@@ -35,19 +41,19 @@ export default class MongoDal<T extends mongoose.Document> implements IDataAcces
 
     delete(query): Promise<ServiceResponse<T>> {
         return this.promise((resolve, reject) => {
-            this.model.remove(query, err => this.handleStandardResponse(resolve, reject, err));
+            this.dataModel.model.remove(query, err => this.handleStandardResponse(resolve, reject, err));
         });
     }
 
     deleteById(id: string): Promise<ServiceResponse<T>> {
         return this.promise((resolve, reject) =>
-            this.model.findOneAndRemove({ _id: id }, (err, model) => this.handleStandardResponse(resolve, reject, err, model))
+            (this.dataModel.model as any).findOneAndRemove({ _id: id }, (err, model) => this.handleStandardResponse(resolve, reject, err, model))
         );
     }
 
     findById(id: string): Promise<ServiceResponse<T>> {
         return this.promise((resolve, reject) => {
-            this.populateQuery(this.model.find({ _id: id }).limit(1), this.populate).exec((err, model) => {
+            this.populateQuery((this.dataModel.model as any).find({ _id: id }).limit(1), this.populate).exec((err, model) => {
                 if (err) {
                     return reject(new ServiceResponse(err));
                 }
@@ -70,7 +76,7 @@ export default class MongoDal<T extends mongoose.Document> implements IDataAcces
 
     find(query, size: number, offset = 0, sort?): Promise<ServiceResponse<T[]>> {
         return this.promise((resolve, reject) => {
-                const req = this.model.find(query).skip(offset).limit(size);
+                const req = this.dataModel.model.find(query).skip(offset).limit(size);
                 if (sort) req.sort(sort);
                 return this.populateQuery(req, this.populate)
                     .exec((err, models) => this.handleStandardResponse(resolve, reject, err, models))
@@ -80,7 +86,7 @@ export default class MongoDal<T extends mongoose.Document> implements IDataAcces
 
     count(query): Promise<ServiceResponse<number>> {
         return this.promise((resolve, reject) =>
-            this.model.countDocuments(query)
+            this.dataModel.model.countDocuments(query)
                 .exec((err, count) => this.handleStandardResponse(resolve, reject, err, count))
         );
     }

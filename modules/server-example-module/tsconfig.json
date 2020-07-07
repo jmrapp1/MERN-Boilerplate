@@ -13,7 +13,9 @@
         "../server-middlewares",
         "../shared-example-module",
         "../server-abstract-framework",
-        "../server-dal-mongodb"
+        "../server-dal-mongodb",
+        "../server-context",
+        "../server-events"
     ],
     "references": [
         {"path": "../server-logging"},
@@ -21,6 +23,8 @@
         {"path": "../server-middlewares"},
         {"path": "../shared-example-module"},
         {"path": "../server-abstract-framework"},
-        {"path": "../server-dal-mongodb"}
+        {"path": "../server-dal-mongodb"},
+        {"path":  "../server-context"},
+        {"path":  "../server-events"}
     ]
 }

@@ -1,0 +1,1 @@
+export const INITIALIZED = 'EVENT.INITIALIZED';

@@ -1,7 +1,7 @@
 {
-  "name": "@jrapp/server-dal-mongodb",
+  "name": "@jrapp/server-events",
   "version": "1.0.0",
-  "description": "Module that contains the MongoDB data access layer implementation",
+  "description": "Module for server events",
   "author": "Jon Rapp",
   "license": "ISC",
   "main": "dist/index.js",
@@ -13,17 +13,11 @@
     "prod": "npm run build && npm run start"
   },
   "dependencies": {
-    "@jrapp/server-context": "file:../server-context",
-    "@jrapp/server-dal-interface": "file:../server-dal-interface",
-    "@jrapp/server-events": "file:../server-events",
-    "@jrapp/server-logging": "file:../server-logging",
-    "mongoose": "^5.0.5",
     "typedi": "^0.8.0"
   },
   "devDependencies": {
     "@types/chai": "4.0.3",
     "@types/mocha": "^5.2.7",
-    "@types/mongoose": "^5.7.30",
     "@types/node": "^6.0.101",
     "chai": "^4.1.1",
     "eslint": "^4.4.1",

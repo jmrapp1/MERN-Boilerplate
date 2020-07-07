@@ -9,10 +9,14 @@
         "node_modules",
         "dist",
         "../server-logging",
-        "../server-dal-interface"
+        "../server-dal-interface",
+        "../server-context",
+        "../server-events"
     ],
     "references": [
-        {"path": "../server-logging/tsconfig.json"},
-        {"path": "../server-dal-interface/tsconfig.json"}
+        {"path": "../server-logging"},
+        {"path": "../server-dal-interface"},
+        {"path": "../server-context"},
+        {"path": "../server-events"}
     ]
 }

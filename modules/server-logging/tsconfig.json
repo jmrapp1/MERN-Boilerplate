@@ -1,16 +1,16 @@
 {
-    "extends": "../tsconfig.json",
+    "extends": "../../tsconfig.json",
     "compilerOptions": {
         "rootDir": "./src",
         "outDir": "./dist",
         "declarationDir": "./dist"
     },
     "exclude": [
-        "node_modules",
-        "dist",
+        "./node_modules",
+        "./dist",
         "../shared-dates"
     ],
     "references": [
-        {"path": "../shared-dates"}
+        {"path": "../shared-dates/tsconfig.json"}
     ]
 }

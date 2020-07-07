@@ -1,0 +1,32 @@
+{
+  "name": "@jrapp/server-abstract-framework",
+  "version": "1.0.0",
+  "description": "Module that contains the abstract layers for the server framework",
+  "author": "Jon Rapp",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "test:server": "mocha --opts test/mocha.opts -r ts-node/register ./src/**/*.test.ts",
+    "build": "tsc -p ./",
+    "dev": "tsc -w -p ./",
+    "start": "node ./dist/index.js",
+    "prod": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "@jrapp/server-logging": "file:../server-logging",
+    "@jrapp/shared-resources": "file:../shared-resources"
+  },
+  "devDependencies": {
+    "@types/chai": "4.0.3",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^6.0.101",
+    "chai": "^4.1.1",
+    "eslint": "^4.4.1",
+    "mocha": "^6.2.0",
+    "typescript": "^3.9.6"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  }
+}

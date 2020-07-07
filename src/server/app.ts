@@ -3,18 +3,29 @@ import * as morgan from 'morgan';
 import * as passport from 'passport';
 import * as bodyParser from 'body-parser';
 import 'reflect-metadata'; // required
-import './mixins/underscore';
-import registerPassport from './config/passport';
 
+import registerPassport from './config/passport';
 import { createExpressServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi';
-
-import DatabaseSetup from './util/DatabaseSetup';
-import TestController from './controllers/TestController';
-import UserController from './controllers/UserController';
-import Logger from './util/Logger';
-
 useContainer(Container);
+
+import { Logger } from '@jrapp/server-logging';
+import { ResourceMappingManager } from '@jrapp/shared-resources';
+import { TestController } from '@jrapp/server-example-module';
+import { TestMapper } from '@jrapp/shared-example-module';
+
+import UserController from './controllers/UserController';
+import UserRegisterMapper from '../shared/mappers/user/UserRegisterMapper';
+import UserLoginMapper from '../shared/mappers/user/UserLoginMapper';
+import JwtMapper from '../shared/mappers/user/JwtMapper';
+import { MongoConfig } from '@jrapp/server-dal-mongodb';
+
+dotenv.load({ path: '.env' });
+
+ResourceMappingManager.addMapper(UserRegisterMapper);
+ResourceMappingManager.addMapper(UserLoginMapper);
+ResourceMappingManager.addMapper(JwtMapper);
+ResourceMappingManager.addMapper(TestMapper);
 
 const express = require('express');
 
@@ -23,8 +34,6 @@ const app = createExpressServer({
     routePrefix: '/api',
     controllers: [ TestController, UserController ]
 });
-
-dotenv.load({ path: '.env' });
 
 if (process.env.NODE_ENV === 'production') {
     console.log('Using production build');
@@ -41,14 +50,12 @@ app.use(function (err, req, res, next) {
     next(err);
 });
 
-Logger.setup();
-
-new DatabaseSetup().setupDb(() => {
+MongoConfig.connect(process.env.MONGODB_URI).then(() => {
 
     registerPassport(passport);
 
     app.listen(app.get('port'), () => {
-        console.log('Listening on port ' + app.get('port'));
+        Logger.info('Listening on port ' + app.get('port'));
     });
 });
 

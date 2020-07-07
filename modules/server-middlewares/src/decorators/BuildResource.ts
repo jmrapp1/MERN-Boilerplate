@@ -3,6 +3,8 @@ import { getMetadataArgsStorage } from 'routing-controllers';
 import { ResourceMapper, BadRequestError } from '@jrapp/shared-resources';
 import { Logger } from '@jrapp/server-logging';
 
+import '../mixins/underscore';
+
 /**
  * Hacked the routing-controllers a bit to make this custom decorator work
  * Their custom decorator implementation does not complete the incoming request so the body is never there

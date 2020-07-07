@@ -23,7 +23,6 @@
     "eslint": "^4.4.1",
     "mocha": "^6.2.0",
     "rimraf": "^3.0.2",
-    "ts-node": "^8.10.2",
     "typescript": "^3.9.6"
   },
   "publishConfig": {

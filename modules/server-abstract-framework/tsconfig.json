@@ -1,0 +1,18 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "declarationDir": "./dist"
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+        "../server-logging",
+        "../shared-resources"
+    ],
+    "references": [
+        {"path": "../server-logging/tsconfig.json"},
+        {"path": "../shared-resources/tsconfig.json"}
+    ]
+}

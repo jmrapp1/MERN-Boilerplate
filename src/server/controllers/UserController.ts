@@ -1,18 +1,19 @@
 import { BodyParam, Get, JsonController, Post, Req, Res, UseBefore } from 'routing-controllers';
 import { encode } from 'jwt-simple';
-import { BuildResource } from '../decorators/BuildResource';
+import { AbstractController } from '@jrapp/server-abstract-framework';
+import { BuildResource } from '@jrapp/server-middlewares';
+import { Inject } from 'typedi';
+
 import UserRegisterMapper from '../../shared/mappers/user/UserRegisterMapper';
 import UserRegisterResource from '../../shared/resources/user/UserRegisterResource';
 import HttpUtils from '../util/HttpUtils';
 import UserLoginMapper from '../../shared/mappers/user/UserLoginMapper';
 import UserLoginResource from '../../shared/resources/user/UserLoginResource';
-import { Inject } from 'typedi';
 import UserService from '../services/UserService';
 import JwtMapper from '../../shared/mappers/user/JwtMapper';
-import BaseController from './BaseController';
 
 @JsonController('/user')
-export default class UserController extends BaseController {
+export default class UserController extends AbstractController {
 
     @Inject()
     userService: UserService;

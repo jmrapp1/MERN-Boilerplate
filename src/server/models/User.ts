@@ -25,8 +25,8 @@ userSchema.pre('save', function (next) {
     if (!user.isModified('password')) {
         return next();
     }
-    hashPassword(user.password).then(hash => {
-        user.password = hash;
+    hashPassword((user as any).password).then(hash => {
+        (user as any).password = hash;
         next();
     }, err => {
         return next(err);

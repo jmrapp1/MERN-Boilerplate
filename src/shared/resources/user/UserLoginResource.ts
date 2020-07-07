@@ -1,4 +1,4 @@
-import Resource from '../Resource';
+import { Resource } from '@jrapp/shared-resources';
 
 export default class UserLoginResource extends Resource {
 

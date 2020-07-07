@@ -1,8 +1,12 @@
 {
     "extends": "../../tsconfig.json",
+    "include": [
+        "./**/*.ts",
+        "../shared"
+    ],
     "compilerOptions": {
-        "outDir": "../../dist/",
-        "baseUrl": "",
-        "module": "commonjs"
+        "rootDir": "../",
+        "outDir": "../../dist",
+        "declarationDir": "../../dist"
     }
 }

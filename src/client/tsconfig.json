@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "sourceMap": true,
     "module": "commonjs",
     "emitDecoratorMetadata": true,
@@ -12,6 +12,7 @@
   },
   "include": [
     "./src/**/*.tsx",
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "../shared"
   ]
 }

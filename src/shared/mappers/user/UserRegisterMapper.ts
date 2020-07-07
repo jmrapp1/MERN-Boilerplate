@@ -1,5 +1,5 @@
+import { ResourceMapper } from '@jrapp/shared-resources';
 import * as EmailValidator from 'email-validator';
-import ResourceMapper from '../ResourceMapper';
 import UserRegisterResource from '../../resources/user/UserRegisterResource';
 
 class UserRegisterMapper extends ResourceMapper {

@@ -1,4 +1,4 @@
-import ResourceMapper from '../ResourceMapper';
+import { ResourceMapper } from '@jrapp/shared-resources';
 import JwtResource from '../../resources/user/JwtResource';
 
 class JwtMapper extends ResourceMapper {

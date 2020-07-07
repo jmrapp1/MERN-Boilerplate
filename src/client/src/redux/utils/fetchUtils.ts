@@ -1,5 +1,5 @@
 import * as ErrorBuilder from '../../../../shared/errors/ErrorBuilder';
-import MapperUtils from '../../../../shared/mappers/MapperUtils';
+import MapperUtils from '../../../../shared/MapperUtils';
 import { InternalServerError } from '../../../../shared/errors/InternalServerError';
 
 export function verifyStatus(response) {

@@ -10,13 +10,13 @@
         "dist",
         "../server-logging",
         "../server-dal-interface",
-        "../server-context",
+        "../server-module",
         "../server-events"
     ],
     "references": [
         {"path": "../server-logging"},
         {"path": "../server-dal-interface"},
-        {"path": "../server-context"},
+        {"path": "../server-module"},
         {"path": "../server-events"}
     ]
 }

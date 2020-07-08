@@ -7,8 +7,10 @@
     },
     "exclude": [
         "./node_modules",
-        "./dist"
+        "./dist",
+        "../server-module"
     ],
     "references": [
+        {"path": "../server-module"}
     ]
 }

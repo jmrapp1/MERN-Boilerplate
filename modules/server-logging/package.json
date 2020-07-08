@@ -13,7 +13,8 @@
     "prod": "npm run build && npm run start"
   },
   "dependencies": {
-    "@jrapp/shared-dates": "file:../shared-dates"
+    "@jrapp/shared-dates": "file:../shared-dates",
+    "chalk": "^4.1.0"
   },
   "devDependencies": {
     "@types/chai": "4.0.3",

@@ -1,8 +1,8 @@
 import * as mongoose from 'mongoose';
 import { IDataAccessLayer } from '@jrapp/server-dal-interface';
 import { ServiceResponse } from '@jrapp/server-abstract-framework';
-import { Logger } from '@jrapp/server-logging';
 import MongoDataModel from './MongoDataModel';
+import { ModuleLogger } from '../index';
 
 export default class MongoDal<T extends mongoose.Document> implements IDataAccessLayer {
 
@@ -61,7 +61,7 @@ export default class MongoDal<T extends mongoose.Document> implements IDataAcces
                     if (model.length === 1) {
                         return resolve(new ServiceResponse(model[0]));
                     } else if (model.length > 1) {
-                        Logger.critical(`Multiple rows found for ID: ${ id }. Returned Data: ${ JSON.stringify(model) }`);
+                        ModuleLogger.critical(`Multiple rows found for ID: ${ id }. Returned Data: ${ JSON.stringify(model) }`);
                         return resolve(new ServiceResponse(model[0]));
                     }
                     return reject(new ServiceResponse(`No entry found with ID: ${id}`, 400));

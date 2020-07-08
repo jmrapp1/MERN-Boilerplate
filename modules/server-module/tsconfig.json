@@ -8,11 +8,9 @@
     "exclude": [
         "./node_modules",
         "./dist",
-        "../server-events",
         "../server-logging"
     ],
     "references": [
-        {"path": "../server-events"},
         {"path": "../server-logging"}
     ]
 }

@@ -4,7 +4,7 @@
  * were any. Otherwise we know we can use the data safely
  */
 import { BadRequestError, HttpError, InternalServerError } from '@jrapp/shared-resources';
-import { Logger } from '@jrapp/server-logging';
+import { ModuleLogger } from '../index';
 
 export default class ServiceResponse<T> {
 
@@ -38,7 +38,6 @@ export default class ServiceResponse<T> {
     }
 
     buildInternalServerError(): InternalServerError {
-        Logger.error(`An internal server error has occurred. Data: ${ JSON.stringify(this.data) }`);
         return new InternalServerError();
     }
 

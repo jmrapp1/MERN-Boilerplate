@@ -1,36 +1,36 @@
 import * as mongoose from 'mongoose';
 import { Container } from 'typedi';
-import { Logger } from '@jrapp/server-logging';
-import { Context } from '@jrapp/server-context';
+import { GlobalContext } from '@jrapp/server-module';
 import { Events } from '@jrapp/server-events';
-import { MONGODB_CONNECTED, MONGODB_DISCONNECTED } from '../events/Constants';
+import { ModuleLogger, MONGODB_CONNECTED, MONGODB_DISCONNECTED } from '..';
 
 class MongoConfig {
 
     connection;
-    context;
+    globalContext;
     events;
 
     constructor() {
-        this.context = Container.get(Context);
+        this.globalContext = Container.get(GlobalContext);
         this.events = Container.get(Events);
     }
 
     connect(uri: string) {
         return new Promise((resolve, reject) => {
-            mongoose.connect(uri);
+            mongoose.set('useCreateIndex', true);
+            mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
             const db = mongoose.connection;
             (<any>mongoose).Promise = global.Promise;
 
             db.on('error', (e) => {
-                Logger.error('Could not connect to MongoDB: ' + e);
+                ModuleLogger.error('Could not connect to MongoDB: ' + e);
                 reject(e);
             });
             db.once('open', () => {
                 this.connection = db;
-                this.context.setDatabase(db);
+                this.globalContext.setDatabase(db);
                 this.events.emit(MONGODB_CONNECTED, db);
-                Logger.info('Connected to MongoDB');
+                ModuleLogger.info('Connected to MongoDB');
                 return resolve(db);
             });
         });
@@ -39,7 +39,7 @@ class MongoConfig {
     close() {
         return new Promise((resolve, reject) => {
             mongoose.connection.close(() => {
-                this.context.unsetDatabase();
+                this.globalContext.unsetDatabase();
                 this.events.emit(MONGODB_DISCONNECTED);
                 resolve();
             });

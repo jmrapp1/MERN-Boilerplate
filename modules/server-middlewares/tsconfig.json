@@ -9,10 +9,12 @@
         "node_modules",
         "dist",
         "../shared-resources",
-        "../server-logging"
+        "../server-logging",
+        "../server-module"
     ],
     "references": [
-        {"path": "../server-logging/tsconfig.json"},
-        {"path": "../shared-resources/tsconfig.json"}
+        {"path": "../server-logging"},
+        {"path": "../shared-resources"},
+        {"path": "../server-module"}
     ]
 }

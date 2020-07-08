@@ -14,7 +14,7 @@
         "../shared-example-module",
         "../server-abstract-framework",
         "../server-dal-mongodb",
-        "../server-context",
+        "../server-module",
         "../server-events"
     ],
     "references": [
@@ -24,7 +24,7 @@
         {"path": "../shared-example-module"},
         {"path": "../server-abstract-framework"},
         {"path": "../server-dal-mongodb"},
-        {"path":  "../server-context"},
+        {"path":  "../server-module"},
         {"path":  "../server-events"}
     ]
 }

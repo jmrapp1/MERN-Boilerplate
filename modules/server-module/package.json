@@ -1,7 +1,7 @@
 {
-  "name": "@jrapp/server-context",
+  "name": "@jrapp/server-module",
   "version": "1.0.0",
-  "description": "Module that holds the context definition to be passed around server modules",
+  "description": "Contains",
   "author": "Jon Rapp",
   "license": "ISC",
   "main": "dist/index.js",
@@ -13,7 +13,6 @@
     "prod": "npm run build && npm run start"
   },
   "dependencies": {
-    "@jrapp/server-events": "file:../server-events",
     "@jrapp/server-logging": "file:../server-logging",
     "typedi": "^0.8.0"
   },

@@ -5,8 +5,8 @@ import { Container } from 'typedi';
 import { AuthMiddleware, BuildResource } from '@jrapp/server-middlewares';
 import { TestMapper, TestResource } from '@jrapp/shared-example-module';
 import { AbstractController } from '@jrapp/server-abstract-framework';
-import { Logger } from '@jrapp/server-logging';
 import { HeaderMiddleware } from '@jrapp/server-middlewares';
+import { ModuleLogger } from '../index';
 
 @UseBefore(HeaderMiddleware)
 @JsonController('/test')
@@ -15,7 +15,7 @@ export default class TestController extends AbstractController {
     testService: TestService;
 
     constructor() {
-        super();
+        super(ModuleLogger);
         this.testService = Container.get(TestService);
     }
 

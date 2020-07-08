@@ -13,6 +13,7 @@
     "prod": "npm run build && npm run start"
   },
   "dependencies": {
+    "@jrapp/server-module": "file:../server-module",
     "typedi": "^0.8.0"
   },
   "devDependencies": {

@@ -62,8 +62,7 @@ if (process.env.NODE_ENV === 'production') {
     ModuleLogger.info('Using development build');
 }
 
-const modulesRegistry = Container.get(ModulesRegistry);
-ModuleLogger.info(`Registered ${modulesRegistry.getModules().length} modules.`);
+ModuleLogger.info(`Registered ${ModulesRegistry.registeredModules.length} modules.`);
 MongoConfig.connect(process.env.MONGODB_URI).then(() => {
 
     registerPassport(passport);

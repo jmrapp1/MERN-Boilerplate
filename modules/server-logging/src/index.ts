@@ -7,6 +7,7 @@ function buildLogger(name, color): Logger {
     return logger;
 }
 
+export * from './Events';
 export * from './Logger';
 export {
     Logger,

@@ -8,9 +8,11 @@
     "exclude": [
         "./node_modules",
         "./dist",
-        "../shared-dates"
+        "../shared-dates",
+        "../server-events"
     ],
     "references": [
-        {"path": "../shared-dates/tsconfig.json"}
+        {"path": "../shared-dates"},
+        {"path": "../server-events"}
     ]
 }

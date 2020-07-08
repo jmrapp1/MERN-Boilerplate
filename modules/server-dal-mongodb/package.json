@@ -13,10 +13,11 @@
     "prod": "npm run build && npm run start"
   },
   "dependencies": {
-    "@jrapp/server-module": "file:../server-module",
     "@jrapp/server-dal-interface": "file:../server-dal-interface",
     "@jrapp/server-events": "file:../server-events",
     "@jrapp/server-logging": "file:../server-logging",
+    "@jrapp/server-module": "file:../server-module",
+    "@jrapp/server-web-framework": "file:../server-web-framework",
     "mongoose": "^5.0.5",
     "typedi": "^0.8.0"
   },

@@ -3,6 +3,7 @@ import Test, { TestDocument } from '../models/Test';
 import { MongoDal } from '@jrapp/server-dal-mongodb';
 import { TestResource } from '@jrapp/shared-example-module';
 import { ModuleLogger } from '../index';
+import { ServiceResponse } from '@jrapp/server-web-framework';
 
 @Service()
 export default class TestService extends MongoDal<TestDocument> {
@@ -11,11 +12,19 @@ export default class TestService extends MongoDal<TestDocument> {
         super(Test);
     }
 
-    getTest(id: string) {
+    getTestById(id: string): Promise<ServiceResponse<TestDocument>> {
         return this.findById(id);
     }
 
-    createTest(test: TestResource) {
+    getTestByMessage(message: string): Promise<ServiceResponse<TestDocument[]>> {
+        return this.find({ message }, 1);
+    }
+
+    async createTest(test: TestResource): Promise<ServiceResponse<TestDocument>> {
+        const exists = await this.getTestByMessage(test.message);
+        if (exists.data.length > 0) {
+            throw new ServiceResponse('A test resource with that message already exists.', 400);
+        }
         ModuleLogger.info('Creating test resource with message ' + test.message);
         return this.insert({
             message: test.message

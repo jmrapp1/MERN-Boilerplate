@@ -1,7 +1,7 @@
 {
-  "name": "@jrapp/server-abstract-framework",
+  "name": "@jrapp/server-web-framework",
   "version": "1.0.0",
-  "description": "Module that contains the abstract layers for the server framework",
+  "description": "Module that contains code for the server web framework",
   "author": "Jon Rapp",
   "license": "ISC",
   "main": "dist/index.js",

@@ -11,12 +11,14 @@
         "../server-logging",
         "../server-dal-interface",
         "../server-module",
-        "../server-events"
+        "../server-events",
+        "../server-web-framework"
     ],
     "references": [
         {"path": "../server-logging"},
         {"path": "../server-dal-interface"},
         {"path": "../server-module"},
-        {"path": "../server-events"}
+        {"path": "../server-events"},
+        {"path": "../server-web-framework"}
     ]
 }

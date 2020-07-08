@@ -19,7 +19,7 @@ export default abstract class AbstractController {
             response.status(500).json(new InternalServerError().getJson());
             return response;
         }
-        this.logger.warn('Error: ' + JSON.stringify(err));
+        this.logger.warn(JSON.stringify(err));
         response.status(err.errorCode).json(err.buildError().getJson());
         return response;
     }

@@ -1,7 +1,6 @@
 import { BodyParam, Get, JsonController, Post, Req, Res, UseBefore } from 'routing-controllers';
 import { encode } from 'jwt-simple';
-import { AbstractController } from '@jrapp/server-abstract-framework';
-import { BuildResource } from '@jrapp/server-middlewares';
+import { AbstractController, BuildResource } from '@jrapp/server-web-framework';
 import { Inject } from 'typedi';
 
 import UserRegisterMapper from '../../shared/mappers/user/UserRegisterMapper';

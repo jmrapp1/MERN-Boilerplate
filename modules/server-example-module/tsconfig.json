@@ -10,9 +10,8 @@
         "./dist",
         "../shared-resources",
         "../server-logging",
-        "../server-middlewares",
         "../shared-example-module",
-        "../server-abstract-framework",
+        "../server-web-framework",
         "../server-dal-mongodb",
         "../server-module",
         "../server-events"
@@ -20,9 +19,8 @@
     "references": [
         {"path": "../server-logging"},
         {"path": "../shared-resources"},
-        {"path": "../server-middlewares"},
         {"path": "../shared-example-module"},
-        {"path": "../server-abstract-framework"},
+        {"path": "../server-web-framework"},
         {"path": "../server-dal-mongodb"},
         {"path":  "../server-module"},
         {"path":  "../server-events"}

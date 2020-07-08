@@ -1,7 +1,6 @@
 import * as _ from 'underscore';
 import { getMetadataArgsStorage } from 'routing-controllers';
 import { ResourceMapper, BadRequestError } from '@jrapp/shared-resources';
-import { ModuleLogger } from '../index';
 import '../mixins/underscore';
 
 /**
@@ -33,10 +32,10 @@ export function BuildResource(mapper: ResourceMapper, strict: boolean = true): F
 function sendErrorResponse(action, error) {
     action.response.status(400).json(new BadRequestError(error).getJson());
     action.next(error);
-    ModuleLogger.warn('Building Resource Failed: ' + JSON.stringify({
-        payload: getRequestData(action.request),
-        error
-    }));
+    // ModuleLogger.warn('Building Resource Failed: ' + JSON.stringify({
+    //     payload: getRequestData(action.request),
+    //     error
+    // }));
     return null;
 }
 

@@ -19,10 +19,8 @@
     "paths": {
       "@jrapp/server-logging/*": ["./server-logging/src/*"],
       "@jrapp/server-logging": ["./server-logging/src"],
-      "@jrapp/server-abstract-framework/*": ["./server-abstract-framework/src/*"],
-      "@jrapp/server-abstract-framework": ["./server-abstract-framework/src"],
-      "@jrapp/server-middleware/*": ["./server-middleware/src/*"],
-      "@jrapp/server-middleware": ["./server-middleware/src"],
+      "@jrapp/server-web-framework/*": ["./server-web-framework/src/*"],
+      "@jrapp/server-web-framework": ["./server-web-framework/src"],
       "@jrapp/shared-dates/*": ["./shared-dates/src/*"],
       "@jrapp/shared-dates": ["./shared-dates/src"],
       "@jrapp/shared-resources/*": ["./shared-resources/src/*"],
@@ -30,7 +28,15 @@
       "@jrapp/server-example-module/*": ["./server-example-module/src/*"],
       "@jrapp/server-example-module": ["./server-example-module/src"],
       "@jrapp/shared-example-module/*": ["./shared-example-module/src/*"],
-      "@jrapp/shared-example-module": ["./shared-example-module/src"]
+      "@jrapp/shared-example-module": ["./shared-example-module/src"],
+      "@jrapp/server-dal-interface/*": ["./server-dal-interface/src/*"],
+      "@jrapp/server-dal-interface": ["./server-dal-interface/src"],
+      "@jrapp/server-dal-mongodb/*": ["./server-dal-mongodb/src/*"],
+      "@jrapp/server-dal-mongodb": ["./server-dal-mongodb/src"],
+      "@jrapp/server-events/*": ["./server-events/src/*"],
+      "@jrapp/server-events": ["./server-events/src"],
+      "@jrapp/server-module/*": ["./server-module/src/*"],
+      "@jrapp/server-module": ["./server-module/src"]
     },
     "typeRoots": ["./node_modules/@types"]
   },

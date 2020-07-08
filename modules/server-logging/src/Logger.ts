@@ -5,7 +5,7 @@ import { EVENT_LOGGER_CRITICAL, EVENT_LOGGER_ERROR, EVENT_LOGGER_INFO, EVENT_LOG
 const chalk = require('chalk');
 
 export const INFO_COLOR = '#89cff0';
-export const WARN_COLOR = '#d99058';
+export const WARN_COLOR = '#ff9100';
 export const ERROR_COLOR = '#ff6961';
 export const CRITICAL_COLOR = '#FF0000';
 

@@ -13,8 +13,8 @@ export class ResourceMappingManager {
         return json;
     }
 
-    addMapper(mapper: ResourceMapper) {
-        this.mappers.push(mapper);
+    addMapper(...mapper: ResourceMapper[]) {
+        this.mappers.push(...mapper);
     }
 
     cleanData(data) {

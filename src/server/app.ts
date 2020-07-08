@@ -31,10 +31,7 @@ process.on('uncaughtException', function (err) {
     ModuleLogger.critical(`${err.message}: ${err.stack}`);
 });
 
-ResourceMappingManager.addMapper(UserRegisterMapper);
-ResourceMappingManager.addMapper(UserLoginMapper);
-ResourceMappingManager.addMapper(JwtMapper);
-ResourceMappingManager.addMapper(TestMapper);
+ResourceMappingManager.addMapper(UserRegisterMapper, UserLoginMapper, JwtMapper);
 
 export const MODULE_NAME = 'APP';
 export const AppContext: ModuleContext = registerModule(MODULE_NAME, '#00acc1');
@@ -53,7 +50,7 @@ const app = createExpressServer({
 app.set('port', (process.env.PORT || 3000));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(morgan(chalk.hex(INFO_COLOR)('[:date[iso]]: ') + ':method :url :status - :response-time ms'));
+app.use(morgan(chalk.hex(INFO_COLOR)('[:date[iso]] ') + ':method :url :status - :response-time ms'));
 
 if (process.env.NODE_ENV === 'production') {
     ModuleLogger.info('Using production build');

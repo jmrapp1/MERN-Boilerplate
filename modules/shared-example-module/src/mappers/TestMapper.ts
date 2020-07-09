@@ -1,4 +1,4 @@
-import { ResourceMapper } from '@jrapp/shared-resources';
+import { ResourceMapper } from '@jrapp/shared-core-resources';
 import TestResource from '../resources/TestResource';
 
 class TestMapper extends ResourceMapper {

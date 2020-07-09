@@ -7,7 +7,7 @@ import UserRegisterResource from '../../shared/resources/user/UserRegisterResour
 import UserRegisterMapper from '../../shared/mappers/user/UserRegisterMapper';
 import UserLoginMapper from '../../shared/mappers/user/UserLoginMapper';
 import JwtResource from '../../shared/resources/user/JwtResource';
-import { ServiceResponse } from '@jrapp/server-web-framework';
+import { ServiceResponse } from '@jrapp/server-core-web';
 import { MongoDal } from '@jrapp/server-dal-mongodb';
 
 @Service()

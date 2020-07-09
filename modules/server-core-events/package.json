@@ -1,7 +1,7 @@
 {
-  "name": "@jrapp/server-dal-interface",
+  "name": "@jrapp/server-core-events",
   "version": "1.0.0",
-  "description": "Module containing interfaces for data access layer support",
+  "description": "Module for server events",
   "author": "Jon Rapp",
   "license": "ISC",
   "main": "dist/index.js",
@@ -12,7 +12,10 @@
     "start": "node ./dist/index.js",
     "prod": "npm run build && npm run start"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@jrapp/server-core-module": "file:../server-core-module",
+    "typedi": "^0.8.0"
+  },
   "devDependencies": {
     "@types/chai": "4.0.3",
     "@types/mocha": "^5.2.7",

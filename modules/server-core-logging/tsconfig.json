@@ -6,13 +6,11 @@
         "declarationDir": "./dist"
     },
     "exclude": [
-        "node_modules",
-        "dist",
-      "../shared-core-resources",
-      "../server-core-logging"
+        "./node_modules",
+        "./dist",
+        "../shared-dates"
     ],
     "references": [
-        {"path": "../server-core-logging"},
-        {"path": "../shared-core-resources"}
+        {"path": "../shared-dates"}
     ]
 }

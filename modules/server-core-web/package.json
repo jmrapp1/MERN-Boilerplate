@@ -1,7 +1,7 @@
 {
-  "name": "@jrapp/server-dal-interface",
+  "name": "@jrapp/server-core-web",
   "version": "1.0.0",
-  "description": "Module containing interfaces for data access layer support",
+  "description": "Module that contains code for the server web framework",
   "author": "Jon Rapp",
   "license": "ISC",
   "main": "dist/index.js",
@@ -12,7 +12,11 @@
     "start": "node ./dist/index.js",
     "prod": "npm run build && npm run start"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@jrapp/server-core-logging": "file:../server-core-logging",
+    "@jrapp/server-core-module": "file:../server-core-module",
+    "@jrapp/shared-core-resources": "file:../shared-core-resources"
+  },
   "devDependencies": {
     "@types/chai": "4.0.3",
     "@types/mocha": "^5.2.7",

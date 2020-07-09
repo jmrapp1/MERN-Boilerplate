@@ -13,13 +13,13 @@
     "prod": "npm run build && npm run start"
   },
   "dependencies": {
-    "@jrapp/server-web-framework": "file:../server-web-framework",
-    "@jrapp/server-module": "file:../server-module",
+    "@jrapp/server-core-web": "file:../server-core-web",
+    "@jrapp/server-core-module": "file:../server-core-module",
     "@jrapp/server-dal-mongodb": "file:../server-dal-mongodb",
-    "@jrapp/server-events": "file:../server-events",
-    "@jrapp/server-logging": "file:../server-logging",
+    "@jrapp/server-core-events": "file:../server-core-events",
+    "@jrapp/server-core-logging": "file:../server-core-logging",
     "@jrapp/shared-example-module": "file:../shared-example-module",
-    "@jrapp/shared-resources": "file:../shared-resources",
+    "@jrapp/shared-core-resources": "file:../shared-core-resources",
     "mongoose": "^5.0.5",
     "reflect-metadata": "^0.1.12",
     "routing-controllers": "^0.7.6",

@@ -1,4 +1,4 @@
-import { Resource } from '@jrapp/shared-resources';
+import { Resource } from '@jrapp/shared-core-resources';
 
 export default class TestResource extends Resource {
 

@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@jrapp/server-dal-interface": "file:../server-dal-interface",
-    "@jrapp/server-events": "file:../server-events",
-    "@jrapp/server-logging": "file:../server-logging",
-    "@jrapp/server-module": "file:../server-module",
-    "@jrapp/server-web-framework": "file:../server-web-framework",
+    "@jrapp/server-core-events": "file:../server-core-events",
+    "@jrapp/server-core-logging": "file:../server-core-logging",
+    "@jrapp/server-core-module": "file:../server-core-module",
+    "@jrapp/server-core-web": "file:../server-core-web",
     "mongoose": "^5.0.5",
     "typedi": "^0.8.0"
   },

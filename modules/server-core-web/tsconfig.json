@@ -9,16 +9,12 @@
         "node_modules",
         "dist",
         "../server-core-logging",
-        "../server-dal-interface",
-        "../server-core-module",
-        "../server-core-events",
-        "../server-core-web"
+        "../shared-core-resources",
+        "../server-core-module"
     ],
     "references": [
         {"path": "../server-core-logging"},
-        {"path": "../server-dal-interface"},
-        {"path": "../server-core-module"},
-        {"path": "../server-core-events"},
-        {"path": "../server-core-web"}
+        {"path": "../shared-core-resources"},
+        {"path": "../server-core-module"}
     ]
 }

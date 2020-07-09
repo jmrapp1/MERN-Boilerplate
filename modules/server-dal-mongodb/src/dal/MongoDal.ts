@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import { IDataAccessLayer } from '@jrapp/server-dal-interface';
-import { ServiceResponse } from '@jrapp/server-web-framework';
+import { ServiceResponse } from '@jrapp/server-core-web';
 import MongoDataModel from './MongoDataModel';
 import { ModuleLogger } from '../index';
 

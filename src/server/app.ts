@@ -9,14 +9,14 @@ import { createExpressServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi';
 useContainer(Container);
 
-import { Logger } from '@jrapp/server-logging';
-import { ResourceMappingManager } from '@jrapp/shared-resources';
+import { Logger } from '@jrapp/server-core-logging';
+import { ResourceMappingManager } from '@jrapp/shared-core-resources';
 import { TestController } from '@jrapp/server-example-module';
 import { MongoConfig } from '@jrapp/server-dal-mongodb';
-import { Events } from '@jrapp/server-events';
-import { INITIALIZED } from '@jrapp/server-events';
-import { registerModule, ModuleContext, ModulesRegistry } from '@jrapp/server-module';
-import { INFO_COLOR } from '@jrapp/server-logging';
+import { Events } from '@jrapp/server-core-events';
+import { INITIALIZED } from '@jrapp/server-core-events';
+import { registerModule, ModuleContext, ModulesRegistry } from '@jrapp/server-core-module';
+import { INFO_COLOR } from '@jrapp/server-core-logging';
 
 import UserController from './controllers/UserController';
 import UserRegisterMapper from '../shared/mappers/user/UserRegisterMapper';

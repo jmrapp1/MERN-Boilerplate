@@ -8,21 +8,21 @@
     "exclude": [
         "./node_modules",
         "./dist",
-        "../shared-resources",
-        "../server-logging",
+      "../shared-core-resources",
+        "../server-core-logging",
         "../shared-example-module",
-        "../server-web-framework",
+        "../server-core-web",
         "../server-dal-mongodb",
-        "../server-module",
-        "../server-events"
+        "../server-core-module",
+        "../server-core-events"
     ],
     "references": [
-        {"path": "../server-logging"},
-        {"path": "../shared-resources"},
+        {"path": "../server-core-logging"},
+        {"path": "../shared-core-resources"},
         {"path": "../shared-example-module"},
-        {"path": "../server-web-framework"},
+        {"path": "../server-core-web"},
         {"path": "../server-dal-mongodb"},
-        {"path":  "../server-module"},
-        {"path":  "../server-events"}
+        {"path": "../server-core-module"},
+        {"path": "../server-core-events"}
     ]
 }

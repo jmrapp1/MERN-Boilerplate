@@ -3,7 +3,7 @@ import { Get, JsonController, Param, Post, Req, Res, UseBefore } from 'routing-c
 import TestService from '../services/TestService';
 import { Container } from 'typedi';
 import { TestMapper, TestResource } from '@jrapp/shared-example-module';
-import { AbstractController, HeaderMiddleware, AuthMiddleware, BuildResource } from '@jrapp/server-web-framework';
+import { AbstractController, HeaderMiddleware, AuthMiddleware, BuildResource } from '@jrapp/server-core-web';
 import { ModuleLogger } from '../index';
 
 @UseBefore(HeaderMiddleware)

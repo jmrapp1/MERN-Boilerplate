@@ -3,7 +3,7 @@ import Test, { TestDocument } from '../models/Test';
 import { MongoDal } from '@jrapp/server-dal-mongodb';
 import { TestResource } from '@jrapp/shared-example-module';
 import { ModuleLogger } from '../index';
-import { ServiceResponse } from '@jrapp/server-web-framework';
+import { ServiceResponse } from '@jrapp/server-core-web';
 
 @Service()
 export default class TestService extends MongoDal<TestDocument> {

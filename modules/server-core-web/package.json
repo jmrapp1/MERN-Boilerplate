@@ -6,16 +6,19 @@
   "license": "ISC",
   "main": "dist/index.js",
   "scripts": {
-    "test:server": "mocha --opts test/mocha.opts -r ts-node/register ./src/**/*.test.ts",
+    "installDeps": "npm i --no-package-lock",
+    "test": "mocha --opts ./tests/mocha.opts -r ts-node/register ./tests/**/*.test.ts",
     "build": "tsc -p ./",
-    "dev": "tsc -w -p ./",
-    "start": "node ./dist/index.js",
-    "prod": "npm run build && npm run start"
+    "watch": "tsc -w -p ./"
   },
   "dependencies": {
     "@jrapp/server-core-logging": "file:../server-core-logging",
     "@jrapp/server-core-module": "file:../server-core-module",
-    "@jrapp/shared-core-resources": "file:../shared-core-resources"
+    "@jrapp/shared-core-resources": "file:../shared-core-resources",
+    "passport": "0.3.2",
+    "passport-anonymous": "^1.0.1",
+    "passport-jwt": "2.2.1",
+    "underscore": "^1.10.2"
   },
   "devDependencies": {
     "@types/chai": "4.0.3",

@@ -6,11 +6,10 @@
   "license": "ISC",
   "main": "dist/index.js",
   "scripts": {
-    "test:server": "mocha --opts test/mocha.opts -r ts-node/register ./src/**/*.test.ts",
-    "build": "rimraf ./dist && tsc -p ./",
-    "dev": "rimraf ./dist && tsc -v && tsc -w -p ./",
-    "start": "node ./dist/index.js",
-    "prod": "npm run build && npm run start"
+    "installDeps": "npm i --no-package-lock",
+    "test": "mocha --opts ./tests/mocha.opts -r ts-node/register ./tests/**/*.test.ts",
+    "build": "tsc -p ./",
+    "watch": "tsc -w -p ./"
   },
   "dependencies": {
     "moment-timezone": "^0.5.31"
@@ -22,7 +21,6 @@
     "chai": "^4.1.1",
     "eslint": "^4.4.1",
     "mocha": "^6.2.0",
-    "rimraf": "^3.0.2",
     "typescript": "^3.9.6"
   },
   "publishConfig": {

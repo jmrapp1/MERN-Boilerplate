@@ -14,13 +14,11 @@ useContainer(Container);
 import { registerModule, ModuleContext, ModulesRegistry } from '@jrapp/server-core-module';
 import { Logger } from '@jrapp/server-core-logging';
 import { TestController } from '@jrapp/server-web-example';
-import { ModuleContext as UserModuleContext, UserController } from '@jrapp/server-web-user';
+import { ModuleContext as UserModuleContext, UserController, registerPassportJwt } from '@jrapp/server-web-user';
 import { MongoConfig } from '@jrapp/server-dal-mongodb';
 import { Events } from '@jrapp/server-core-events';
 import { INITIALIZED } from '@jrapp/server-core-events';
 import { INFO_COLOR } from '@jrapp/server-core-logging';
-
-import registerPassport from './config/passport';
 
 process.on('uncaughtException', function (err) {
     ModuleLogger.critical(`${err.message}: ${err.stack}`);
@@ -57,7 +55,7 @@ if (process.env.NODE_ENV === 'production') {
 ModuleLogger.info(`Registered ${ModulesRegistry.registeredModules.length} modules.`);
 MongoConfig.connect(process.env.MONGODB_URI).then(() => {
 
-    registerPassport(passport);
+    registerPassportJwt(passport);
 
     app.listen(app.get('port'), () => {
         ModuleLogger.info('Listening on port ' + app.get('port'));

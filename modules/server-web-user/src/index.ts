@@ -16,6 +16,7 @@ Container.get(Events).once(INITIALIZED, () => {
     ModuleLogger.info('Initialized.');
 });
 
+export * from './passport';
 export {
     UserDataModel,
     UserDocument,

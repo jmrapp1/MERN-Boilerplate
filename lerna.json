@@ -1,0 +1,35 @@
+{
+  "version": "independent",
+  "npmClient": "npm",
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "scripts/**",
+        ",**/__fixtures__/**",
+        "**/__tests__/**",
+        "**/*.md",
+        "lerna.json"
+      ],
+      "message": "chore(release): publish",
+      "registry": "https://npm.pkg.github.com"
+    },
+    "version": {
+      "preid": "next",
+      "ignoreChanges": [
+        "**/*.md",
+        "lerna.json"
+      ],
+      "allowBranch": [
+        "master",
+        "develop",
+        "release-*"
+      ],
+      "conventionalCommits": true,
+      "createRelease": "github",
+      "message": "chore(release): publish %s :rocket:"
+    }
+  },
+  "packages": [
+    "modules/*"
+  ]
+}

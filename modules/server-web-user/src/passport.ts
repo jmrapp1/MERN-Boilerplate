@@ -1,13 +1,14 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { ModuleContext } from './index';
 
 /**
  * Registers passport's middleware to intercept 'authorized' users
  *
  * @param passport The passport object the server is using
  */
-export default function register(passport) {
+export function registerPassportJwt(passport) {
     const opts = {
-        secretOrKey: process.env.JWT_SECRET,
+        secretOrKey: ModuleContext.getTokenSecret(),
         jwtFromRequest: ExtractJwt.fromAuthHeader()
     };
     passport.use(new Strategy(opts, function(payload, done) {

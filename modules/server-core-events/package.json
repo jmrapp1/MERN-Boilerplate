@@ -6,11 +6,10 @@
   "license": "ISC",
   "main": "dist/index.js",
   "scripts": {
-    "test:server": "mocha --opts test/mocha.opts -r ts-node/register ./src/**/*.test.ts",
+    "installDeps": "npm i --no-package-lock",
+    "test": "mocha --opts ./tests/mocha.opts -r ts-node/register ./tests/**/*.test.ts",
     "build": "tsc -p ./",
-    "dev": "tsc -w -p ./",
-    "start": "node ./dist/index.js",
-    "prod": "npm run build && npm run start"
+    "watch": "tsc -w -p ./"
   },
   "dependencies": {
     "@jrapp/server-core-module": "file:../server-core-module",

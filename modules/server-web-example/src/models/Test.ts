@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 import { Mongoose } from 'mongoose';
 import { Container } from 'typedi';
 import { Events } from '@jrapp/server-core-events';
-import { MongoDataModel, MONGODB_CONNECTED } from '@jrapp/server-dal-mongodb/dist';
+import { MongoDataModel, MONGODB_CONNECTED } from '@jrapp/server-dal-mongodb';
 
 const testSchema = new mongoose.Schema({
     message: { type: String, unique: true }

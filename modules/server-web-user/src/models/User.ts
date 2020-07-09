@@ -1,5 +1,10 @@
 import * as bcrypt from 'bcryptjs';
 import * as mongoose from 'mongoose';
+import { Mongoose } from 'mongoose';
+import { Container } from 'typedi';
+import { Events } from '@jrapp/server-core-events';
+import { MongoDataModel, MONGODB_CONNECTED } from '@jrapp/server-dal-mongodb';
+import { ModuleLogger } from '../index';
 
 export const userSchema = new mongoose.Schema({
     username: { type: String, unique: true, lowercase: true },
@@ -60,6 +65,13 @@ userSchema.set('toJSON', {
         return ret;
     }
 });
-const User = mongoose.model<UserDocument>('User', userSchema, 'User');
 
-export default User;
+const UserDataModel = new MongoDataModel<UserDocument>();
+UserDataModel.schema = userSchema;
+
+Container.get(Events).listen(MONGODB_CONNECTED, (conn: Mongoose) => {
+    UserDataModel.model = conn.model<UserDocument>('User', userSchema, 'User');
+    ModuleLogger.info('Registered User DB model');
+});
+
+export default UserDataModel;

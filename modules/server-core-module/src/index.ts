@@ -4,11 +4,14 @@ import GlobalContext from './context/GlobalContext';
 import ModuleContext from './context/ModuleContext';
 import Context from './context/Context';
 
-export function registerModule(name, color) {
-    const moduleContext = new ModuleContext(name, color);
-    Container.of(name).set(ModuleContext, moduleContext);
+export function registerModuleContext(moduleContext: ModuleContext) {
+    Container.of(moduleContext.name).set(ModuleContext, moduleContext);
     ModulesRegistry.addModule(moduleContext);
     return moduleContext;
+}
+
+export function registerModule(name, color) {
+    return registerModuleContext(new ModuleContext(name, color));
 }
 
 export {

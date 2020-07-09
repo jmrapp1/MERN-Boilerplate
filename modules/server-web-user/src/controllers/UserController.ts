@@ -1,21 +1,27 @@
 import { BodyParam, Get, JsonController, Post, Req, Res, UseBefore } from 'routing-controllers';
-import { encode } from 'jwt-simple';
-import { AbstractController, BuildResource } from '@jrapp/server-core-web';
-import { Inject } from 'typedi';
+import { AbstractController, BuildResource, HeaderMiddleware, HttpUtils } from '@jrapp/server-core-web';
+import { Container } from 'typedi';
+import {
+    JwtMapper,
+    UserLoginMapper,
+    UserLoginResource,
+    UserRegisterMapper,
+    UserRegisterResource
+} from '@jrapp/shared-resources-user';
 
-import UserRegisterMapper from '../../shared/mappers/user/UserRegisterMapper';
-import UserRegisterResource from '../../shared/resources/user/UserRegisterResource';
-import HttpUtils from '../util/HttpUtils';
-import UserLoginMapper from '../../shared/mappers/user/UserLoginMapper';
-import UserLoginResource from '../../shared/resources/user/UserLoginResource';
+import { ModuleLogger } from '../index';
 import UserService from '../services/UserService';
-import JwtMapper from '../../shared/mappers/user/JwtMapper';
 
+@UseBefore(HeaderMiddleware)
 @JsonController('/user')
 export default class UserController extends AbstractController {
 
-    @Inject()
     userService: UserService;
+
+    constructor() {
+        super(ModuleLogger);
+        this.userService = Container.get(UserService);
+    }
 
     @Post('/register')
     register(@Res() response: any, @BuildResource(UserRegisterMapper, true) registerResource: UserRegisterResource) {

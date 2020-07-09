@@ -1,19 +1,23 @@
 import { Service } from 'typedi';
-import UserLoginResource from '../../shared/resources/user/UserLoginResource';
 import { encode } from 'jwt-simple';
-import Config from '../config/config';
-import User, { UserDocument } from '../models/User';
-import UserRegisterResource from '../../shared/resources/user/UserRegisterResource';
-import UserRegisterMapper from '../../shared/mappers/user/UserRegisterMapper';
-import UserLoginMapper from '../../shared/mappers/user/UserLoginMapper';
-import JwtResource from '../../shared/resources/user/JwtResource';
+import UserDataModel, { UserDocument } from '../models/User';
 import { ServiceResponse } from '@jrapp/server-core-web';
 import { MongoDal } from '@jrapp/server-dal-mongodb';
+import {
+    JwtResource,
+    UserLoginMapper,
+    UserRegisterMapper,
+    UserRegisterResource,
+    UserLoginResource
+} from '@jrapp/shared-resources-user';
+import { ModuleContext, ModuleLogger } from '../index';
 
 @Service()
 export default class UserService extends MongoDal<UserDocument> {
 
-    model = User;
+    constructor() {
+        super(UserDataModel);
+    }
 
     /**
      * Logs a user in
@@ -31,7 +35,7 @@ export default class UserService extends MongoDal<UserDocument> {
             const user = userSearch.data[0];
             const passValidated = await (user as any).comparePassword(loginResource.password);
             if (passValidated) {
-                const token = encode(user, Config.secret);
+                const token = encode(user, ModuleContext.getTokenSecret());
                 return new ServiceResponse(new JwtResource().init('JWT ' + token));
             }
             throw new ServiceResponse('The username or password is incorrect.', 400);

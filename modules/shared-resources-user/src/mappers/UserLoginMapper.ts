@@ -1,5 +1,5 @@
 import { ResourceMapper } from '@jrapp/shared-core-resources';
-import UserLoginResource from '../../resources/user/UserLoginResource';
+import UserLoginResource from '../resources/UserLoginResource';
 
 class UserLoginMapper extends ResourceMapper {
 

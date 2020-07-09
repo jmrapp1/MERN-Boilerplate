@@ -15,7 +15,3 @@ export function mappedResourceToJson(resource, mapper: ResourceMapper) {
         }
     };
 }
-
-export default {
-    mappedResourceToJson
-}

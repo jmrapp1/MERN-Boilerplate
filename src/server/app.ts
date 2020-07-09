@@ -5,36 +5,32 @@ import * as bodyParser from 'body-parser';
 const chalk = require('chalk');
 import 'reflect-metadata'; // required
 
+dotenv.load({ path: '.env' });
+
 import { createExpressServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi';
 useContainer(Container);
 
+import { registerModule, ModuleContext, ModulesRegistry } from '@jrapp/server-core-module';
 import { Logger } from '@jrapp/server-core-logging';
-import { ResourceMappingManager } from '@jrapp/shared-core-resources';
 import { TestController } from '@jrapp/server-web-example';
+import { ModuleContext as UserModuleContext, UserController } from '@jrapp/server-web-user';
 import { MongoConfig } from '@jrapp/server-dal-mongodb';
 import { Events } from '@jrapp/server-core-events';
 import { INITIALIZED } from '@jrapp/server-core-events';
-import { registerModule, ModuleContext, ModulesRegistry } from '@jrapp/server-core-module';
 import { INFO_COLOR } from '@jrapp/server-core-logging';
 
-import UserController from './controllers/UserController';
-import UserRegisterMapper from '../shared/mappers/user/UserRegisterMapper';
-import UserLoginMapper from '../shared/mappers/user/UserLoginMapper';
-import JwtMapper from '../shared/mappers/user/JwtMapper';
 import registerPassport from './config/passport';
-
-dotenv.load({ path: '.env' });
 
 process.on('uncaughtException', function (err) {
     ModuleLogger.critical(`${err.message}: ${err.stack}`);
 });
 
-ResourceMappingManager.addMapper(UserRegisterMapper, UserLoginMapper, JwtMapper);
-
 export const MODULE_NAME = 'APP';
 export const AppContext: ModuleContext = registerModule(MODULE_NAME, '#00acc1');
 export const ModuleLogger: Logger = AppContext.logger;
+
+UserModuleContext.setTokenSecret(process.env.JWT_SECRET);
 
 Container.get(Events).emit(INITIALIZED, {});
 

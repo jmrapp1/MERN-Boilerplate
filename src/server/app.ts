@@ -11,7 +11,7 @@ useContainer(Container);
 
 import { Logger } from '@jrapp/server-core-logging';
 import { ResourceMappingManager } from '@jrapp/shared-core-resources';
-import { TestController } from '@jrapp/server-example-module';
+import { TestController } from '@jrapp/server-web-example';
 import { MongoConfig } from '@jrapp/server-dal-mongodb';
 import { Events } from '@jrapp/server-core-events';
 import { INITIALIZED } from '@jrapp/server-core-events';

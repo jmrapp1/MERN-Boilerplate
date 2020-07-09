@@ -6,7 +6,7 @@ import { Events, INITIALIZED } from '@jrapp/server-core-events';
 import { Logger } from '@jrapp/server-core-logging';
 import { registerModule } from '@jrapp/server-core-module/dist';
 
-export const MODULE_NAME = 'Example-Module';
+export const MODULE_NAME = 'Web-Example';
 export const ModuleContext = registerModule(MODULE_NAME, '#8e24aa');
 export const ModuleLogger: Logger = ModuleContext.logger;
 

@@ -1,5 +1,5 @@
 {
-  "name": "@jrapp/server-example-module",
+  "name": "@jrapp/server-web-example",
   "version": "1.0.0",
   "description": "Example server module that adds controller methods and DB model",
   "author": "Jon Rapp",
@@ -18,7 +18,7 @@
     "@jrapp/server-dal-mongodb": "file:../server-dal-mongodb",
     "@jrapp/server-core-events": "file:../server-core-events",
     "@jrapp/server-core-logging": "file:../server-core-logging",
-    "@jrapp/shared-example-module": "file:../shared-example-module",
+    "@jrapp/shared-resources-example": "file:../shared-resources-example",
     "@jrapp/shared-core-resources": "file:../shared-core-resources",
     "mongoose": "^5.0.5",
     "reflect-metadata": "^0.1.12",

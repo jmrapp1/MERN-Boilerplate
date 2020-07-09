@@ -10,7 +10,7 @@
         "./dist",
       "../shared-core-resources",
         "../server-core-logging",
-        "../shared-example-module",
+      "../shared-resources-example",
         "../server-core-web",
         "../server-dal-mongodb",
         "../server-core-module",
@@ -19,7 +19,7 @@
     "references": [
         {"path": "../server-core-logging"},
         {"path": "../shared-core-resources"},
-        {"path": "../shared-example-module"},
+        {"path": "../shared-resources-example"},
         {"path": "../server-core-web"},
         {"path": "../server-dal-mongodb"},
         {"path": "../server-core-module"},

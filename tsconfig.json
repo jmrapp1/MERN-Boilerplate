@@ -33,6 +33,8 @@
       "@jrapp/server-dal-interface": ["./server-dal-interface/src"],
       "@jrapp/server-dal-mongodb/*": ["./server-dal-mongodb/src/*"],
       "@jrapp/server-dal-mongodb": ["./server-dal-mongodb/src"],
+      "@jrapp/server-dal-apollo/*": ["./server-dal-apollo/src/*"],
+      "@jrapp/server-dal-apollo": ["./server-dal-apollo/src"],
       "@jrapp/server-web-example/*": ["./server-web-example/src/*"],
       "@jrapp/server-web-example": ["./server-web-example/src"],
       "@jrapp/shared-resources-example/*": ["./shared-resources-example/src/*"],
@@ -40,7 +42,7 @@
       "@jrapp/server-web-user/*": ["./server-web-user/src/*"],
       "@jrapp/server-web-user": ["./server-web-user/src"],
       "@jrapp/shared-resources-user/*": ["./shared-resources-user/src/*"],
-      "@jrapp/shared-resources-user": ["./shared-resources-user/src"]
+      "@jrapp/shared-resources-user": ["./shared-resources-user/src"],
     },
     "typeRoots": ["./node_modules/@types"]
   },

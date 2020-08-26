@@ -1,5 +1,5 @@
 import * as Dates from '@jrapp/shared-dates';
-import { Container, Inject, Service } from 'typedi';
+import { Service } from 'typedi';
 const chalk = require('chalk');
 
 export const INFO_COLOR = '#89cff0';

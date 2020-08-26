@@ -1,0 +1,1 @@
+export const EVENT_WEB_INIT = 'EVENT.WEB.INTIALIZED';

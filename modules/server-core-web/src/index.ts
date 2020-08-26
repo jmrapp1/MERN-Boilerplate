@@ -10,6 +10,8 @@ export const ModuleLogger: Logger = ModuleContext.logger;
 export * from './decorators';
 export * from './middlewares';
 export * from './responses';
+export * from './constants/Events';
+export * from './WebServer';
 export {
     AbstractController,
     HttpUtils

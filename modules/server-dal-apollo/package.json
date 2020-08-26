@@ -1,7 +1,7 @@
 {
-  "name": "@jrapp/server-core-logging",
+  "name": "@jrapp/server-dal-apollo",
   "version": "1.0.0",
-  "description": "Logging module for server side",
+  "description": "Module that contains the Apollo data access layer implementation",
   "author": "Jon Rapp",
   "license": "ISC",
   "main": "dist/index.js",
@@ -12,14 +12,22 @@
     "watch": "tsc -w -p ./"
   },
   "dependencies": {
-    "@jrapp/shared-dates": "file:../shared-dates",
-    "chalk": "^4.1.0",
+    "@jrapp/server-core-events": "file:../server-core-events",
+    "@jrapp/server-core-logging": "file:../server-core-logging",
+    "@jrapp/server-core-module": "file:../server-core-module",
+    "@jrapp/server-core-web": "file:../server-core-web",
+    "@jrapp/server-dal-interface": "file:../server-dal-interface",
+    "apollo-server-express": "^2.16.1",
+    "graphql": "^15.3.0",
+    "graphql-tools": "^6.1.0",
+    "routing-controllers": "^0.7.6",
     "typedi": "^0.8.0"
   },
   "devDependencies": {
     "@types/chai": "4.0.3",
     "@types/mocha": "^5.2.7",
     "@types/node": "^6.0.101",
+    "apollo-server-types": "^0.5.1",
     "chai": "^4.1.1",
     "eslint": "^4.4.1",
     "mocha": "^6.2.0",

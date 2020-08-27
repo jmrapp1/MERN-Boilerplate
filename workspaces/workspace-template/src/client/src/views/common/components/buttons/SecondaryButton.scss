@@ -1,0 +1,13 @@
+@import '../../styles/colors';
+
+.button-secondary {
+  background: $secondary-button-bg;
+  box-shadow: inset 0px 0px 16px 0px $secondary-button-shadow, inset 0px 0px 0px 1px $secondary-button-shadow;
+  color: $secondary-button-color;
+}
+
+.button-secondary:hover {
+  background: $secondary-button-hover-bg;
+  box-shadow: inset 0px 0px 16px 0px $secondary-button-hover-shadow, inset 0px 0px 0px 1px $secondary-button-hover-shadow;
+  color: $secondary-button-hover-color;
+}

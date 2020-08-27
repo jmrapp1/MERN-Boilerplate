@@ -9,7 +9,7 @@
 .env.production.local
 Thumbs.db
 
-.env
+workspaces/workspace-template/.env
 
 npm-debug.log*
 yarn-debug.log*
@@ -24,7 +24,7 @@ yarn-error.log*
 
 # dependencies
 */node_modules
-src/client/node_modules
+workspaces/workspace-template/src/client/node_modules
 yarn.lock
 
 # IDEs and editors
@@ -47,7 +47,7 @@ yarn.lock
 # misc
 /.sass-cache
 /connect.lock
-!src/client/src/index.css
+!workspaces/workspace-template/src/client/src/index.css
 
 # gen
 gen/actions/
@@ -55,9 +55,13 @@ gen/sensors/
 gen/motions/
 
 # secret
-src/server/config/secret.ts
+workspaces/workspace-template/src/server/config/secret.ts
 *secret.ts
 
 # css
 src/client/src/**/*.css
-!src/client/src/index.css
+
+workspaces/*
+!workspaces/createWorkspace.js
+!workspaces/workspace-template
+!workspaces/README.md

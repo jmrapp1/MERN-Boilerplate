@@ -15,7 +15,8 @@
     "jsx": "preserve",
     "emitDeclarationOnly": false,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
+    "types": [ "node" ],
     "paths": {
       "@modulfy/server-core-logging/*": ["./server-core-logging/src/*"],
       "@modulfy/server-core-logging": ["./server-core-logging/src"],

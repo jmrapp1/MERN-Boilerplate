@@ -1,4 +1,4 @@
-import * as Dates from '@jrapp/shared-dates';
+import * as Dates from '@modulfy/shared-dates';
 import { Service } from 'typedi';
 const chalk = require('chalk');
 

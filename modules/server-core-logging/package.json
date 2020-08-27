@@ -1,5 +1,5 @@
 {
-  "name": "@jrapp/server-core-logging",
+  "name": "@modulfy/server-core-logging",
   "version": "1.0.0",
   "description": "Logging module for server side",
   "author": "Jon Rapp",
@@ -12,7 +12,7 @@
     "watch": "tsc -w -p ./"
   },
   "dependencies": {
-    "@jrapp/shared-dates": "file:../shared-dates",
+    "@modulfy/shared-dates": "file:../shared-dates",
     "chalk": "^4.1.0",
     "typedi": "^0.8.0"
   },

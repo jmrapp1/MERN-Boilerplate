@@ -1,8 +1,8 @@
 import { ModuleContext } from '../index';
-import { Logger } from '@jrapp/server-core-logging';
+import { Logger } from '@modulfy/server-core-logging';
 import { Container, Service } from 'typedi';
 import ModulesRegistry from '../ModulesRegistry';
-import { buildLogger } from '@jrapp/server-core-logging/dist';
+import { buildLogger } from '@modulfy/server-core-logging/dist';
 
 export default class Module<T extends ModuleContext> {
 

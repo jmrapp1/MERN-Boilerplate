@@ -1,6 +1,6 @@
 import * as _ from 'underscore';
 import { getMetadataArgsStorage } from 'routing-controllers';
-import { ResourceMapper, BadRequestError } from '@jrapp/shared-core-resources';
+import { ResourceMapper, BadRequestError } from '@modulfy/shared-core-resources';
 import '../mixins/underscore';
 
 /**

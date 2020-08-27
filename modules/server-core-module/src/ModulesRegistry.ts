@@ -1,5 +1,5 @@
 import Module from './module/Module';
-import { Events } from '@jrapp/server-core-events/dist';
+import { Events } from '@modulfy/server-core-events/dist';
 import { Container } from 'typedi';
 import { EVENT_MODULE_REGISTERED, EVENT_MODULES_LOADED } from './constants/Events';
 

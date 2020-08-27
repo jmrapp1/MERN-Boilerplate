@@ -4,15 +4,15 @@ import * as passport from 'passport';
 import { Container } from 'typedi';
 dotenv.load({ path: '.env' });
 
-import { EVENT_MODULES_LOADED, Module, ModuleContext, ModulesRegistry } from '@jrapp/server-core-module';
-import { TestController } from '@jrapp/server-web-example';
-import { UserController, registerPassportJwt } from '@jrapp/server-web-user';
-import { MongoConfig } from '@jrapp/server-dal-mongodb';
-import { createExpressWebServer, EVENT_WEB_INIT, WebServer } from '@jrapp/server-core-web';
-import { Events } from '@jrapp/server-core-events';
-import { UserWebModule } from '@jrapp/server-web-user/dist';
-import { MongoDbModule } from '@jrapp/server-dal-mongodb/dist';
-import { BlogWebModule } from '@jrapp/server-web-blog/dist';
+import { EVENT_MODULES_LOADED, Module, ModuleContext, ModulesRegistry } from '@modulfy/server-core-module';
+import { TestController } from '@modulfy/server-web-example';
+import { UserController, registerPassportJwt } from '@modulfy/server-web-user';
+import { MongoConfig } from '@modulfy/server-dal-mongodb';
+import { createExpressWebServer, EVENT_WEB_INIT, WebServer } from '@modulfy/server-core-web';
+import { Events } from '@modulfy/server-core-events';
+import { UserWebModule } from '@modulfy/server-web-user/dist';
+import { MongoDbModule } from '@modulfy/server-dal-mongodb/dist';
+import { BlogWebModule } from '@modulfy/server-web-blog/dist';
 
 export const AppModule = new Module('APP', '#00acc1', new ModuleContext);
 

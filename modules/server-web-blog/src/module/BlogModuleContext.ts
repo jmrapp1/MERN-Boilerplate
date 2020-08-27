@@ -1,4 +1,4 @@
-import { ModuleContext } from '@jrapp/server-core-module/dist';
+import { ModuleContext } from '@modulfy/server-core-module/dist';
 import BlogModuleOptions from './BlogModuleOptions';
 
 export default class BlogModuleContext extends ModuleContext {

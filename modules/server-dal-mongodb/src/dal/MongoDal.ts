@@ -1,8 +1,8 @@
 import * as mongoose from 'mongoose';
-import { IDataAccessLayer } from '@jrapp/server-dal-interface';
-import { ServiceResponse } from '@jrapp/server-core-web';
+import { IDataAccessLayer } from '@modulfy/server-dal-interface';
+import { ServiceResponse } from '@modulfy/server-core-web';
 import MongoDataModel from './MongoDataModel';
-import { Logger } from '@jrapp/server-core-logging/dist';
+import { Logger } from '@modulfy/server-core-logging/dist';
 
 export default class MongoDal<T extends mongoose.Document> implements IDataAccessLayer {
 

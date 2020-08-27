@@ -2,8 +2,8 @@ import "reflect-metadata";
 import { Get, JsonController, Param, Post, Req, Res, UseBefore } from 'routing-controllers';
 import TestService from '../services/TestService';
 import { Container } from 'typedi';
-import { TestMapper, TestResource } from '@jrapp/shared-resources-example';
-import { AbstractController, HeaderMiddleware, AuthMiddleware, BuildResource } from '@jrapp/server-core-web';
+import { TestMapper, TestResource } from '@modulfy/shared-resources-example';
+import { AbstractController, HeaderMiddleware, AuthMiddleware, BuildResource } from '@modulfy/server-core-web';
 import { ExampleWebModule } from '../index';
 
 @UseBefore(HeaderMiddleware)

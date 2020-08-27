@@ -1,4 +1,4 @@
-import { ResourceMappingManager } from '@jrapp/shared-core-resources';
+import { ResourceMappingManager } from '@modulfy/shared-core-resources';
 import CommentMapper from './mappers/CommentMapper';
 import PostMapper from './mappers/PostMapper';
 import CommentResource from './resources/CommentResource';

@@ -1,5 +1,5 @@
 {
-  "name": "@jrapp/server-core-web",
+  "name": "@modulfy/server-core-web",
   "version": "1.0.0",
   "description": "Module that contains code for the server web framework",
   "author": "Jon Rapp",
@@ -12,10 +12,10 @@
     "watch": "tsc -w -p ./"
   },
   "dependencies": {
-    "@jrapp/server-core-logging": "file:../server-core-logging",
-    "@jrapp/server-core-module": "file:../server-core-module",
-    "@jrapp/shared-core-resources": "file:../shared-core-resources",
-    "@jrapp/server-core-events": "file:../server-core-events",
+    "@modulfy/server-core-logging": "file:../server-core-logging",
+    "@modulfy/server-core-module": "file:../server-core-module",
+    "@modulfy/shared-core-resources": "file:../shared-core-resources",
+    "@modulfy/server-core-events": "file:../server-core-events",
     "passport": "0.3.2",
     "passport-anonymous": "^1.0.1",
     "passport-jwt": "2.2.1",

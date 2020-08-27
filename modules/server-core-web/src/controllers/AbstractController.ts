@@ -1,6 +1,6 @@
 import * as _ from 'underscore';
-import { InternalServerError } from '@jrapp/shared-core-resources';
-import { Logger } from '@jrapp/server-core-logging';
+import { InternalServerError } from '@modulfy/shared-core-resources';
+import { Logger } from '@modulfy/server-core-logging';
 
 export default abstract class AbstractController {
 

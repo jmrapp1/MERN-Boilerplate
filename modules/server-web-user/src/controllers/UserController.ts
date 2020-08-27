@@ -1,5 +1,5 @@
 import { JsonController, Post, Res, UseBefore } from 'routing-controllers';
-import { AbstractController, BuildResource, HeaderMiddleware, HttpUtils } from '@jrapp/server-core-web';
+import { AbstractController, BuildResource, HeaderMiddleware, HttpUtils } from '@modulfy/server-core-web';
 import { Inject } from 'typedi';
 import {
     JwtMapper,
@@ -7,10 +7,10 @@ import {
     UserLoginResource,
     UserRegisterMapper,
     UserRegisterResource
-} from '@jrapp/shared-resources-user';
+} from '@modulfy/shared-resources-user';
 import UserService from '../services/UserService';
 import { UserWebModule } from '../index';
-import { UserMapper } from '@jrapp/shared-resources-user/dist';
+import { UserMapper } from '@modulfy/shared-resources-user/dist';
 
 @UseBefore(HeaderMiddleware)
 @JsonController('/user')

@@ -1,4 +1,4 @@
-import { ResourceMappingManager } from '@jrapp/shared-core-resources';
+import { ResourceMappingManager } from '@modulfy/shared-core-resources';
 import JwtMapper from './mappers/JwtMapper';
 import UserLoginMapper from './mappers/UserLoginMapper';
 import UserRegisterMapper from './mappers/UserRegisterMapper';

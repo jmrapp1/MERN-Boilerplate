@@ -1,4 +1,4 @@
-import { ModuleContext } from '@jrapp/server-core-module';
+import { ModuleContext } from '@modulfy/server-core-module';
 import UserModuleOptions from './UserModuleOptions';
 
 export default class UserModuleContext extends ModuleContext {

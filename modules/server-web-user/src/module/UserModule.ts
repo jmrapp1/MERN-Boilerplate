@@ -1,5 +1,5 @@
 import UserModuleContext from './UserModuleContext';
-import { Module } from '@jrapp/server-core-module';
+import { Module } from '@modulfy/server-core-module';
 import UserModuleOptions from './UserModuleOptions';
 
 export default class UserModule extends Module<UserModuleContext> {

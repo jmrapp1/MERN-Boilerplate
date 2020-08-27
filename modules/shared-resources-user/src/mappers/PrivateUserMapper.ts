@@ -1,4 +1,4 @@
-import { ResourceMapper } from '@jrapp/shared-core-resources';
+import { ResourceMapper } from '@modulfy/shared-core-resources';
 import PrivateUserResource from '../resources/PrivateUserResource';
 
 class PrivateUserMapper extends ResourceMapper {

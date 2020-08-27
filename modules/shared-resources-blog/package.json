@@ -1,5 +1,5 @@
 {
-  "name": "@jrapp/shared-resources-blog",
+  "name": "@modulfy/shared-resources-blog",
   "version": "1.0.0",
   "description": "Contains resources for the example module",
   "author": "Jon Rapp",
@@ -12,8 +12,8 @@
     "watch": "tsc -w -p ./"
   },
   "dependencies": {
-    "@jrapp/shared-core-resources": "file:../shared-core-resources",
-    "@jrapp/shared-resources-user": "file:../shared-resources-user"
+    "@modulfy/shared-core-resources": "file:../shared-core-resources",
+    "@modulfy/shared-resources-user": "file:../shared-resources-user"
   },
   "devDependencies": {
     "@types/chai": "4.0.3",

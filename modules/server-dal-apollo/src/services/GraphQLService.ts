@@ -2,10 +2,10 @@ import { Container, Inject, Service } from 'typedi';
 import { makeExecutableSchema, mergeTypeDefs, mergeResolvers } from 'graphql-tools';
 import { ApolloServer, gql } from 'apollo-server-express';
 import { ApolloModule, EVENT_APOLLO_SERVER_CREATED } from '..';
-import { Events } from '@jrapp/server-core-events';
-import { EVENT_MODULES_LOADED } from '@jrapp/server-core-module';
+import { Events } from '@modulfy/server-core-events';
+import { EVENT_MODULES_LOADED } from '@modulfy/server-core-module';
 import { DocumentNode, GraphQLSchema, Source } from 'graphql';
-import { Logger } from '@jrapp/server-core-logging/dist';
+import { Logger } from '@modulfy/server-core-logging/dist';
 
 @Service()
 export default class GraphQLService {

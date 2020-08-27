@@ -7,8 +7,8 @@ import { Container } from 'typedi';
 const chalk = require('chalk');
 const express = require('express');
 
-import { Events } from '@jrapp/server-core-events';
-import { INFO_COLOR } from '@jrapp/server-core-logging';
+import { Events } from '@modulfy/server-core-events';
+import { INFO_COLOR } from '@modulfy/server-core-logging';
 import { EVENT_WEB_INIT } from './constants/Events';
 
 export function createExpressWebServer(nodeEnv, port, controllers: any[], options: RoutingControllersOptions = {}): WebServer {

@@ -1,5 +1,5 @@
-import { Resource } from '@jrapp/shared-core-resources';
-import { UserResource } from '@jrapp/shared-resources-user';
+import { Resource } from '@modulfy/shared-core-resources';
+import { UserResource } from '@modulfy/shared-resources-user';
 
 export default class CreateCommentResource extends Resource {
 

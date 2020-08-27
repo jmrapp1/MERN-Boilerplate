@@ -1,4 +1,4 @@
-import { Resource } from '@jrapp/shared-core-resources';
+import { Resource } from '@modulfy/shared-core-resources';
 
 export default class UserRegisterResource extends Resource {
 

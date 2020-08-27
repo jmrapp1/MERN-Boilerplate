@@ -1,9 +1,9 @@
 import * as mongoose from 'mongoose';
 import { Mongoose } from 'mongoose';
 import { Container } from 'typedi';
-import { Events } from '@jrapp/server-core-events';
-import { MongoDataModel, MONGODB_CONNECTED } from '@jrapp/server-dal-mongodb';
-import { UserDataModel } from '@jrapp/server-web-user';
+import { Events } from '@modulfy/server-core-events';
+import { MongoDataModel, MONGODB_CONNECTED } from '@modulfy/server-dal-mongodb';
+import { UserDataModel } from '@modulfy/server-web-user';
 
 export interface CommentDocument extends mongoose.Document {
     _id: string;

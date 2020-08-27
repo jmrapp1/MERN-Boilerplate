@@ -3,7 +3,7 @@
  * Allows us to test if the service failed and present any errors if there
  * were any. Otherwise we know we can use the data safely
  */
-import { BadRequestError, HttpError, InternalServerError } from '@jrapp/shared-core-resources';
+import { BadRequestError, HttpError, InternalServerError } from '@modulfy/shared-core-resources';
 
 export default class ServiceResponse<T> {
 

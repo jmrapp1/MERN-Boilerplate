@@ -1,5 +1,5 @@
 {
-  "name": "@jrapp/shared-dates",
+  "name": "@modulfy/shared-dates",
   "version": "1.0.0",
   "description": "Shared module to handle dates and times",
   "author": "Jon Rapp",

@@ -1,4 +1,4 @@
-import { ResourceMapper } from '@jrapp/shared-core-resources';
+import { ResourceMapper } from '@modulfy/shared-core-resources';
 import UserLoginResource from '../resources/UserLoginResource';
 import UserResource from '../resources/UserResource';
 

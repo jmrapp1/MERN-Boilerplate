@@ -2,8 +2,8 @@ import * as bcrypt from 'bcryptjs';
 import * as mongoose from 'mongoose';
 import { Mongoose } from 'mongoose';
 import { Container } from 'typedi';
-import { Events } from '@jrapp/server-core-events';
-import { MongoDataModel, MONGODB_CONNECTED } from '@jrapp/server-dal-mongodb';
+import { Events } from '@modulfy/server-core-events';
+import { MongoDataModel, MONGODB_CONNECTED } from '@modulfy/server-dal-mongodb';
 import { UserWebModule } from '../index';
 
 export const userSchema = new mongoose.Schema({

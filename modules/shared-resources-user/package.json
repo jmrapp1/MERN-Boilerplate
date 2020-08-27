@@ -1,5 +1,5 @@
 {
-  "name": "@jrapp/shared-resources-user",
+  "name": "@modulfy/shared-resources-user",
   "version": "1.0.0",
   "description": "Contains resources for User",
   "author": "Jon Rapp",
@@ -12,7 +12,7 @@
     "watch": "tsc -w -p ./"
   },
   "dependencies": {
-    "@jrapp/shared-core-resources": "file:../shared-core-resources",
+    "@modulfy/shared-core-resources": "file:../shared-core-resources",
     "email-validator": "^2.0.4"
   },
   "devDependencies": {

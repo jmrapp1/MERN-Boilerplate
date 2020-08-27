@@ -1,4 +1,4 @@
-import { Module } from '@jrapp/server-core-module';
+import { Module } from '@modulfy/server-core-module';
 import BlogModuleContext from './BlogModuleContext';
 import BlogModuleOptions from './BlogModuleOptions';
 

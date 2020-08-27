@@ -1,5 +1,5 @@
 import { Container } from 'typedi';
-import { Events, EVENT_INITIALIZED } from '@jrapp/server-core-events';
+import { Events, EVENT_INITIALIZED } from '@modulfy/server-core-events';
 import PostService from './services/PostService';
 import CommentService from './services/CommentService';
 import { PostDataModel, PostDocument } from './models/Post';

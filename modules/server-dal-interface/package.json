@@ -1,5 +1,5 @@
 {
-  "name": "@jrapp/server-dal-interface",
+  "name": "@modulfy/server-dal-interface",
   "version": "1.0.0",
   "description": "Module containing interfaces for data access layer support",
   "author": "Jon Rapp",

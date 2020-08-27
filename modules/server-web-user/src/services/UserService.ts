@@ -1,15 +1,15 @@
 import { Inject, Service } from 'typedi';
 import { encode } from 'jwt-simple';
 import UserDataModel, { UserDocument } from '../models/User';
-import { ServiceResponse } from '@jrapp/server-core-web';
-import { MongoDal } from '@jrapp/server-dal-mongodb';
+import { ServiceResponse } from '@modulfy/server-core-web';
+import { MongoDal } from '@modulfy/server-dal-mongodb';
 import {
     JwtResource,
     UserLoginMapper,
     UserRegisterMapper,
     UserRegisterResource,
     UserLoginResource
-} from '@jrapp/shared-resources-user';
+} from '@modulfy/shared-resources-user';
 import { UserWebModule } from '../index';
 import UserModuleContext from '../module/UserModuleContext';
 

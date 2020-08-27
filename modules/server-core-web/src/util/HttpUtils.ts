@@ -1,5 +1,5 @@
 import * as _ from 'underscore';
-import { ResourceMapper } from '@jrapp/shared-core-resources';
+import { ResourceMapper } from '@modulfy/shared-core-resources';
 
 export function mappedResourceToJson(resource, mapper: ResourceMapper) {
     const isArray = _.isArray(resource);

@@ -2,7 +2,7 @@ import UserDataModel, { UserDocument, userSchema as UserSchema } from './models/
 import UserController from './controllers/UserController';
 import UserService from './services/UserService';
 import { Container } from 'typedi';
-import { Events, EVENT_INITIALIZED } from '@jrapp/server-core-events';
+import { Events, EVENT_INITIALIZED } from '@modulfy/server-core-events';
 import UserModule from './module/UserModule';
 
 export const UserWebModule = new UserModule('Web-User', '#ff1744');

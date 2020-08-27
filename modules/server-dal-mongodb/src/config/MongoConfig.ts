@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import { Container } from 'typedi';
-import { GlobalContext } from '@jrapp/server-core-module';
-import { Events } from '@jrapp/server-core-events';
+import { GlobalContext } from '@modulfy/server-core-module';
+import { Events } from '@modulfy/server-core-events';
 import { MongoDbModule, MONGODB_CONNECTED, MONGODB_DISCONNECTED } from '..';
 
 class MongoConfig {

@@ -1,8 +1,8 @@
 import { Service } from 'typedi';
 import Test, { TestDocument } from '../models/Test';
-import { MongoDal } from '@jrapp/server-dal-mongodb';
-import { TestResource } from '@jrapp/shared-resources-example';
-import { ServiceResponse } from '@jrapp/server-core-web';
+import { MongoDal } from '@modulfy/server-dal-mongodb';
+import { TestResource } from '@modulfy/shared-resources-example';
+import { ServiceResponse } from '@modulfy/server-core-web';
 import { ExampleWebModule } from '../index';
 
 @Service()

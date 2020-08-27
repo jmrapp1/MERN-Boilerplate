@@ -1,5 +1,5 @@
 {
-  "name": "@jrapp/server-core-events",
+  "name": "@modulfy/server-core-events",
   "version": "1.0.0",
   "description": "Module for server events",
   "author": "Jon Rapp",

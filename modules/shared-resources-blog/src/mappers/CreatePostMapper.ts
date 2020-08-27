@@ -1,4 +1,4 @@
-import { ResourceMapper } from '@jrapp/shared-core-resources';
+import { ResourceMapper } from '@modulfy/shared-core-resources';
 import CreatePostResource from '../resources/CreatePostResource';
 
 class CreatePostMapper extends ResourceMapper {

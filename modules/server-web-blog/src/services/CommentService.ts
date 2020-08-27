@@ -1,12 +1,12 @@
 import { Service } from 'typedi';
-import { MongoDal } from '@jrapp/server-dal-mongodb';
-import { ServiceResponse } from '@jrapp/server-core-web';
-import { UserDocument } from '@jrapp/server-web-user/dist';
+import { MongoDal } from '@modulfy/server-dal-mongodb';
+import { ServiceResponse } from '@modulfy/server-core-web';
+import { UserDocument } from '@modulfy/server-web-user/dist';
 import {
     CreateCommentMapper,
     CreateCommentResource,
-} from '@jrapp/shared-resources-blog/dist';
-import { now } from '@jrapp/shared-dates/dist';
+} from '@modulfy/shared-resources-blog/dist';
+import { now } from '@modulfy/shared-dates/dist';
 import { BlogWebModule, CommentDocument, CommentDataModel } from '..';
 import BlogModuleContext from '../module/BlogModuleContext';
 

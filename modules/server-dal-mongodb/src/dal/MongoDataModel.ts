@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { IDataModel } from '@jrapp/server-dal-interface';
+import { IDataModel } from '@modulfy/server-dal-interface';
 
 export default class MongoDataModel<T extends mongoose.Document> implements IDataModel<mongoose.Model<T>> {
 

@@ -1,5 +1,5 @@
 {
-  "name": "@jrapp/shared-core-resources",
+  "name": "@modulfy/shared-core-resources",
   "version": "1.0.0",
   "description": "Shared resources between client and server",
   "author": "Jon Rapp",

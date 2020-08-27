@@ -1,17 +1,17 @@
 import { Inject, Service } from 'typedi';
-import { MongoDal } from '@jrapp/server-dal-mongodb';
-import { ServiceResponse } from '@jrapp/server-core-web';
+import { MongoDal } from '@modulfy/server-dal-mongodb';
+import { ServiceResponse } from '@modulfy/server-core-web';
 import { PostDocument, PostDataModel } from '../models/Post';
-import { UserDocument } from '@jrapp/server-web-user/dist';
+import { UserDocument } from '@modulfy/server-web-user/dist';
 import {
     CreateCommentMapper,
     CreateCommentResource, CreatePostMapper,
     CreatePostResource
-} from '@jrapp/shared-resources-blog/dist';
-import { now } from '@jrapp/shared-dates/dist';
+} from '@modulfy/shared-resources-blog/dist';
+import { now } from '@modulfy/shared-dates/dist';
 import CommentService from './CommentService';
 import { BlogWebModule } from '../index';
-import { ModuleContext } from '@jrapp/server-core-module/dist';
+import { ModuleContext } from '@modulfy/server-core-module/dist';
 import BlogModuleContext from '../module/BlogModuleContext';
 
 @Service()

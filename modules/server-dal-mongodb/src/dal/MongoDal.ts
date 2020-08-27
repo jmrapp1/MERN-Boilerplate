@@ -2,16 +2,18 @@ import * as mongoose from 'mongoose';
 import { IDataAccessLayer } from '@jrapp/server-dal-interface';
 import { ServiceResponse } from '@jrapp/server-core-web';
 import MongoDataModel from './MongoDataModel';
-import { ModuleLogger } from '../index';
+import { Logger } from '@jrapp/server-core-logging/dist';
 
 export default class MongoDal<T extends mongoose.Document> implements IDataAccessLayer {
 
-    dataModel: MongoDataModel<T>;
-    populate: string[];
+    protected logger: Logger;
+    protected dataModel: MongoDataModel<T>;
+    protected populate: string[];
 
-    constructor(dataModel: MongoDataModel<T>, populate = []) {
+    constructor(dataModel: MongoDataModel<T>, logger: Logger, populate = []) {
+        this.logger = logger;
         this.dataModel = dataModel;
-        this.populate = [];
+        this.populate = populate;
     }
 
     insert(body: any): Promise<ServiceResponse<T>> {
@@ -61,7 +63,7 @@ export default class MongoDal<T extends mongoose.Document> implements IDataAcces
                     if (model.length === 1) {
                         return resolve(new ServiceResponse(model[0]));
                     } else if (model.length > 1) {
-                        ModuleLogger.critical(`Multiple rows found for ID: ${ id }. Returned Data: ${ JSON.stringify(model) }`);
+                        this.logger.critical(`Multiple rows found for ID: ${ id }. Returned Data: ${ JSON.stringify(model) }`);
                         return resolve(new ServiceResponse(model[0]));
                     }
                     return reject(new ServiceResponse(`No entry found with ID: ${id}`, 400));

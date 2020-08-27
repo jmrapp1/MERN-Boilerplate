@@ -4,7 +4,7 @@ import TestService from '../services/TestService';
 import { Container } from 'typedi';
 import { TestMapper, TestResource } from '@jrapp/shared-resources-example';
 import { AbstractController, HeaderMiddleware, AuthMiddleware, BuildResource } from '@jrapp/server-core-web';
-import { ModuleLogger } from '../index';
+import { ExampleWebModule } from '../index';
 
 @UseBefore(HeaderMiddleware)
 @JsonController('/test')
@@ -13,7 +13,7 @@ export default class TestController extends AbstractController {
     testService: TestService;
 
     constructor() {
-        super(ModuleLogger);
+        super(ExampleWebModule.logger);
         this.testService = Container.get(TestService);
     }
 

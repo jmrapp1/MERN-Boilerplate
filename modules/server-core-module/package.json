@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@jrapp/server-core-logging": "file:../server-core-logging",
+    "@jrapp/server-core-events": "file:../server-core-events",
     "typedi": "^0.8.0"
   },
   "devDependencies": {

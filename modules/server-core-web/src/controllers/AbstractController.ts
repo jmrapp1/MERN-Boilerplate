@@ -1,11 +1,12 @@
 import * as _ from 'underscore';
 import { InternalServerError } from '@jrapp/shared-core-resources';
+import { Logger } from '@jrapp/server-core-logging';
 
 export default abstract class AbstractController {
 
-    logger;
+    protected logger: Logger;
 
-    constructor(logger) {
+    constructor(logger: Logger) {
         this.logger = logger;
     }
 

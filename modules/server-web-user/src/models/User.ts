@@ -4,7 +4,7 @@ import { Mongoose } from 'mongoose';
 import { Container } from 'typedi';
 import { Events } from '@jrapp/server-core-events';
 import { MongoDataModel, MONGODB_CONNECTED } from '@jrapp/server-dal-mongodb';
-import { ModuleLogger } from '../index';
+import { UserWebModule } from '../index';
 
 export const userSchema = new mongoose.Schema({
     username: { type: String, unique: true, lowercase: true },
@@ -71,7 +71,7 @@ UserDataModel.schema = userSchema;
 
 Container.get(Events).listen(MONGODB_CONNECTED, (conn: Mongoose) => {
     UserDataModel.model = conn.model<UserDocument>('User', userSchema, 'User');
-    ModuleLogger.info('Registered User DB model');
+    UserWebModule.logger.info('Registered User DB model');
 });
 
 export default UserDataModel;

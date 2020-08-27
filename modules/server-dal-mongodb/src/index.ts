@@ -1,20 +1,17 @@
 import { Container } from 'typedi';
 import { Events, EVENT_INITIALIZED } from '@jrapp/server-core-events';
-import { Logger } from '@jrapp/server-core-logging';
 import MongoDal from './dal/MongoDal';
 import MongoConfig from './config/MongoConfig';
 import MongoDataModel from './dal/MongoDataModel';
-import { registerModule } from '@jrapp/server-core-module';
+import { Module, ModuleContext } from '@jrapp/server-core-module/dist';
 
-export const MODULE_NAME = 'DAL-Mongodb';
-export const ModuleContext = registerModule(MODULE_NAME, '#14AA52');
-export const ModuleLogger: Logger = ModuleContext.logger;
+export const MongoDbModule = new Module('DAL-MongoDB', '#14AA52', new ModuleContext());
 
 Container.get(Events).once(EVENT_INITIALIZED, () => {
-    ModuleLogger.info('Initialized.');
+    MongoDbModule.logger.info('Initialized.');
 });
 
-export * from './events/Constants';
+export * from './constants/Events';
 export {
     MongoDal,
     MongoConfig,

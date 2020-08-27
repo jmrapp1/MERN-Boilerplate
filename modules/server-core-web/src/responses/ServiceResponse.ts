@@ -4,7 +4,6 @@
  * were any. Otherwise we know we can use the data safely
  */
 import { BadRequestError, HttpError, InternalServerError } from '@jrapp/shared-core-resources';
-import { ModuleLogger } from '../index';
 
 export default class ServiceResponse<T> {
 

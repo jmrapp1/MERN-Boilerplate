@@ -1,0 +1,42 @@
+{
+  "name": "@jrapp/server-web-blog",
+  "version": "1.0.0",
+  "description": "Example server module that adds controller methods and DB model",
+  "author": "Jon Rapp",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "installDeps": "npm i --no-package-lock",
+    "test": "mocha --opts ./tests/mocha.opts -r ts-node/register ./tests/**/*.test.ts",
+    "build": "tsc -p ./",
+    "watch": "tsc -w -p ./"
+  },
+  "dependencies": {
+    "@jrapp/server-core-web": "file:../server-core-web",
+    "@jrapp/server-core-module": "file:../server-core-module",
+    "@jrapp/server-dal-mongodb": "file:../server-dal-mongodb",
+    "@jrapp/server-core-events": "file:../server-core-events",
+    "@jrapp/server-core-logging": "file:../server-core-logging",
+    "@jrapp/shared-resources-blog": "file:../shared-resources-blog",
+    "@jrapp/shared-core-resources": "file:../shared-core-resources",
+    "@jrapp/shared-dates": "file:../shared-dates",
+    "@jrapp/server-web-user": "file:../server-web-user",
+    "mongoose": "^5.0.5",
+    "reflect-metadata": "^0.1.12",
+    "routing-controllers": "^0.7.6",
+    "typedi": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/chai": "4.0.3",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^6.0.101",
+    "chai": "^4.1.1",
+    "eslint": "^4.4.1",
+    "mocha": "^6.2.0",
+    "typescript": "^3.9.6"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  }
+}

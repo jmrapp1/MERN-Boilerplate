@@ -1,19 +1,16 @@
 import { Container } from 'typedi';
 import { Events, EVENT_INITIALIZED } from '@jrapp/server-core-events';
-import { Logger } from '@jrapp/server-core-logging';
-import { registerModule } from '@jrapp/server-core-module';
 import GraphQLService from './services/GraphQLService';
+import { Module, ModuleContext } from '@jrapp/server-core-module/dist';
 
-export const MODULE_NAME = 'DAL-Apollo';
-export const ModuleContext = registerModule(MODULE_NAME, '#14AA52');
-export const ModuleLogger: Logger = ModuleContext.logger;
+export const ApolloModule = new Module('DAL-Apollo', '#14AA52', new ModuleContext());
 
 Container.get(GraphQLService); // Construct
 Container.get(Events).once(EVENT_INITIALIZED, () => {
-    ModuleLogger.info('Initialized.');
+    ApolloModule.logger.info('Initialized.');
 });
 
-export * from './events/Constants';
+export * from './constants/Events';
 export {
     GraphQLService
 }

@@ -41,8 +41,12 @@
       "@jrapp/shared-resources-example": ["./shared-resources-example/src"],
       "@jrapp/server-web-user/*": ["./server-web-user/src/*"],
       "@jrapp/server-web-user": ["./server-web-user/src"],
+      "@jrapp/server-web-blog/*": ["./server-web-blog/src/*"],
+      "@jrapp/server-web-blog": ["./server-web-blog/src"],
       "@jrapp/shared-resources-user/*": ["./shared-resources-user/src/*"],
       "@jrapp/shared-resources-user": ["./shared-resources-user/src"],
+      "@jrapp/shared-resources-blog/*": ["./shared-resources-blog/src/*"],
+      "@jrapp/shared-resources-blog": ["./shared-resources-blog/src"]
     },
     "typeRoots": ["./node_modules/@types"]
   },

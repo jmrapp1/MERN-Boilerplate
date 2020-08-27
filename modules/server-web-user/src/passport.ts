@@ -1,5 +1,5 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { ModuleContext } from './index';
+import { UserWebModule } from './index';
 
 /**
  * Registers passport's middleware to intercept 'authorized' users
@@ -8,7 +8,7 @@ import { ModuleContext } from './index';
  */
 export function registerPassportJwt(passport) {
     const opts = {
-        secretOrKey: ModuleContext.getTokenSecret(),
+        secretOrKey: UserWebModule.context.moduleOptions.jwtSecret,
         jwtFromRequest: ExtractJwt.fromAuthHeader()
     };
     passport.use(new Strategy(opts, function(payload, done) {

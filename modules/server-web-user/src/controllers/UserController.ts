@@ -1,6 +1,6 @@
-import { BodyParam, Get, JsonController, Post, Req, Res, UseBefore } from 'routing-controllers';
+import { JsonController, Post, Res, UseBefore } from 'routing-controllers';
 import { AbstractController, BuildResource, HeaderMiddleware, HttpUtils } from '@jrapp/server-core-web';
-import { Container } from 'typedi';
+import { Inject } from 'typedi';
 import {
     JwtMapper,
     UserLoginMapper,
@@ -8,9 +8,9 @@ import {
     UserRegisterMapper,
     UserRegisterResource
 } from '@jrapp/shared-resources-user';
-
-import { ModuleLogger } from '../index';
 import UserService from '../services/UserService';
+import { UserWebModule } from '../index';
+import { UserMapper } from '@jrapp/shared-resources-user/dist';
 
 @UseBefore(HeaderMiddleware)
 @JsonController('/user')
@@ -18,18 +18,21 @@ export default class UserController extends AbstractController {
 
     userService: UserService;
 
-    constructor() {
-        super(ModuleLogger);
-        this.userService = Container.get(UserService);
+    constructor(@Inject(type => UserService) userService: UserService) {
+        super(UserWebModule.logger);
+        this.userService = userService;
     }
 
     @Post('/register')
-    register(@Res() response: any, @BuildResource(UserRegisterMapper, true) registerResource: UserRegisterResource) {
+    async register(@Res() response: any, @BuildResource(UserRegisterMapper, true) registerResource: UserRegisterResource) {
         if (!registerResource) return response;
-        return this.userService.register(registerResource).then(
-            res => response.status(200).json({}),
-            err => this.handleServiceError(response, err)
-        );
+        try {
+            await this.userService.validateAllRegisterData(registerResource);
+            const res = await this.userService.createUser(registerResource);
+            return response.status(200).json(HttpUtils.mappedResourceToJson(res.data, UserMapper));
+        } catch (err) {
+            return this.handleServiceError(response, err)
+        }
     }
 
     @Post('/login')

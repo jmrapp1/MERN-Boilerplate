@@ -10,7 +10,13 @@ function nowMoment() {
     return moment(moment.utc().toDate());
 }
 
+function nowDate() {
+    return moment(moment.utc().toDate());
+}
+
 export default {
     now,
+    nowDate,
+    nowMoment,
     TIME_FORMAT
 }

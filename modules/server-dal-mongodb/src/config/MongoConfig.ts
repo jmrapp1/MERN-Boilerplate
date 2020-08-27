@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 import { Container } from 'typedi';
 import { GlobalContext } from '@jrapp/server-core-module';
 import { Events } from '@jrapp/server-core-events';
-import { ModuleLogger, MONGODB_CONNECTED, MONGODB_DISCONNECTED } from '..';
+import { MongoDbModule, MONGODB_CONNECTED, MONGODB_DISCONNECTED } from '..';
 
 class MongoConfig {
 
@@ -23,14 +23,14 @@ class MongoConfig {
             (<any>mongoose).Promise = global.Promise;
 
             db.on('error', (e) => {
-                ModuleLogger.error('Could not connect to MongoDB: ' + e);
+                MongoDbModule.logger.error('Could not connect to MongoDB: ' + e);
                 reject(e);
             });
             db.once('open', () => {
                 this.connection = db;
                 this.globalContext.setDatabase(db);
                 this.events.emit(MONGODB_CONNECTED, db);
-                ModuleLogger.info('Connected to MongoDB');
+                MongoDbModule.logger.info('Connected to MongoDB');
                 return resolve(db);
             });
         });

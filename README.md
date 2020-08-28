@@ -1,17 +1,6 @@
-# Boilerplate For Node & Express Server With React & Redux
+# Modulfy
 
 ## Setup
-- Add MongoDB Production and Test connection URLs in a new file `/.env` with the following contents:
-```
-MONGODB_URI=<prod-db-uri>
-MONGODB_TEST_URI=<test-db-uri>
-```
-- `npm i`
-- `npm run dev`
-
-## Server Tests
-- Will test any `*.test.ts` files
-- `npm run test:server`
 
 ## "Oh great, another boilerplate repo."
 I know what you're thinking: "Here's just another boilerplate repository with your standard packages and a basic frontend interface." I don't blame you. There's hundreds of boilerplate repositories you can find on Github, but you being here most likely means that you haven't found one that you're 100% content with. For about a year of doing web development and experimenting with different stacks I was constantly in that position. Some repositories were good, but there was always a piece missing or a design choice that I wasn't a fan of. I took note of my experiences and compiled a list of requirements that I thought were needed for a well-structured boilerplate. My two main issues with most boilerplate projects were the lack of resource standards and error handling between server and client, and the messy structure of controllers and services. This boilerplate focuses heavily on those two issues, and provides well-structured solutions to handle them.

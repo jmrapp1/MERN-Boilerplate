@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "clean": "rm -rf dist && rm -rf node_modules && rm -f tsconfig.tsbuildinfo && rm -f package-lock.json",
-    "build": "npm run build:app:server && npm run build:app:client",
+    "build": "npm run build:server && npm run build:client",
     "build:server": "tsc -p ./src/server",
     "build:client": "cd ./src/client && webpack --host 0.0.0.0 -p --env=prod",
     "watch": "tsc -w -p ./src/server",

@@ -1,16 +1,16 @@
 import * as React from 'react';
-import './LoginPage.scss';
 import { Link } from 'react-router-dom';
-import PrimaryButton from '../../common/components/buttons/PrimaryButton';
-import TextInput from '../../common/components/inputs/TextInput';
-import { Actions as UserActions } from '../../../redux/modules/user';
+import { toast } from 'react-toastify';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { UserLoginResource, JwtResource } from '@modulfy/shared-resources-user';
+import { HttpError } from '@modulfy/shared-core-resources';
+import { Actions as UserActions } from '@modulfy/client-user';
+import PrimaryButton from '../../common/components/buttons/PrimaryButton';
+import TextInput from '../../common/components/inputs/TextInput';
 import Container from '../../common/components/containers/Container';
-import { toast } from 'react-toastify';
-import UserLoginResource from '../../../../../shared/resources/user/UserLoginResource';
-import JwtResource from '../../../../../shared/resources/user/JwtResource';
-import HttpError from '../../../../../shared/errors/HttpError';
+
+import './LoginPage.scss';
 
 class LoginPage extends React.Component<{ login, history }, { username, password }> {
     constructor( props ) {
@@ -28,7 +28,7 @@ class LoginPage extends React.Component<{ login, history }, { username, password
     }
 
     onChange( e ) {
-        this.setState({ [ e.target.name ]: e.target.value })
+        this.setState(({ [ e.target.name ]: e.target.value }) as any)
     }
 
     onSubmit( e ) {

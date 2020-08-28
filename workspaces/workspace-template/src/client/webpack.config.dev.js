@@ -1,11 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     mode: 'development',
-    entry: ['@babel/polyfill', './src/index.tsx', './src/index.css'],
+    entry: ['@babel/polyfill', './src/index.tsx'],
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, '../../dist/client'),
@@ -14,9 +13,6 @@ module.exports = {
     devtool: 'eval-source-map',
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
-    },
-    node: {
-        fs: 'empty'
     },
     module: {
         rules: [

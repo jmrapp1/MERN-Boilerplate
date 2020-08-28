@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Actions as UserActions } from '../../../redux/modules/user';
-import './RegisterPage.scss';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import { Actions as UserActions } from '@modulfy/client-user';
+import { UserRegisterResource } from '@modulfy/shared-resources-user';
 import PrimaryButton from '../../common/components/buttons/PrimaryButton';
 import TextInput from '../../common/components/inputs/TextInput';
 import Container from '../../common/components/containers/Container';
-import { toast } from 'react-toastify';
-import UserRegisterResource from '../../../../../shared/resources/user/UserRegisterResource';
-import { Link } from 'react-router-dom';
+import './RegisterPage.scss';
 
 class RegisterPage extends React.Component<{ register }, { username, email, firstName, lastName, phone, password, confirmPassword }> {
 
@@ -44,7 +44,7 @@ class RegisterPage extends React.Component<{ register }, { username, email, firs
     }
 
     onChange(e) {
-        this.setState({ [ e.target.name ]: e.target.value })
+        this.setState(({ [ e.target.name ]: e.target.value }) as any)
     }
 
     onSubmit() {

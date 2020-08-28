@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { Reducer as UserReducer } from './modules/user';
+import { Reducer as UserReducer } from '@modulfy/client-user';
 
 export default combineReducers({
     ...UserReducer

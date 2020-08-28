@@ -1,0 +1,34 @@
+{
+  "name": "@modulfy/client-core-module",
+  "version": "1.0.0",
+  "description": "Client module that contains core components",
+  "author": "Jon Rapp",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "installDeps": "npm i --no-package-lock",
+    "build": "babel src -d dist --source-maps --copy-files --extensions \".ts,.tsx\"",
+    "watch": "babel src -d dist --source-maps --copy-files --extensions \".ts,.tsx\" --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "6.0.101",
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@babel/runtime": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
+    "babel-plugin-lodash": "^3.3.4",
+    "eslint": "^4.4.1",
+    "eslint-plugin-react": "^7.1.0",
+    "typescript": "^3.9.6"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  }
+}

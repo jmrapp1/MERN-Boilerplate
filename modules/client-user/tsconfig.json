@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declarationDir": "./dist"
+  },
+  "exclude": [
+    "./node_modules",
+    "./dist",
+    "../shared-core-resources",
+    "../shared-resources-user",
+    "../client-core-module",
+    "../client-core-fetch"
+  ],
+  "references": [
+    {"path": "../shared-core-resources"},
+    {"path": "../client-core-module"},
+    {"path": "../client-core-fetch"},
+    {"path": "../shared-resources-user"}
+  ]
+}

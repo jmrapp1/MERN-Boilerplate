@@ -1,5 +1,5 @@
 import { ErrorBuilder, ResourceMappingManager, InternalServerError } from '@modulfy/shared-core-resources';
-import { FetchMiddleware } from '..';
+import { FetchMiddleware } from '.';
 
 const defaultHeaders = {
     'Content-Type': 'application/json',

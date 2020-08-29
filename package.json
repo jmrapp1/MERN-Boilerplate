@@ -12,7 +12,7 @@
     "create-workspace": "cd ./workspaces && node createWorkspace.js",
     "clean": "npm run clean:modules && npm run clean:app",
     "clean:modules": "lerna exec -- \"rm -rf dist && rm -rf node_modules && rm -f tsconfig.tsbuildinfo && rm -f package-lock.json\"",
-    "clean:app": "rm -rf dist && rm -rf node_modules && rm -f tsconfig.tsbuildinfo && rm -f package-lock.json",
+    "clean:app": "rimraf dist && rimraf node_modules && rimraf tsconfig.tsbuildinfo && rimraf package-lock.json",
     "install:modules": "lerna exec -- npm i --no-package-lock",
     "modules:release:version": "lerna version --force-publish --conventional-graduate --yes",
     "modules:release:publish": "lerna publish from-package --yes",
@@ -29,5 +29,9 @@
     "watch:modules:shared": "lerna run watch --scope=@modulfy/shared-* --stream --parallel",
     "start": "node ./dist/server/app.js",
     "prod": "npm run build && npm run start"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1",
+    "rimraf": "^3.0.2"
   }
 }

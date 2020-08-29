@@ -13,30 +13,25 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '10', '12' ]
+        node: [ '10' ]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node }}
           
-      - name: Install deps
-        run: npm i && npm run install:modules
-      
+      - name: Install core deps
+        run: npm i --no-package-lock
+
+      - name: Install module deps
+        run: npm run install:modules
+
       - name: Build
         run: npm run build
         
       # - name: Run tests
       #  run: npm run test
 
-  publish: 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
-      - run: npm install
       - run: git config --global user.email "jmrapp1270@gmail.com"
       - run: git config --global user.name "jmrapp1"
       - run: npm run modules:release:version

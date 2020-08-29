@@ -18,7 +18,7 @@
     "modules:release:publish": "lerna publish from-package --yes",
     "modules:alpha:version": "lerna version --conventional-prerelease --force-publish --preid alpha --yes",
     "modules:alpha:publish": "lerna publish from-package --dist-tag alpha --yes",
-    "build": "npm run build:modules && npm run build:app",
+    "build": "npm run build:modules",
     "build:modules": "lerna run build --stream",
     "build:modules:client": "lerna run build --scope=@modulfy/client-* --stream",
     "build:modules:server": "lerna run build --scope=@modulfy/server-* --stream",

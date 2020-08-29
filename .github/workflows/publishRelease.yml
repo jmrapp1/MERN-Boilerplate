@@ -21,13 +21,13 @@ jobs:
           node-version: ${{ matrix.node }}
           
       - name: Install deps
-        run: npm ci
+        run: npm i && npm run install:modules
       
       - name: Build
         run: npm run build
         
-      - name: Run tests
-        run: npm run test
+      # - name: Run tests
+      #  run: npm run test
 
   publish: 
     runs-on: ubuntu-latest

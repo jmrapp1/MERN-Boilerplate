@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/server-core-logging",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "Logging module for server side",
   "author": "Jon Rapp",
   "license": "ISC",

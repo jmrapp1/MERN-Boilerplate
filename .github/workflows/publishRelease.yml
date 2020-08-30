@@ -19,7 +19,10 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node }}
-          
+
+      - name: Create ".npmrc" file in the project root
+        run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+
       - name: Install core deps
         run: npm i
 

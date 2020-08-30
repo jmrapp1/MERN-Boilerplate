@@ -9,7 +9,7 @@
 .env.production.local
 Thumbs.db
 
-workspaces/workspace-template/.env
+**/*/.env
 
 npm-debug.log*
 yarn-debug.log*

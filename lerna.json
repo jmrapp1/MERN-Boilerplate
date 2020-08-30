@@ -4,13 +4,10 @@
   "command": {
     "publish": {
       "ignoreChanges": [
-        "scripts/**",
-        "**/__tests__/**",
         "**/*.md",
         "lerna.json"
       ],
-      "message": "chore(release): publish",
-      "registry": "https://npm.pkg.github.com"
+      "message": "chore(release): publish"
     },
     "version": {
       "preid": "alpha",
@@ -25,6 +22,7 @@
       ],
       "conventionalCommits": true,
       "createRelease": "github",
+      "commitHooks": false,
       "message": "chore(release): publish %s!"
     }
   },

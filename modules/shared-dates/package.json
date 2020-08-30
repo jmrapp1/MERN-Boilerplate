@@ -5,6 +5,11 @@
   "author": "Jon Rapp",
   "license": "ISC",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmrapp1/Modulfy.git",
+    "directory": "modules/shared-dates"
+  },
   "scripts": {
     "installDeps": "npm i --no-package-lock",
     "test": "mocha --opts ./tests/mocha.opts -r ts-node/register ./tests/**/*.test.ts",

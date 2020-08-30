@@ -5,6 +5,11 @@
   "author": "Jon Rapp",
   "license": "ISC",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmrapp1/Modulfy.git",
+    "directory": "modules/client-user"
+  },
   "scripts": {
     "installDeps": "npm i --no-package-lock",
     "build": "babel src -d dist --source-maps --copy-files --extensions \".ts,.tsx\"",

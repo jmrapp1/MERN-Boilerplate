@@ -14,7 +14,7 @@
     "clean:modules": "lerna exec -- \"rm -rf dist && rm -rf node_modules && rm -f tsconfig.tsbuildinfo && rm -f package-lock.json\"",
     "clean:app": "rimraf dist && rimraf node_modules && rimraf tsconfig.tsbuildinfo && rimraf package-lock.json",
     "install:modules": "lerna exec -- npm i --no-package-lock",
-    "modules:release:version": "lerna version --force-publish --conventional-graduate --yes",
+    "modules:release:version": "lerna version --force-publish --force-git-tag --conventional-graduate",
     "modules:release:publish": "lerna publish from-package --yes",
     "modules:alpha:version": "lerna version --conventional-prerelease --force-git-tag --force-publish --preid alpha --yes",
     "modules:alpha:publish": "lerna publish from-package --dist-tag alpha --yes",

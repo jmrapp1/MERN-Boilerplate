@@ -2,7 +2,7 @@ name: CI-Master-Build-Test-Release
 
 on:
   push:
-    branches: [ temp/** ]
+    branches: [ release/** ]
 
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}

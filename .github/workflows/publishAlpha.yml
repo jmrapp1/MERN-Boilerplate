@@ -1,4 +1,4 @@
-name: CI-Master-Build-Test-Release
+name: CI-Develop-Release-Alpha
 
 on:
   push:
@@ -9,7 +9,7 @@ env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
-  build:
+  publish-alpha:
     runs-on: ubuntu-latest
     strategy:
       matrix:

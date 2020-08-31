@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/server-dal-interface",
-  "version": "1.0.5-alpha.0",
+  "version": "1.0.5-alpha.1",
   "description": "Module containing interfaces for data access layer support",
   "author": "Jon Rapp",
   "license": "ISC",
@@ -16,7 +16,6 @@
     "build": "tsc -p ./",
     "watch": "tsc -w -p ./"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/chai": "4.0.3",
     "@types/mocha": "^5.2.7",

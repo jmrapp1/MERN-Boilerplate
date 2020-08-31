@@ -89,4 +89,5 @@ jobs:
           git fetch
           git checkout develop
           npm i
+          git stash
           npm run npm:alpha:bump

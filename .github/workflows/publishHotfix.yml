@@ -1,8 +1,8 @@
-name: CI-Publish-Release
+name: CI-Publish-Hotfix
 
 on:
   push:
-    branches: [ release/** ]
+    branches: [ hotfix/** ]
 
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -20,8 +20,8 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Release Branch
-        run: echo Releasing from branch ${GITHUB_REF##*/}
+      - name: Hotfix Branch
+        run: echo Hotfixing from branch hotfix/${GITHUB_REF##*/}
 
       - name: Create ".npmrc" file in the project root
         run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
@@ -39,8 +39,8 @@ jobs:
         #  run: npm run test
       - run: git config --global user.email "jmrapp1270@gmail.com"
       - run: git config --global user.name "jmrapp1"
-      - run: npm run npm:release:version
-      - run: npm run npm:release:publish
+      - run: npm run npm:hotfix:version
+      - run: npm run npm:hotfix:publish
 
   merge-to-master:
     runs-on: ubuntu-latest
@@ -51,8 +51,8 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Release Branch
-        run: echo Releasing from branch release${GITHUB_REF##*/}
+      - name: Hotfix Branch
+        run: echo Hotfixing from branch hotfix/${GITHUB_REF##*/}
 
       - name: Setup GIT
         run: |
@@ -64,7 +64,7 @@ jobs:
           git fetch
           git merge -s ours origin/master --allow-unrelated-histories
           git checkout master
-          git merge release/${GITHUB_REF##*/}
+          git merge hotfix/${GITHUB_REF##*/}
           git push
 
   bump-develop:
@@ -76,8 +76,8 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Release Branch
-        run: echo Releasing from branch release/${GITHUB_REF##*/}
+      - name: Hotfix Branch
+        run: echo Hotfixing from branch hotfix/${GITHUB_REF##*/}
 
       - name: Setup GIT
         run: |
@@ -89,5 +89,5 @@ jobs:
       - name: Bump Develop
         run: |
           npm i
-          npm run npm:alpha:bump
+          npm run npm:hotfix:bump
           git push

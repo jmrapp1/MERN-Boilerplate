@@ -1,4 +1,4 @@
-name: CI-Develop-Release-Alpha
+name: CI-Publish-Alpha
 
 on:
   push:

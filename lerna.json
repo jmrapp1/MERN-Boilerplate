@@ -7,7 +7,7 @@
         "**/*.md",
         "lerna.json"
       ],
-      "message": "chore(release): publish"
+      "message": "chore(release): publish %v"
     },
     "version": {
       "preid": "alpha",
@@ -23,7 +23,7 @@
       "conventionalCommits": true,
       "createRelease": "github",
       "commitHooks": false,
-      "message": "chore(release): publish %s!"
+      "message": "chore(release): publish %v"
     }
   },
   "packages": [

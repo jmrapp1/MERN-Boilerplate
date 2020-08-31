@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/server-web-example",
-  "version": "1.3.0-alpha.0",
+  "version": "1.3.0-alpha.1",
   "description": "Example server module that adds controller methods and DB model",
   "author": "Jon Rapp",
   "license": "ISC",

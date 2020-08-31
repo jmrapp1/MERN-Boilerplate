@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/server-core-events",
-  "version": "1.3.0-alpha.0",
+  "version": "1.3.0-alpha.1",
   "description": "Module for server events",
   "author": "Jon Rapp",
   "license": "ISC",

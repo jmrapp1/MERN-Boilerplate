@@ -52,7 +52,7 @@ jobs:
             node-version: ${{ matrix.node }}
 
         - name: Release Branch
-          run: echo Releasing from branch ${GITHUB_REF##*/}
+          run: echo Releasing from branch release${GITHUB_REF##*/}
 
         - name: Setup GIT
           run: |
@@ -62,7 +62,7 @@ jobs:
         - name: Merge Into Master
           run: |
             git switch -c master
-            git merge ${GITHUB_REF##*/}
+            git merge origin/release/${GITHUB_REF##*/}
             git push
 
   bump-develop:
@@ -75,7 +75,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Release Branch
-        run: echo Releasing from branch ${GITHUB_REF##*/}
+        run: echo Releasing from branch release/${GITHUB_REF##*/}
 
       - name: Setup GIT
         run: |

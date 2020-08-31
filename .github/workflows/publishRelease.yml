@@ -61,7 +61,9 @@ jobs:
 
       - name: Merge Into Master
         run: |
+          git fetch
           git checkout release/${GITHUB_REF##*/}
+          git pull
           git checkout master
           git merge release/${GITHUB_REF##*/}
           git push

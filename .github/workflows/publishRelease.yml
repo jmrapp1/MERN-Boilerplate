@@ -61,9 +61,9 @@ jobs:
 
         - name: Merge Into Master
           run: |
-            git fetch origin
+            git checkout release/${GITHUB_REF##*/}
             git checkout master
-            git merge origin/release/${GITHUB_REF##*/}
+            git merge release/${GITHUB_REF##*/}
             git push
 
   bump-develop:

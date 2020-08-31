@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/client-core-module",
-  "version": "1.1.0",
+  "version": "1.1.0-alpha.0",
   "description": "Client module that contains core components",
   "author": "Jon Rapp",
   "license": "ISC",

@@ -1,6 +1,6 @@
 {
   "name": "modulfy",
-  "version": "1.0.6-alpha.0",
+  "version": "1.1.0-alpha.0",
   "description": "",
   "author": "Jon Rapp",
   "license": "ISC",
@@ -23,7 +23,7 @@
     "npm:release:publish": "lerna publish from-package --force-publish --yes",
     "npm:alpha:version": "lerna version --conventional-prerelease --force-git-tag --force-publish --preid alpha --yes",
     "npm:alpha:publish": "lerna publish from-package --dist-tag alpha --yes",
-    "npm:alpha:bump":"lerna version minor --conventional-commits --preid=alpha --yes",
+    "npm:alpha:bump":"lerna version minor --no-push --conventional-commits --preid=alpha --yes",
     "build": "npm run build:modules",
     "build:modules": "lerna run build --stream",
     "build:modules:client": "lerna run build --scope=@modulfy/client-* --stream",

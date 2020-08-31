@@ -62,8 +62,9 @@ jobs:
       - name: Merge Into Master
         run: |
           git fetch
+          git merge -s ours origin/master --allow-unrelated-histories
           git checkout master
-          git merge release/${GITHUB_REF##*/} --strategy=theirs --allow-unrelated-histories
+          git merge release/${GITHUB_REF##*/}
           git push
 
   bump-develop:

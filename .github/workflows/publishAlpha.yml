@@ -40,6 +40,6 @@ jobs:
           git config --global user.email "jmrapp1270@gmail.com"
           git config --global user.name "jmrapp1"
 
-      - run: npm run modules:alpha:version
-      - run: npm run modules:alpha:publish
+      - run: npm run npm:alpha:version
+      - run: npm run npm:alpha:publish
 

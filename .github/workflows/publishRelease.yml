@@ -39,8 +39,8 @@ jobs:
   #      #  run: npm run test
   #      - run: git config --global user.email "jmrapp1270@gmail.com"
   #      - run: git config --global user.name "jmrapp1"
-  #      - run: npm run modules:release:version
-  #      - run: npm run modules:release:publish
+  #      - run: npm run npm:release:version
+  #      - run: npm run npm:release:publish
 
   merge-to-master:
     runs-on: ubuntu-latest
@@ -89,4 +89,4 @@ jobs:
           git fetch
           git checkout develop
           npm i
-          npm run modules:alpha:bump
+          npm run npm:alpha:bump

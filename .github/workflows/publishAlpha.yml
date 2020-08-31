@@ -31,11 +31,15 @@ jobs:
       
       - name: Build
         run: npm run build
-        
+
       # - name: Run tests
       #  run: npm run test
-      - run: git config --global user.email "jmrapp1270@gmail.com"
-      - run: git config --global user.name "jmrapp1"
+      - name: Configure Git
+        run: |
+          git stash
+          git config --global user.email "jmrapp1270@gmail.com"
+          git config --global user.name "jmrapp1"
+
       - run: npm run modules:alpha:version
       - run: npm run modules:alpha:publish
 

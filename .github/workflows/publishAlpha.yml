@@ -42,4 +42,3 @@ jobs:
 
       - run: npm run npm:alpha:version
       - run: npm run npm:alpha:publish
-

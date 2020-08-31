@@ -1,0 +1,41 @@
+name: CI-Master-Build-Test-Release
+
+on:
+  push:
+    branches: [ develop ]
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '10.x' ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Create ".npmrc" file in the project root
+        run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+
+      - name: Install core deps
+        run: npm i
+
+      - name: Install module deps
+        run: npm run install:modules
+      
+      - name: Build
+        run: npm run build
+        
+      # - name: Run tests
+      #  run: npm run test
+      - run: git config --global user.email "jmrapp1270@gmail.com"
+      - run: git config --global user.name "jmrapp1"
+      - run: npm run modules:alpha:version
+      - run: npm run modules:alpha:publish
+

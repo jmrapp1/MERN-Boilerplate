@@ -63,9 +63,8 @@ jobs:
         run: |
           git fetch
           git checkout release/${GITHUB_REF##*/}
-          git pull
           git checkout master
-          git merge release/${GITHUB_REF##*/}
+          git merge release/${GITHUB_REF##*/} --allow-unrelated-histories
           git push
 
   bump-develop:

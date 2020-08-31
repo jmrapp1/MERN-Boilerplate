@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/server-core-web",
-  "version": "1.1.0-alpha.0",
+  "version": "1.1.0-alpha.1",
   "description": "Module that contains code for the server web framework",
   "author": "Jon Rapp",
   "license": "ISC",

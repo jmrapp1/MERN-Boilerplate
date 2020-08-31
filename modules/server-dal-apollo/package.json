@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/server-dal-apollo",
-  "version": "1.2.0",
+  "version": "1.1.0-alpha.2",
   "description": "Module that contains the Apollo data access layer implementation",
   "author": "Jon Rapp",
   "license": "ISC",

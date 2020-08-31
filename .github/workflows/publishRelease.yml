@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Release Branch
+        run: echo Releasing from branch ${GITHUB_REF##*/}
+
       - name: Create ".npmrc" file in the project root
         run: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
 
@@ -39,3 +42,47 @@ jobs:
       - run: npm run modules:release:version
       - run: npm run modules:release:publish
 
+  merge-to-master:
+      runs-on: ubuntu-latest
+      needs: publish-prod
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@master
+          with:
+            node-version: ${{ matrix.node }}
+
+        - name: Release Branch
+          run: echo Releasing from branch ${GITHUB_REF##*/}
+
+        - name: Setup GIT
+          run: |
+            git config --global user.email "jmrapp1270@gmail.com"
+            git config --global user.name "jmrapp1"
+
+        - name: Merge Into Master
+          run: |
+            git switch -c master
+            git merge ${GITHUB_REF##*/}
+            git push
+
+  bump-develop:
+    runs-on: ubuntu-latest
+    needs: merge-to-master
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Release Branch
+        run: echo Releasing from branch ${GITHUB_REF##*/}
+
+      - name: Setup GIT
+        run: |
+          git config --global user.email "jmrapp1270@gmail.com"
+          git config --global user.name "jmrapp1"
+
+      - name: Bump Develop
+        run: |
+          git switch -c develop
+          npm run modules:alpha:bump

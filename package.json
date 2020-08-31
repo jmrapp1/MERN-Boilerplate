@@ -23,6 +23,7 @@
     "modules:release:publish": "lerna publish from-package --yes",
     "modules:alpha:version": "lerna version --conventional-prerelease --force-git-tag --force-publish --preid alpha --yes",
     "modules:alpha:publish": "lerna publish from-package --dist-tag alpha --yes",
+    "modules:alpha:bump":"lerna publish --conventional-commits --exact --preid=alpha --yes",
     "build": "npm run build:modules",
     "build:modules": "lerna run build --stream",
     "build:modules:client": "lerna run build --scope=@modulfy/client-* --stream",

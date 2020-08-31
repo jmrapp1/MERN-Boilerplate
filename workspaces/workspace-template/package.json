@@ -28,7 +28,7 @@
     "@modulfy/server-web-user": "file:../../modules/server-web-user",
     "@modulfy/shared-core-resources": "file:../../modules/shared-core-resources",
     "@modulfy/shared-resources-user": "file:../../modules/shared-resources-user",
-    "@modulfy/client-core-redux": "file:../../modules/client-core-redux",
+    "@modulfy/client-core-fetch": "file:../../modules/client-core-fetch",
     "@modulfy/client-user": "file:../../modules/client-user",
     "body-parser": "^1.19.0",
     "bootstrap": "^3.3.7",

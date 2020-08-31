@@ -91,3 +91,4 @@ jobs:
           npm i
           npm run npm:alpha:bump
           git push
+          npm run npm:alpha:publish

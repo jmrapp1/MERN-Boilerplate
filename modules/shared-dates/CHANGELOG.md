@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.2.0 (2020-08-31)
+
+**Note:** Version bump only for package @modulfy/shared-dates
+
+
+
+
+
 # [1.2.0-alpha.0](https://github.com/jmrapp1/Modulfy/compare/@modulfy/shared-dates@1.1.0-alpha.2...@modulfy/shared-dates@1.2.0-alpha.0) (2020-08-31)
 
 **Note:** Version bump only for package @modulfy/shared-dates

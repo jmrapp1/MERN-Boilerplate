@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/server-web-user",
-  "version": "1.2.0-alpha.0",
+  "version": "1.2.0",
   "description": "Server module that adds User MongoDB model and controller",
   "author": "Jon Rapp",
   "license": "ISC",

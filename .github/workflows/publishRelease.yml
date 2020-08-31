@@ -83,10 +83,11 @@ jobs:
         run: |
           git config --global user.email "jmrapp1270@gmail.com"
           git config --global user.name "jmrapp1"
+          git fetch
+          git checkout develop
 
       - name: Bump Develop
         run: |
-          git fetch
-          git checkout develop
           npm i
           npm run npm:alpha:bump
+          git push

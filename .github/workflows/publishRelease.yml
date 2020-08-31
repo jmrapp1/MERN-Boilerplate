@@ -61,7 +61,8 @@ jobs:
 
         - name: Merge Into Master
           run: |
-            git switch -c master
+            git fetch origin
+            git checkout master
             git merge origin/release/${GITHUB_REF##*/}
             git push
 

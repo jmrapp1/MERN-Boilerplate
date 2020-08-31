@@ -86,5 +86,7 @@ jobs:
 
       - name: Bump Develop
         run: |
-          git switch -c develop
+          git fetch
+          git checkout develop
+          npm i
           npm run modules:alpha:bump

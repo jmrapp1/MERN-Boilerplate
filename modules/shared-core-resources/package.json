@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/shared-core-resources",
-  "version": "1.0.2-alpha.0",
+  "version": "1.0.2",
   "description": "Shared resources between client and server",
   "author": "Jon Rapp",
   "license": "ISC",

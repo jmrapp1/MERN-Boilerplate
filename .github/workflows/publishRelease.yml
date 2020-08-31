@@ -90,5 +90,5 @@ jobs:
         run: |
           npm i
           git stash
-          lerna version --conventional-prerelease --preid=alpha --yes
+          npm run npm:alpha:bump
           git push

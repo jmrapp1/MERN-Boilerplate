@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/shared-resources-blog",
-  "version": "1.0.3-alpha.0",
+  "version": "1.0.4-alpha.0",
   "description": "Contains resources for the example module",
   "author": "Jon Rapp",
   "license": "ISC",

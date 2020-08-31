@@ -1,6 +1,6 @@
 {
   "name": "@modulfy/server-dal-interface",
-  "version": "1.0.3-alpha.0",
+  "version": "1.0.4-alpha.0",
   "description": "Module containing interfaces for data access layer support",
   "author": "Jon Rapp",
   "license": "ISC",

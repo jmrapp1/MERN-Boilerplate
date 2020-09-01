@@ -2,7 +2,7 @@
   "name": "modulfy",
   "description": "",
   "author": "Jon Rapp",
-  "license": "ISC",
+  "license": "MIT",
   "workspaces": {
     "packages": [
       "modules/*"

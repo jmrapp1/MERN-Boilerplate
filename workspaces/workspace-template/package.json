@@ -3,7 +3,7 @@
   "version": "1.1.0-alpha.0",
   "description": "",
   "author": "Jon Rapp",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist && rm -rf node_modules && rm -f tsconfig.tsbuildinfo && rm -f package-lock.json",
     "build": "npm run build:server && npm run build:client",

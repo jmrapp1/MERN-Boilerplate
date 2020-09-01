@@ -3,7 +3,7 @@
   "version": "1.3.0-alpha.1",
   "description": "Module that contains the MongoDB data access layer implementation",
   "author": "Jon Rapp",
-  "license": "ISC",
+  "license": "MIT",
   "main": "dist/index.js",
   "repository": {
     "type": "git",

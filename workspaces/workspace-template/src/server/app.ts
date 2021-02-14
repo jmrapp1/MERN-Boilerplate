@@ -5,11 +5,11 @@ import { Container } from 'typedi';
 
 dotenv.load({ path: '.env' });
 
-import { Module, ModuleContext, ModulesRegistry } from '@modulfy/server-core-module';
-import { createExpressWebServer, EVENT_WEB_INIT, WebServer } from '@modulfy/server-core-web';
-import { Events } from '@modulfy/server-core-events';
-import { UserWebModule, UserController, registerPassportJwt } from '@modulfy/server-web-user';
-import { MongoDbModule, MongoConfig } from '@modulfy/server-dal-mongodb';
+import { Module, ModuleContext, ModulesRegistry } from '@modulfy/core-module';
+import { createExpressWebServer, EVENT_WEB_INIT, WebServer } from '@modulfy/core-web';
+import { Events } from '@modulfy/core-events';
+import { UserWebModule, UserController, registerPassportJwt } from '@modulfy/user';
+import { MongoDbModule, MongoConfig } from '@modulfy/dal-mongodb';
 
 export const AppModule = new Module('APP', '#00acc1', new ModuleContext);
 

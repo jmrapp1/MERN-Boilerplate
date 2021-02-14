@@ -1,0 +1,26 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "declarationDir": "./dist"
+    },
+    "exclude": [
+        "./node_modules",
+        "./dist",
+      "../core-resources",
+      "../core-logging",
+      "../core-web",
+      "../dal-mongodb",
+      "../core-module",
+      "../core-events"
+    ],
+    "references": [
+        {"path": "../core-logging"},
+        {"path": "../core-resources"},
+        {"path": "../core-web"},
+        {"path": "../dal-mongodb"},
+        {"path": "../core-module"},
+        {"path": "../core-events"}
+    ]
+}

@@ -28,13 +28,7 @@
     "npm:hotfix:bump": "lerna version prepatch --conventional-prerelease --force-publish --preid=alpha --yes",
     "build": "npm run build:modules",
     "build:modules": "lerna run build --stream",
-    "build:modules:client": "lerna run build --scope=@modulfy/client-* --stream",
-    "build:modules:server": "lerna run build --scope=@modulfy/server-* --stream",
-    "build:modules:shared": "lerna run build --scope=@modulfy/shared-* --stream",
     "watch:modules": "lerna run watch --stream --parallel",
-    "watch:modules:client": "lerna run watch --scope=@modulfy/client-* --stream --parallel",
-    "watch:modules:server": "lerna run watch --scope=@modulfy/server-* --stream --parallel",
-    "watch:modules:shared": "lerna run watch --scope=@modulfy/shared-* --stream --parallel",
     "start": "node ./dist/server/app.js",
     "prod": "npm run build && npm run start"
   },

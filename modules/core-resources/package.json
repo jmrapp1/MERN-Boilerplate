@@ -1,0 +1,34 @@
+{
+  "name": "@modulfy/core-resources",
+  "version": "1.3.0-alpha.1",
+  "description": "Shared resources between client and server",
+  "author": "Jon Rapp",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmrapp1/Modulfy.git",
+    "directory": "modules/core-resources"
+  },
+  "scripts": {
+    "installDeps": "npm i --no-package-lock",
+    "test": "mocha --opts ./tests/mocha.opts -r ts-node/register ./tests/**/*.test.ts",
+    "build": "tsc -p ./",
+    "watch": "tsc -w -p ./"
+  },
+  "dependencies": {
+    "underscore": "^1.10.2"
+  },
+  "devDependencies": {
+    "@types/chai": "4.0.3",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^6.0.101",
+    "chai": "^4.1.1",
+    "eslint": "^4.4.1",
+    "mocha": "^6.2.0",
+    "typescript": "^3.9.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

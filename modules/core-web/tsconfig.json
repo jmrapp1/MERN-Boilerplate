@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declarationDir": "./dist"
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "../core-logging",
+    "../core-resources",
+    "../core-module",
+    "../core-events"
+  ],
+  "references": [
+    {"path": "../core-logging"},
+    {"path": "../core-resources"},
+    {"path": "../core-module"},
+    {"path": "../core-events"}
+  ]
+}

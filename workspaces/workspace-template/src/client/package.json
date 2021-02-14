@@ -7,8 +7,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "@modulfy/shared-core-resources": "1.2.0",
-    "@modulfy/shared-resources-user": "1.2.0",
+    "@modulfy/core-resources": "1.2.0",
+    "@modulfy/user": "1.2.0",
     "@modulfy/client-core-fetch": "1.2.0",
     "@modulfy/client-user": "1.2.0",
     "bootstrap": "^3.3.7",

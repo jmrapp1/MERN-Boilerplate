@@ -6,13 +6,12 @@ import 'reflect-metadata'; // required
 import './mixins/underscore';
 import registerPassport from './config/passport';
 
-import { createExpressServer, useContainer } from 'routing-controllers';
-import { Container } from 'typedi';
+import {createExpressServer, useContainer} from 'routing-controllers';
+import {Container} from 'typedi';
 
 import DatabaseSetup from './util/DatabaseSetup';
 import TestController from './controllers/TestController';
 import UserController from './controllers/UserController';
-import Logger from './util/Logger';
 
 useContainer(Container);
 
@@ -21,10 +20,10 @@ const express = require('express');
 const app = createExpressServer({
     cors: true,
     routePrefix: '/api',
-    controllers: [ TestController, UserController ]
+    controllers: [TestController, UserController]
 });
 
-dotenv.load({ path: '.env' });
+dotenv.load({path: '.env'});
 
 if (process.env.NODE_ENV === 'production') {
     console.log('Using production build');
@@ -41,15 +40,18 @@ app.use(function (err, req, res, next) {
     next(err);
 });
 
-Logger.setup();
+(async () => {
+    try {
+        await new DatabaseSetup().setupDb();
 
-new DatabaseSetup().setupDb(() => {
+        registerPassport(passport);
 
-    registerPassport(passport);
+        app.listen(app.get('port'), () => {
+            console.log('Listening on port ' + app.get('port'));
+        });
+    } catch (e) {
+        console.error('ERROR: Encountered critical error: ', e);
+    }
+})();
 
-    app.listen(app.get('port'), () => {
-        console.log('Listening on port ' + app.get('port'));
-    });
-});
-
-export { app };
+export {app};

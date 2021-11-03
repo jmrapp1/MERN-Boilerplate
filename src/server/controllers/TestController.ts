@@ -2,7 +2,6 @@ import { BodyParam, Get, JsonController, Post, Req, Res, UseBefore } from 'routi
 import TestService from '../services/TestService';
 import { Inject } from 'typedi';
 import { encode } from 'jwt-simple';
-import Config from '../config/config';
 import AuthMiddleware from '../middlewares/AuthMiddleware';
 import { BuildResource } from '../decorators/BuildResource';
 import TestMapper from '../../shared/mappers/test/TestMapper';
@@ -29,11 +28,6 @@ export default class TestController {
                 message: request.user
             }
         });
-    }
-
-    @Get('/getauth')
-    getKey(@Res() response: any) {
-        return response.json({ token: 'JWT ' + encode({ test: 'this is test data' }, Config.secret) });
     }
 
     @Post('/test')

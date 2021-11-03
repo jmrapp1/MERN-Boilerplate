@@ -15,7 +15,6 @@ import HttpError from '../../../../../shared/errors/HttpError';
 class LoginPage extends React.Component<{ login, history }, { username, password }> {
     constructor( props ) {
         super(props);
-
         this.state = {
             username: '',
             password: ''
@@ -28,7 +27,7 @@ class LoginPage extends React.Component<{ login, history }, { username, password
     }
 
     onChange( e ) {
-        this.setState({ [ e.target.name ]: e.target.value })
+        this.setState({ [ e.target.name ]: e.target.value } as any)
     }
 
     onSubmit( e ) {

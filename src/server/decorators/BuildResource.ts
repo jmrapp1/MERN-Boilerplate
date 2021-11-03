@@ -1,7 +1,6 @@
 import * as _ from 'underscore';
 import { getMetadataArgsStorage } from 'routing-controllers';
 import ResourceMapper from '../../shared/mappers/ResourceMapper';
-import Logger from '../util/Logger';
 import { BadRequestError } from '../../shared/errors/BadRequestError';
 
 /**
@@ -33,10 +32,6 @@ export function BuildResource(mapper: ResourceMapper, strict: boolean = true): F
 function sendErrorResponse(action, error) {
     action.response.status(400).json(new BadRequestError(error).getJson());
     action.next(error);
-    Logger.warn('Building Resource Failed: ' + JSON.stringify({
-        payload: getRequestData(action.request),
-        error
-    }));
     return null;
 }
 

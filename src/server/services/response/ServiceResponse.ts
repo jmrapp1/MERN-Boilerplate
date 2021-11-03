@@ -5,7 +5,6 @@
  */
 import { BadRequestError } from '../../../shared/errors/BadRequestError';
 import HttpError from '../../../shared/errors/HttpError';
-import Logger from '../../util/Logger';
 import { InternalServerError } from '../../../shared/errors/InternalServerError';
 
 export default class ServiceResponse<T> {
@@ -40,7 +39,6 @@ export default class ServiceResponse<T> {
     }
 
     buildInternalServerError(): InternalServerError {
-        Logger.error(`An internal server error has occurred. Data: ${ JSON.stringify(this.data) }`);
         return new InternalServerError();
     }
 

@@ -44,7 +44,7 @@ class RegisterPage extends React.Component<{ register }, { username, email, firs
     }
 
     onChange(e) {
-        this.setState({ [ e.target.name ]: e.target.value })
+        this.setState({ [ e.target.name ]: e.target.value } as any)
     }
 
     onSubmit() {

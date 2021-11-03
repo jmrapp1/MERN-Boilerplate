@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     mode: 'development',
@@ -11,12 +10,9 @@ module.exports = {
         path: path.resolve(__dirname, '../../dist/client'),
         publicPath: '/'
     },
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
-    },
-    node: {
-        fs: 'empty'
     },
     module: {
         rules: [
@@ -35,7 +31,6 @@ module.exports = {
                     {
                         loader: 'sass-loader?sourceMap',
                         options: {
-                            includePaths: ['./src/**/*'],
                             sourceMap: true
                         }
                     }
@@ -59,7 +54,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin(),
+        // new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.LoaderOptionsPlugin({
@@ -79,9 +74,6 @@ module.exports = {
     ],
     devServer: {
         port: 8000,
-        contentBase: './public',
-        hot: true,
-        noInfo: false,
         proxy: {
             '/api/*': {
                 target: 'http://localhost:3000',

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
-import './index.css';
 import App from './views/App';
-import { BrowserRouter, HashRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import configureStore from './redux/store';
 import Provider from 'react-redux/es/components/Provider';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './index.css';
 
 const store = configureStore();
 

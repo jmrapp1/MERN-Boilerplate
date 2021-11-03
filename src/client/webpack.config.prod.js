@@ -16,7 +16,7 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js']
     },
     optimization: {
-        minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})]
+        // minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})]
     },
     module: {
         rules: [
@@ -35,7 +35,6 @@ module.exports = {
                     {
                         loader: 'sass-loader?sourceMap',
                         options: {
-                            includePaths: ['./src/**/*'],
                             sourceMap: true
                         }
                     }
@@ -67,9 +66,12 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin(),
+        // new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new webpack.IgnorePlugin({
+            resourceRegExp: /^\.\/locale$/,
+            contextRegExp: /moment$/,
+        }),
         new HtmlWebpackPlugin({
             template: './public/index.html',
             inject: 'body',

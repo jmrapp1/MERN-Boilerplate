@@ -1,5 +1,4 @@
 import ServiceResponse from './response/ServiceResponse';
-import Logger from '../util/Logger';
 import * as mongoose from 'mongoose';
 import PagedServiceResponse from './response/PagedServiceResponse';
 
@@ -8,7 +7,7 @@ export default class DatabaseService<T extends mongoose.Document> {
     /**
      * Represents the database model to be used
      */
-    model: any;
+    model: mongoose.Model<any>;
     populate = [];
 
     /**
@@ -50,7 +49,6 @@ export default class DatabaseService<T extends mongoose.Document> {
                     if (model.length === 1) {
                         return resolve(new ServiceResponse(model[0]));
                     } else if (model.length > 1) {
-                        Logger.critical(`Multiple rows found for ID: ${ id }. Returned Data: ${ JSON.stringify(model) }`);
                         return resolve(new ServiceResponse(model[0]));
                     }
                     return reject(new ServiceResponse(`No entry found with ID: ${id}`, 400));
@@ -195,23 +193,6 @@ export default class DatabaseService<T extends mongoose.Document> {
             return reject(new ServiceResponse(err));
         }
         return resolve(new ServiceResponse(model));
-    }
-
-    /**
-     * Saves the model with any updated fields within it
-     *
-     * @param {mongoose.Schema} model The database model
-     * @returns {Promise<ServiceResponse<T extends mongoose.Document>>} The response with the update model
-     */
-    save(model: mongoose.Schema): Promise<ServiceResponse<T>> {
-        return this.promise((resolve, reject) => {
-            model.save(err => {
-                if (err && err !== undefined && err !== null) {
-                    return reject(new ServiceResponse(err));
-                }
-                return resolve(new ServiceResponse(model));
-            });
-        });
     }
 
     /**

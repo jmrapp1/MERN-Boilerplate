@@ -10,8 +10,8 @@ import {createExpressServer, useContainer} from 'routing-controllers';
 import {Container} from 'typedi';
 
 import DatabaseSetup from './util/DatabaseSetup';
-import TestController from './controllers/TestController';
 import UserController from './controllers/UserController';
+import TestController from './controllers/TestController';
 
 useContainer(Container);
 
@@ -20,7 +20,7 @@ const express = require('express');
 const app = createExpressServer({
     cors: true,
     routePrefix: '/api',
-    controllers: [TestController, UserController]
+    controllers: [UserController, TestController]
 });
 
 dotenv.load({path: '.env'});
@@ -36,6 +36,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan('dev'));
 
+registerPassport(passport);
+app.use(passport.initialize());
+
 app.use(function (err, req, res, next) {
     next(err);
 });
@@ -43,9 +46,6 @@ app.use(function (err, req, res, next) {
 (async () => {
     try {
         await new DatabaseSetup().setupDb();
-
-        registerPassport(passport);
-
         app.listen(app.get('port'), () => {
             console.log('Listening on port ' + app.get('port'));
         });

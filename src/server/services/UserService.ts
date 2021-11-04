@@ -19,68 +19,34 @@ export default class UserService extends DatabaseService<UserDocument> {
      * @param loginResource The login resource
      * @returns {Promise<ServiceResponse>} The JWT token if successful, error if unsuccessful
      */
-    login(loginResource: UserLoginResource): Promise<ServiceResponse<JwtResource>> {
-        return this.promise((resolve, reject) => {
-            if (!loginResource.validated) {
-                const error = UserLoginMapper.verifyAllConstraints(loginResource);
-                if (error) return reject(new ServiceResponse(error));
+    async login(loginResource: UserLoginResource): Promise<ServiceResponse<JwtResource>> {
+        const userSearch = await this.findWithLimit({username: loginResource.username}, 1)
+        if (!userSearch.isEmpty()) {
+            const user = userSearch.data[0];
+            const passValidated = await (user as any).comparePassword(loginResource.password);
+            if (passValidated) {
+                const token = encode(user, process.env.PASSPORT_SECRET);
+                return new ServiceResponse(new JwtResource().init('Bearer ' + token));
             }
-
-            this.findWithLimit({ username: loginResource.username }, 1).then(userSearch => {
-                if (!userSearch.isEmpty()) {
-                    const user = userSearch.data[ 0 ];
-                    (user as any).comparePassword(loginResource.password).then(passValidated => {
-                        if (passValidated) {
-                            const token = encode(user, process.env.PASSPORT_SECRET);
-                            return resolve(new ServiceResponse(new JwtResource().init('JWT ' + token)));
-                        }
-                        return reject(new ServiceResponse('The username or password is incorrect.', 400));
-                    });
-                } else {
-                    return reject(new ServiceResponse('The username or password is incorrect.', 400));
-                }
-            }, reject);
-        });
+            throw new ServiceResponse('The username or password is incorrect.', 400);
+        } else {
+            throw new ServiceResponse('The username or password is incorrect.', 400);
+        }
     }
 
-    validateRegisterData(registerResource: UserRegisterResource): Promise<ServiceResponse<any>> {
-        return this.promise((resolve, reject) => {
-            if (!registerResource.validated) {
-                const error = UserRegisterMapper.verifyAllConstraints(registerResource);
-                if (error) return reject(new ServiceResponse(error));
-            }
-
-            this.find({
-                $or: [
-                    { email: registerResource.email },
-                    { username: registerResource.username }
-                ]
-            }).then(res => {
-                if (res.isEmpty()) {
-                    return resolve(new ServiceResponse());
-                } else {
-                    if (res.data[ 0 ].username === registerResource.username) {
-                        return reject(new ServiceResponse('That username has already been used.', 400));
-                    }
-                    return reject(new ServiceResponse('That email has already been used.', 400));
-                }
-            }, reject);
-        });
+    async validateRegisterData(registerResource: UserRegisterResource): Promise<ServiceResponse<any>> {
+        const res = await this.find({email: registerResource.email})
+        if (res.isEmpty()) {
+            return new ServiceResponse();
+        }
+        throw new ServiceResponse('A user already exists with that email', 400);
     }
 
-    register(registerResource: UserRegisterResource): Promise<ServiceResponse<any>> {
-        return new Promise<ServiceResponse<any>>((resolve, reject) => {
-            this.validateRegisterData(registerResource).then(valRes => {
-                    this.insert({
-                        username: registerResource.username,
-                        email: registerResource.email,
-                        firstName: registerResource.firstName,
-                        lastName: registerResource.lastName,
-                        phone: registerResource.phone,
-                        password: registerResource.password,
-                    }).then(resolve, reject);
-                },
-                reject);
+    async register(registerResource: UserRegisterResource): Promise<ServiceResponse<any>> {
+        await this.validateRegisterData(registerResource)
+        return this.insert({
+            email: registerResource.email,
+            password: registerResource.password,
         });
     }
 }

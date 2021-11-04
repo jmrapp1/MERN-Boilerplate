@@ -6,7 +6,7 @@ import reducers from './reducers';
 
 const composeEnhancer = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const engine = createEngine('bettersound-store');
+const engine = createEngine('boilerplate-store');
 const storageMiddleware = storage.createMiddleware(engine);
 
 export default function configureStore() {

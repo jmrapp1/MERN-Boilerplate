@@ -1,11 +1,12 @@
-import Resource from '../Resource';
+import {Resource} from '../../decorators/resource';
 
-export default class JwtResource extends Resource {
+@Resource
+export class JwtResource {
 
     jwtToken;
 
-    init(jwtToken) {
-        this.jwtToken = jwtToken;
+    constructor(data: {jwtToken}) {
+        this.jwtToken = data.jwtToken;
         return this;
     }
 

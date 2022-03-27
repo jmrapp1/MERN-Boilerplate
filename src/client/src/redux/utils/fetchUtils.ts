@@ -1,5 +1,4 @@
 import * as ErrorBuilder from '../../../../shared/errors/ErrorBuilder';
-import MapperUtils from '../../../../shared/mappers/MapperUtils';
 import { InternalServerError } from '../../../../shared/errors/InternalServerError';
 
 export function verifyStatus(response) {
@@ -46,12 +45,7 @@ function handleFetch(fetch, successCallback, errorCallback) {
     return fetch
         .then(verifyStatus)
         .then(res => res.json())
-        .then(data => {
-            if (data['mapperData'] && data['mapperData']['mapperId']) {
-                data = MapperUtils.buildFromMapper(data['mapperData']['mapperId'], data['mapperData']['isArray'], data['data']);
-            }
-            successCallback(data);
-        })
+        .then(successCallback)
         .catch(e => {
             const response = e['response'];
             if (response && response.json) {

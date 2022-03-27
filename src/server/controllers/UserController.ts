@@ -1,15 +1,10 @@
 import { BodyParam, Get, JsonController, Post, Req, Res, UseBefore } from 'routing-controllers';
-import { encode } from 'jwt-simple';
-import { BuildResource } from '../decorators/BuildResource';
-import UserRegisterMapper from '../../shared/mappers/user/UserRegisterMapper';
-import UserRegisterResource from '../../shared/resources/user/UserRegisterResource';
-import HttpUtils from '../util/HttpUtils';
-import UserLoginMapper from '../../shared/mappers/user/UserLoginMapper';
-import UserLoginResource from '../../shared/resources/user/UserLoginResource';
 import { Inject } from 'typedi';
 import UserService from '../services/UserService';
-import JwtMapper from '../../shared/mappers/user/JwtMapper';
 import BaseController from './BaseController';
+import {BuildResource} from '../decorators/build_resource';
+import {UserRegisterResource} from '../../shared/resources/user/UserRegisterResource';
+import {UserLoginResource} from '../../shared/resources/user/UserLoginResource';
 
 @JsonController('/user')
 export default class UserController extends BaseController {
@@ -18,7 +13,7 @@ export default class UserController extends BaseController {
     userService: UserService;
 
     @Post('/register')
-    register(@Res() response: any, @BuildResource(UserRegisterMapper, true) registerResource: UserRegisterResource) {
+    register(@Res() response: any, @BuildResource(UserRegisterResource) registerResource: UserRegisterResource) {
         if (!registerResource) return response;
         return this.userService.register(registerResource).then(
             res => response.status(200).json({}),
@@ -27,10 +22,10 @@ export default class UserController extends BaseController {
     }
 
     @Post('/login')
-    login(@Res() response: any, @BuildResource(UserLoginMapper, true) loginResource: UserLoginResource) {
+    login(@Res() response: any, @BuildResource(UserLoginResource) loginResource: UserLoginResource) {
         if (!loginResource) return response;
         return this.userService.login(loginResource).then(
-            res => response.status(200).json(HttpUtils.mappedResourceToJson(res.data, JwtMapper)),
+            res => response.status(200).json(res.data),
             err => this.handleServiceError(response, err)
         );
     }

@@ -1,6 +1,7 @@
-import Resource from '../Resource';
+import {Resource} from '../../decorators/resource';
 
-export default class UserRegisterResource extends Resource {
+@Resource
+export class UserRegisterResource {
 
     username: string;
     email: string;
@@ -10,14 +11,14 @@ export default class UserRegisterResource extends Resource {
     password: string;
     confirmPassword: string;
 
-    init(username: string, email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string) {
-        this.username = username;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
+    constructor(data: {username: string, email: string, firstName: string, lastName: string, phone: string, password: string, confirmPassword: string}) {
+        this.username = data.username;
+        this.email = data.email;
+        this.firstName = data.firstName;
+        this.lastName = data.lastName;
+        this.phone = data.phone;
+        this.password = data.password;
+        this.confirmPassword = data.confirmPassword;
         return this;
     }
 

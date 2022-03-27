@@ -8,9 +8,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Container from '../../common/components/containers/Container';
 import { toast } from 'react-toastify';
-import UserLoginResource from '../../../../../shared/resources/user/UserLoginResource';
-import JwtResource from '../../../../../shared/resources/user/JwtResource';
 import HttpError from '../../../../../shared/errors/HttpError';
+import {UserLoginResource} from '../../../../../shared/resources/user/UserLoginResource';
+import {JwtResource} from '../../../../../shared/resources/user/JwtResource';
 
 class LoginPage extends React.Component<{ login, history }, { username, password }> {
     constructor( props ) {
@@ -32,7 +32,7 @@ class LoginPage extends React.Component<{ login, history }, { username, password
 
     onSubmit( e ) {
         e.preventDefault();
-        this.props.login(new UserLoginResource().init(this.state.username, this.state.password), this.onSuccess, this.onError);
+        this.props.login(new UserLoginResource({ username: this.state.username, password: this.state.password }), this.onSuccess, this.onError);
     }
 
     onError(err: HttpError) {

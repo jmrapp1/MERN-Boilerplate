@@ -7,8 +7,8 @@ import PrimaryButton from '../../common/components/buttons/PrimaryButton';
 import TextInput from '../../common/components/inputs/TextInput';
 import Container from '../../common/components/containers/Container';
 import { toast } from 'react-toastify';
-import UserRegisterResource from '../../../../../shared/resources/user/UserRegisterResource';
 import { Link } from 'react-router-dom';
+import {UserRegisterResource} from '../../../../../shared/resources/user/UserRegisterResource';
 
 class RegisterPage extends React.Component<{ register }, { username, email, firstName, lastName, phone, password, confirmPassword }> {
 
@@ -48,10 +48,15 @@ class RegisterPage extends React.Component<{ register }, { username, email, firs
     }
 
     onSubmit() {
-        this.props.register(new UserRegisterResource().init(
-            this.state.username, this.state.email, this.state.firstName,
-            this.state.lastName, this.state.phone, this.state.password, this.state.confirmPassword
-        ), this.onSuccess, this.onError);
+        this.props.register(new UserRegisterResource({
+            username: this.state.username,
+            email: this.state.email,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            phone: this.state.phone,
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword
+        }), this.onSuccess, this.onError);
     }
 
     render() {

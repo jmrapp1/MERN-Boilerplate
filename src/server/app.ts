@@ -3,7 +3,6 @@ import * as morgan from 'morgan';
 import * as passport from 'passport';
 import * as bodyParser from 'body-parser';
 import 'reflect-metadata'; // required
-import './mixins/underscore';
 import registerPassport from './config/passport';
 
 import {createExpressServer, useContainer} from 'routing-controllers';
@@ -11,7 +10,7 @@ import {Container} from 'typedi';
 
 import DatabaseSetup from './util/DatabaseSetup';
 import UserController from './controllers/UserController';
-import TestController from './controllers/TestController';
+import {loadSharedResources} from './util/shared_resources';
 
 useContainer(Container);
 
@@ -20,7 +19,7 @@ const express = require('express');
 const app = createExpressServer({
     cors: true,
     routePrefix: '/api',
-    controllers: [UserController, TestController]
+    controllers: [UserController]
 });
 
 dotenv.load({path: '.env'});
@@ -46,6 +45,7 @@ app.use(function (err, req, res, next) {
 (async () => {
     try {
         await new DatabaseSetup().setupDb();
+        await loadSharedResources();
         app.listen(app.get('port'), () => {
             console.log('Listening on port ' + app.get('port'));
         });

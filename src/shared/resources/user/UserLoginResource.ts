@@ -1,13 +1,14 @@
-import Resource from '../Resource';
+import {Resource} from '../../decorators/resource';
 
-export default class UserLoginResource extends Resource {
+@Resource
+export class UserLoginResource {
 
     username: string;
     password: string;
 
-    init(username: string, password: string) {
-        this.username = username;
-        this.password = password;
+    constructor(data: {username: string, password: string}) {
+        this.username = data.username;
+        this.password = data.password;
         return this;
     }
 

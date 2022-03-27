@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "dev:client": "cd ./src/client && webpack-dev-server --node-env=development --config ./webpack.config.dev.js",
-    "dev:server": "tsc -p ./src/server && concurrently \"tsc -w -p ./src/server\" \"nodemon --config ./src/server/nodemon.json dist/server/app.js\"",
+    "dev:server": "nodemon --watch src/server src/server/app.ts",
     "prod": "npm run prod:server && npm run prod:client && npm run start",
     "prod:client": "cd ./src/client && webpack --node-env=production --config ./webpack.config.prod.js",
     "prod:server": "tsc -p ./src/server",

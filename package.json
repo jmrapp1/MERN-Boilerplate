@@ -27,7 +27,7 @@
     "express": "^4.17.1",
     "jwt-decode": "^2.2.0",
     "jwt-simple": "^0.5.1",
-    "moment-timezone": "^0.5.16",
+    "moment-timezone": "^0.5.35",
     "mongoose": "6.0.12",
     "morgan": "^1.9.0",
     "multer": "^1.4.3",

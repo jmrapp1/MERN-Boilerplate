@@ -24,7 +24,7 @@
     "cors": "^2.8.4",
     "dotenv": "4.0.0",
     "email-validator": "^2.0.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jwt-decode": "^2.2.0",
     "jwt-simple": "^0.5.1",
     "moment-timezone": "^0.5.16",
